@@ -4,3 +4,5 @@
 
 layout: home
 ---
+
+Welcome to the home page for the Phoenix operating system.

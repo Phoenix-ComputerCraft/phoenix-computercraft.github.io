@@ -15,3 +15,11 @@ $code-background-color: $grey-dk-250;
 $search-background-color: $grey-dk-250;
 $table-background-color: $grey-dk-250;
 $feedback-color: darken($sidebar-color, 3%);
+
+.search-input {
+    color: $grey-lt-300;
+}
+
+.main-content ol > li ol li::before {
+    content: counter(sub-counter) !important;
+}

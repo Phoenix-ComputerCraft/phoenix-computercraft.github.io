@@ -1,1 +1,5 @@
 $link-color: #944f00;
+
+.main-content ol > li ol li::before {
+    content: counter(sub-counter) !important;
+}
