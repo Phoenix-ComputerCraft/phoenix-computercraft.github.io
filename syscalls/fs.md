@@ -65,21 +65,16 @@ A table with the following contents:
 * `type: string`: The type of file, which can be `"file"`, `"directory"`, `"link"`, or `"special"`
 * `created: number`: The time the file was created, in milliseconds since the UNIX epoch
 * `modified: number`: The time the file was last modified, in milliseconds since the UNIX epoch
-* `owner: number`: The ID of the owner of the file
-* `group: number`: The ID of the group of the file
-* `permissions: table`: The permissions for each user class
-    * `owner: table`: The permissions for the owner
-        * `read: boolean`: Whether the owner can read the file
-        * `write: boolean`: Whether the owner can write to the file
-        * `execute: boolean`: Whether the owner can execute the file
-    * `group: table`: The permissions for the group
-        * `read: boolean`: Whether the group can read the file
-        * `write: boolean`: Whether the group can write to the file
-        * `execute: boolean`: Whether the group can execute the file
-    * `everyone: table`: The permissions for every other user
-        * `read: boolean`: Whether everyone can read the file
-        * `write: boolean`: Whether everyone can write to the file
-        * `execute: boolean`: Whether everyone can execute the file
+* `owner: string`: The owner of the file
+* `permissions: table`: The permissions for each user/group
+    * `<string>: table`: The permissions for each user/group who has manual permissions
+        * `read: boolean`: Whether the user can read the file
+        * `write: boolean`: Whether the user can write to the file
+        * `execute: boolean`: Whether the user can execute the file
+* `worldPermissions: table`: The permissions for all other users
+    * `read: boolean`: Whether everyone else can read the file
+    * `write: boolean`: Whether everyone else can write to the file
+    * `execute: boolean`: Whether everyone else can execute the file
 * `special: table?`: A table that can contain mount-specific data.
 
 ### Errors
@@ -97,6 +92,7 @@ This syscall does not return anything.
 ### Errors
 This syscall may throw an error if:
 * The current user does not have permission to write the file.
+* The current user does not have permission to write child subfiles and subdirectories.
 * The current user does not have permission to write the parent directory.
 
 ## `rename(from: string, to: string)`
@@ -129,17 +125,19 @@ This syscall does not return anything.
 ### Errors
 This syscall may throw an error if:
 * The current user does not have permission to write the parent directory of the first directory created.
+* A path component already exists and is a file.
 
-## `chmod(path: string, mode: number|string|table)`
-Changes the permissions (mode) of a file or directory.
+## `chmod(path: string, user: string?, mode: number|string|table)`
+Changes the permissions (mode) of a file or directory for the specified user.
 
 ### Arguments
 1. `path`: The path to the file to modify.
-2. `mode`: A value representing the mode. This may be:
-    * A UNIX-style octal mode (e.g. `755`)
-    * A UNIX-style mode modification string (e.g. `"a+x"`)
-    * A 9-character string with "r", "w", and "x" (or "-") representing the permissions for the owner, group, and everyone (e.g. `"rwxr-xr-x"`)
-    * A table in the same format as [`stat`'s permission field](#statpath-string-table)
+2. `user`: The user to set the permissions for. If this is `nil`, sets the permissions for all users.
+3. `mode`: A value representing the permissions. This may be:
+    * A UNIX-style octal mode (e.g. `5`)
+    * A UNIX-style mode modification string, without the user specifier (e.g. `"+rx"`)
+    * A 3-character string with "r", "w", and "x" (or "-") (e.g. `"r-x"`)
+    * A table with `read: boolean?`, `write: boolean?`, and `execute: boolean?` fields (if a field is `nil`, it uses the previous value)
 
 ### Return Values
 This syscall does not return anything.
@@ -149,12 +147,12 @@ This syscall may throw an error if:
 * The file does not exist.
 * The current user is not the owner of the file or root.
 
-## `chown(path: string, user: number)`
+## `chown(path: string, user: string)`
 Changes the owner of a file or directory.
 
 ### Arguments
 1. `path`: The path to the file to modify.
-2. `user`: The ID of the user who will own the file.
+2. `user`: The user who will own the file.
 
 ### Return Values
 This syscall does not return anything.
@@ -200,3 +198,20 @@ This syscall may throw an error if:
 * The path does not exist.
 * The path specified is not a mount.
 * The user does not have permission to write to the path.
+
+## `loadCraftOSAPI(apiName: string): table`
+Loads a CraftOS API or module from the ROM. This can be used to get access to certain functions without having to mount the entire ROM.
+
+This uses the current process's environment as the parent environment. This means the API will use the process's globals. If the API you need requires certain globals (like `colors`), load these in as globals first.
+
+### Arguments
+1. `apiName`: The name of the API or module to load. If this starts with `cc.`, it loads a module from `rom/modules/main`. Otherwise, it loads an API from `rom/apis`.
+
+### Return Values
+A table with the loaded API or module.
+
+### Errors
+This syscall may throw an error if:
+* The API name is malformed.
+* The API does not exist.
+* An error occurred while loading the API.
