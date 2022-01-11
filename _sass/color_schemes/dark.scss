@@ -23,3 +23,8 @@ $feedback-color: darken($sidebar-color, 3%);
 .main-content ol > li ol li::before {
     content: counter(sub-counter) !important;
 }
+
+.main-content ul > li::before {
+    position: relative !important;
+    margin-right: 1em !important;
+}

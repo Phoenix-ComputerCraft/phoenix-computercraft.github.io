@@ -54,7 +54,7 @@ This syscall may throw an error if:
 * The current user does not have permission to access the directory.
 
 ## `stat(path: string): table?`
-Returns a table with information about a file or directory. If the file does not exist, this returns `nil`.
+Returns a table with information about a file or directory. If the file does not exist, this returns `nil` and an error message.
 
 ### Arguments
 1. `path`: The path to the file or directory to inspect.
@@ -198,6 +198,18 @@ This syscall may throw an error if:
 * The path does not exist.
 * The path specified is not a mount.
 * The user does not have permission to write to the path.
+
+## `mountpoint(path: string)`
+Returns the path of the mount that the specified path is located on.
+
+### Arguments
+1. `path`: The path to check.
+
+### Return Values
+The path to the mount directory that the file is in.
+
+### Errors
+This syscall does not throw errors.
 
 ## `loadCraftOSAPI(apiName: string): table`
 Loads a CraftOS API or module from the ROM. This can be used to get access to certain functions without having to mount the entire ROM.

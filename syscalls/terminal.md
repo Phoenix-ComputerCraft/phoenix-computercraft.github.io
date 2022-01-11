@@ -114,3 +114,63 @@ The new TTY handle.
 
 ### Errors
 This syscall does not throw errors.
+
+## `stdin(handle: number | table | nil)`
+Sets the standard input handle of the current process.
+
+### Arguments
+1. `handle`: The handle to set the input to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `read` function, or `nil` to disable.
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall does not throw errors.
+
+## `stdout(handle: number | table | nil)`
+Sets the standard output handle of the current process.
+
+### Arguments
+1. `handle`: The handle to set the output to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `write` function, or `nil` to disable.
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall does not throw errors.
+
+## `stderr(handle: number | table | nil)`
+Sets the standard error handle of the current process.
+
+### Arguments
+1. `handle`: The handle to set the output to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `write` function, or `nil` to disable.
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall does not throw errors.
+
+## `istty(): boolean, boolean`
+Returns whether the current process is attached to a TTY's input and/or output.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+Two boolean values indicating whether there is a TTY on the input and output, respectively.
+
+### Errors
+This syscall does not throw errors.
+
+## `termsize(): number?, number?`
+Returns the size of the current TTY if available.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+The width and height of the terminal, or `nil` if the output is not a TTY.
+
+### Errors
+This syscall does not throw errors.

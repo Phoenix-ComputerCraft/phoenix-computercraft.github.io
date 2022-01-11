@@ -52,6 +52,45 @@ This syscall does not take any arguments.
 ### Return Values
 The environment table of the process.
 
+### Errors
+This syscall does not throw errors.
+
+## `getname(): string`
+Returns the name of the current process.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+The name of the process.
+
+### Errors
+This syscall does not throw errors.
+
+## `getcwd(): string`
+Returns the current working directory of the current process.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+The current directory of the process.
+
+### Errors
+This syscall does not throw errors.
+
+## `chdir(dir: string): boolean, string?`
+Changes the current working directory.
+
+### Arguments
+1. `dir`: The directory to change to, which may be relative to the current directory or absolute.
+
+### Return Values
+`true` if the command succeeded, or `false` + an error message if it did not.
+
+### Errors
+This syscall does not throw errors.
+
 ## `fork(func: function, name: string?, args...: any): number`
 Creates a new process that calls the specified function.
 
@@ -106,3 +145,43 @@ This syscall does not return.
 
 ### Errors
 This syscall does not throw errors.
+
+## `getplist(): table`
+Returns a list of all currently active process IDs.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+A sorted list of all process IDs that are currently running.
+
+### Errors
+This syscall does not throw errors.
+
+## `getpinfo(pid: number): table | nil, string`
+Returns a table with information about a process.
+
+### Arguments
+1. `pid`: The ID of the process to query.
+
+### Return Values
+A table with the following fields:
+* `id`: The ID of the process
+* `name`: The name of the process
+* `user`: The user of the process
+* `parent`: The ID of the parent process, if available
+* `dir`: The working directory of the process
+* `stdin`: The ID of the TTY the standard input is attached to, if available
+* `stdout`: The ID of the TTY the standard output is attached to, if available
+* `stderr`: The ID of the TTY the standard error is attached to, if available
+* `cputime`: The total time spent by the process, in seconds
+* `systime`: The total time spent by syscalls triggered by the process, in seconds
+* `threads`: A sparse list of thread information with the following fields:
+  * `id`: The ID of the thread
+  * `name`: The name of the thread
+  * `status`: The status of the thread
+
+If the information could not be read, the syscall will return `nil` + an error message.
+
+### Errors
+This syscall does not throw errors
