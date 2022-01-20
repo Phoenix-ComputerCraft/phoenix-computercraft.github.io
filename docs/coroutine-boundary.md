@@ -7,6 +7,9 @@ parent: Documentation
 # Coroutine boundary
 All processes in the Phoenix kernel are implemented as separate coroutines. Each coroutine may yield for various reasons, so the first argument of any yield includes the type of yield requested. This page lists the types of yields that programs may trigger.
 
+## (none)
+If no argument is passed to `coroutine.yield`, the thread is put into a waiting state and will be resumed once an event is ready in the queue. Once an event is queued, or if there is one already in the queue, the thread will be resumed on the next loop of the process manager.
+
 ## `preempt`
 A `preempt` yield is usually triggered automatically by the preemption hook installed by the kernel. This kind of yield has no purpose other than to pause the execution of the current process to allow other processes to continue. No arguments are taken, and no return values are given.
 
