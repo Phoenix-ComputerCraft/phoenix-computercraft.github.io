@@ -36,3 +36,6 @@ type HWInfo = {
 ```
 
 ## Kernel driver API
+The kernel contains an API named `hardware` that allows access to the driver subsystem for kernel modules to use. These functions provide the ability to add and remove devices, as well as to call a function whenever a peripheral is attached with a certain type.
+
+Kernel modules do not have access to the event system, so for drivers that need access to events outside peripheral notifications (e.g. network responses), it is recommended that they create a new process with `fork` to run any part of the driver that needs events, then use the kernel module communication syscalls to transfer any data necessary to the driver.
