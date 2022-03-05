@@ -12,9 +12,10 @@ This type is used to represent a computer node.
 * `peripheral_computer`: Implements for networked computers.
 
 ## Properties
-* `isOn: boolean`: Whether the computer is currently on
-* `id: number`: The ID of the computer
-* `label: string?`: The label of the computer
+* `isOn: boolean {get}`: Whether the computer is currently on
+* `id: number {get}`: The ID of the computer
+* `label: string? {get set?}`: The label of the computer
+  * Read-only on all computers except ones implemented by `root`
 
 ## Methods
 * `turnOn()`: Turns the computer on.
@@ -22,5 +23,9 @@ This type is used to represent a computer node.
   * This syscall never returns if used on the root computer.
 * `reboot()`: Reboots the computer. (Requires root)
   * This syscall never returns if used on the root computer.
-* `setLabel(label: string?)`: Sets the label on the computer.
-  * Only effective on the root computer.
+
+## Events (`root` only)
+* `device_added`: Sent when a new device is added to the computer.
+  * `device: string`: The path of the new device
+* `device_removed`: Sent when a device is removed from the computer.
+  * `device: string`: The path of the removed device

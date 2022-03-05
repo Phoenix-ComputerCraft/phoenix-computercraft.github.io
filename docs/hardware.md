@@ -20,6 +20,8 @@ There are three ways to address a device when using hardware syscalls. Devices m
 The syscalls starting with `dev` are used to interact with devices. These give access to devices to normal processes. For more information on these syscalls, see [the hardware syscall docs](../syscalls/hardware).
 
 ## Kernel driver API
-The kernel contains an API named `hardware` that allows access to the driver subsystem for kernel modules to use. These functions provide the ability to add and remove devices, as well as to call a function whenever a peripheral is attached with a certain type.
+The kernel contains an API named `hardware` that allows access to the driver subsystem for kernel modules to use. These functions provide the ability to add and remove devices, as well as to call a function whenever a device is attached under a certain parent or with an ID matching a pattern.
 
 Kernel modules do not have access to the event system, so for drivers that need access to events outside peripheral notifications (e.g. network responses), it is recommended that they create a new process with `fork` to run any part of the driver that needs events, then use the kernel module communication syscalls to transfer any data necessary to the driver.
+
+Device methods take the device node as the first argument, the process executing the method as the second, and any additional arguments after.
