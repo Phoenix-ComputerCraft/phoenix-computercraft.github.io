@@ -10,15 +10,15 @@ This type represents a modem peripheral. Modems are often used by the system in 
 ## Drivers that use this type
 * `peripheral_modem`: Implements for local modem peripherals.
 
-## Properties
-* `wireless: boolean {get}`: Whether the modem is wireless
+## Metadata
+* `wireless: boolean`: Whether the modem is wireless
 
 ## Methods
 * `open(channel: number)`: Opens a channel for use. `devlisten` must have been called on this device to receive events.
 * `isOpen(channel: number)`: Returns whether the channel is currently open.
 * `close(channel: number)`: Closes the channel, stopping events on that channel.
 * `closeAll()`: Closes all open channels.
-* `transmit(channel: number, replyChannel: number, payload: any)`: Sends a message on the specified channel.
+* `transmit(channel: number, replyChannel: number?, payload: any)`: Sends a message on the specified channel.
 
 ## Events
 * `modem_message`: Sent when a message is received on an open channel.

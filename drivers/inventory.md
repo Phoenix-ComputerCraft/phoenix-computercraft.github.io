@@ -10,8 +10,10 @@ This type represents a generic inventory peripheral.
 ## Drivers that use this type
 * `peripheral_inventory`: Implements for networked inventories.
 
-## Properties
+## Metadata
 * `size: number {get}`: The number of slots in the inventory
+
+## Properties
 * `items: [{name: string, count: number, nbt: string?}] {get}`: The basic contents of the inventory
 
 ## Methods

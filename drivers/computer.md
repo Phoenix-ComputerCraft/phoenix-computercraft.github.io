@@ -11,14 +11,16 @@ This type is used to represent a computer node.
 * `root`: Implements for the root (local) computer.
 * `peripheral_computer`: Implements for networked computers.
 
+## Metadata
+* `id: number`: The ID of the computer
+
 ## Properties
 * `isOn: boolean {get}`: Whether the computer is currently on
-* `id: number {get}`: The ID of the computer
 * `label: string? {get set?}`: The label of the computer
   * Read-only on all computers except ones implemented by `root`
 
 ## Methods
-* `turnOn()`: Turns the computer on.
+* `turnOn()`: Turns the computer on. (Requires root)
 * `shutdown()`: Shuts down the computer. (Requires root)
   * This syscall never returns if used on the root computer.
 * `reboot()`: Reboots the computer. (Requires root)

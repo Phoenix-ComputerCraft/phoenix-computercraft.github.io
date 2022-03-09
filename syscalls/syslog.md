@@ -14,7 +14,7 @@ Adds a message to the specified log stream, or the system log if not specified. 
 1. `options`: A table with options for the message. If this option slot contains a non-table value, it's assumed to be part of the message. This can contain:
     * `name: string`: The log to send to. Defaults to `default`, the system log.
     * `category: string`: A custom category name that may be used by listeners to filter certain messages.
-    * `level: number`: A number indicating the log level of the message, from 0 to 6. Defaults to 1. The available levels are:
+    * `level: number|string`: A number indicating the log level of the message, from 0 to 6. Defaults to 1. This may also be a level name as listed below. The available level names are:
         <ol style="counter-set: sub-counter -1">
         <li>Debug</li>
         <li>Info</li>

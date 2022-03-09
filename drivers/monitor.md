@@ -12,9 +12,9 @@ This type represents a monitor peripheral. Monitors function as a secondary outp
 
 ## Properties
 * `scale: number {get set}`: The scale of the monitor. Ranges from 0.5 to 5.0.
+* `size: {width: number, height: number} {get}`: The size of the monitor's TTY in character cells. Equivalent to `termsize()` syscall on the monitor.
 
 ## Methods
-* `termsize(): number, number`: Returns the size of the monitor.
 * `write(value...: any)`: Writes a series of values to the monitor, accepting ANSI escape codes.
 * `termctl(flags: table?): table`: Sets various control flags on the monitor if specified, and returns the status of all flags. This uses the same arguments as the [`termctl` syscall](/syscalls/terminal.html#termctlflags-table-table), but only flags relating to output are used.
 * `openterm(): Terminal?`: Attempts to acquire exclusive access to the monitor and switch into exclusive-text mode. This functions the same as the [`openterm` syscall](/syscalls/terminal.html#openterm-terminal).
@@ -23,4 +23,4 @@ This type represents a monitor peripheral. Monitors function as a secondary outp
 ## Events
 * `monitor_resize`: Sent when the monitor is resized.
   * `device: string`: The path to the resized monitor
-  * `size: {x: number, y: number}`: The new size of the monitor
+  * `width: number, height: number`: The new size of the monitor

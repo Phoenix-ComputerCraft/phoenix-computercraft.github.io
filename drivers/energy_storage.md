@@ -10,6 +10,8 @@ This type represents a generic energy storage peripheral.
 ## Drivers that use this type
 * `peripheral_energy_storage`: Implements for networked energy storage blocks.
 
+## Metadata
+* `capacity: number`: The capacity of the block, in FE.
+
 ## Properties
 * `energy: number {get}`: The energy stored in the block, in FE.
-* `capacity: number {get}`: The capacity of the block, in FE.
