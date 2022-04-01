@@ -21,22 +21,21 @@ Here's the mappings for each event. Each parameter column lists the new name of 
 | `alarm`            | `id`        |             |             |             |             |                       |
 | `char`             | `character` |             |             |             |             |                       |
 | `computer_command` | `args`...   |             |             |             |             |                       |
-| `disk`             | `side`      |             |             |             |             |                       |
-| `disk_eject`       | `side`      |             |             |             |             |                       |
+| `disk`             | `device`    |             |             |             |             |                       |
+| `disk_eject`       | `device`    |             |             |             |             |                       |
 | `http_check`       | `url`       | `isValid`   | `error`     |             |             |                       |
 | `http_failure` => `http_response` | `url`      | `error`     | `handle`    |           | |                       |
 | `http_success` => `http_response` | `url`      | `handle`    |             |           | |                       |
-| `key`              | `keycode`   | `isRepeat`  |             |             |             | {::nomarkdown}<ul><li>`ctrlHeld`: Whether Control is held</li><li>`altHeld`: Whether Alt is held</li><li>`shiftHeld`: Whether Shift is held</li></ul>{:/} |
-| `key_up`           | `keycode`   |             |             |             |             | {::nomarkdown}<ul><li>`ctrlHeld`: Whether Control is held</li><li>`altHeld`: Whether Alt is held</li><li>`shiftHeld`: Whether Shift is held</li></ul>{:/} |
-| `monitor_resize`   | `side`      |             |             |             |             |                       |
-| `monitor_touch`    | `side`      | `x`         | `y`         |             |             |                       |
-| `mouse_click`      | `button`    | `x`         | `y`         |             |             | `buttonMask`: Bitmask of all buttons currently down |
-| `mouse_drag`       | `button`    | `x`         | `y`         |             |             | `buttonMask`: Bitmask of all buttons currently down |
-| `mouse_up`         | `button`    | `x`         | `y`         |             |             | `buttonMask`: Bitmask of all buttons currently down |
-| `mouse_scroll`     | `direction` | `x`         | `y`         |             |             |                       |
+| `key`              | `keycode`   | `isRepeat`  |             |             |             | {::nomarkdown}<ul><li><code>ctrlHeld</code>: Whether Control is held</li><li><code>altHeld</code>: Whether Alt is held</li><li><code>shiftHeld</code>: Whether Shift is held</li></ul>{:/} |
+| `key_up`           | `keycode`   |             |             |             |             | {::nomarkdown}<ul><li><code>ctrlHeld</code>: Whether Control is held</li><li><code>altHeld</code>: Whether Alt is held</li><li><code>shiftHeld</code>: Whether Shift is held</li></ul>{:/} |
+| `monitor_resize`   | `device`    |             |             |             |             |                       |
+| `mouse_click`      | `button`    | `x`         | `y`         |             |             | {::nomarkdown}<ul><li><code>buttonMask</code>: Bitmask of all buttons currently down</li><li><code>device</code>: If sent on a monitor, the device it was sent on</li></ul>{:/} |
+| `mouse_drag`       | `button`    | `x`         | `y`         |             |             | {::nomarkdown}<ul><li><code>buttonMask</code>: Bitmask of all buttons currently down</li><li><code>device</code>: If sent on a monitor, the device it was sent on</li></ul>{:/} |
+| `mouse_up`         | `button`    | `x`         | `y`         |             |             | {::nomarkdown}<ul><li><code>buttonMask</code>: Bitmask of all buttons currently down</li><li><code>device</code>: If sent on a monitor, the device it was sent on</li></ul>{:/} |
+| `mouse_scroll`     | `direction` | `x`         | `y`         |             |             | {::nomarkdown}<ul><li><code>device</code>: If sent on a monitor, the device it was sent on</li></ul>{:/} |
 | `paste`            | `text`      |             |             |             |             |                       |
-| `peripheral`       | `side`      |             |             |             |             |                       |
-| `peripheral_detach`| `side`      |             |             |             |             |                       |
+| `peripheral`       | `device`    |             |             |             |             |                       |
+| `peripheral_detach`| `device`    |             |             |             |             |                       |
 | `redstone`         |             |             |             |             |             |                       |
 | `task_complete`    | `id`        | `success`   | `results`...|             |             |                       |
 | `term_resize`      |             |             |             |             |             |                       |

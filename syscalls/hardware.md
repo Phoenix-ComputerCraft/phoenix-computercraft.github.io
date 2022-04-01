@@ -8,7 +8,7 @@ parent: System Calls
 These syscalls provide interfaces for interacting with the hardware (including drivers), as well as some miscellaneous functionality to interact with the physical computer.
 
 ## `devlookup(name: string): string...`
-Returns all paths to devices that have the specified node name.
+Returns all paths to devices that have the specified node name. If a path or UUID is specified, returns the path of the singular device node.
 
 ### Arguments
 1. `name`: The device name to search for
@@ -34,7 +34,7 @@ type HWInfo = {
     parent: string,            // Path to parent device
     displayName: string,       // Display name for users
     types: {[string]: string}, // Types of devices implemented: type = driver name
-    metadata: Object           // Opaque metadata for driver use
+    metadata: Object           // Extra static metadata provided by drivers
 }
 ```
 If the device does not exist, this returns `nil`.

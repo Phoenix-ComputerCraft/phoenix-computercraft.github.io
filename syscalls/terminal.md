@@ -115,11 +115,11 @@ The new TTY handle.
 ### Errors
 This syscall does not throw errors.
 
-## `stdin(handle: number | table | nil)`
+## `stdin(handle: number | table | string | nil)`
 Sets the standard input handle of the current process.
 
 ### Arguments
-1. `handle`: The handle to set the input to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `read` function, or `nil` to disable.
+1. `handle`: The handle to set the input to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `read` function, a device path or UUID to a peripheral that has a TTY (such as a monitor), or `nil` to disable.
 
 ### Return Values
 This syscall does not return anything.
@@ -127,11 +127,11 @@ This syscall does not return anything.
 ### Errors
 This syscall does not throw errors.
 
-## `stdout(handle: number | table | nil)`
+## `stdout(handle: number | table | string | nil)`
 Sets the standard output handle of the current process.
 
 ### Arguments
-1. `handle`: The handle to set the output to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `write` function, or `nil` to disable.
+1. `handle`: The handle to set the output to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `write` function, a device path or UUID to a peripheral that has a TTY (such as a monitor), or `nil` to disable.
 
 ### Return Values
 This syscall does not return anything.
@@ -143,7 +143,7 @@ This syscall does not throw errors.
 Sets the standard error handle of the current process.
 
 ### Arguments
-1. `handle`: The handle to set the output to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `write` function, or `nil` to disable.
+1. `handle`: The handle to set the output to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `write` function, a device path or UUID to a peripheral that has a TTY (such as a monitor), or `nil` to disable.
 
 ### Return Values
 This syscall does not return anything.
