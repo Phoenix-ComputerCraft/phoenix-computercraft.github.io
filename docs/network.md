@@ -10,8 +10,8 @@ Phoenix's network stack attempts to simplify the API for network connections bot
 ## Rednet support
 Phoenix includes built-in support for Rednet to allow basic backwards compatibility with CraftOS. To communicate over Rednet, call `connect` with a scheme in the form `rednet[+protocol]` and an IP in the `0.0.0.0/8` range, which represents the target computer's ID. (Example: `rednet://0.0.0.4` = ID 4, `rednet+dns://0.0.2.56` = ID 168 with `dns` protocol.) The returned handle will be ready to send and receive Rednet messages using the modem specified (or all if none was specified). Because Rednet is a connectionless protocol, the handle will always remain open and can never error.
 
-## Protocols
-Phoenix implements a number of protocols that establish a full networking stack up to the transport layer. These protocols are documented here.
+## Kernel protocols
+The Phoenix kernel implements a number of protocols that establish a full networking stack up to the transport layer. These protocols are documented here.
 
 Each of the following protocols uses a basic table format to hold data in transit. A message at each layer is contained in a table with at least three basic members:
 * `PhoenixNetworking`: Always set to `true` to indicate this message is part of the Phoenix network stack.
@@ -25,7 +25,7 @@ Channel numbers in the modem API are used in PSP (see below) for port numbers. H
 ### Phoenix Link Protocol (PLP)
 Phoenix uses a protocol similar to Rednet to transfer data between two computers. This implements the Link layer of the TCP/IP model. PLP has the type `"link"`, and has the following members:
 * `source`: The ID of the sending computer.
-* `destination`: The ID of the receiving computer.
+* `destination`: The ID of the receiving computer. If unspecified, this is a broadcast message.
 
 ### Address resolution protocol
 To resolve IP addresses to computer IDs, and to check for IP collisions, an address resolution protocol is used. This protocol is separate from the TCP/IP ARP standard, but functions the same. It has the type `"arp"`, and has the following members:
@@ -69,3 +69,6 @@ The Phoenix Socket Protocol (PSP) provides a reliable bidirectional socket conne
 Ports are not stored in the PSP message; rather, they are implemented through modem channels. Port 0 is reserved for non-PSP applications, and is thus illegal to use in PSP communications.
 
 Connections are handled the same way as TCP: the client sends a `synchronize` message with an initial sequence number; the server replies with a `synchronize` message with an `acknowledgement` number that is one more than the initial number; and the client sends a plain `acknowledgement` message with `synchronize` unset and no payload. To close, the initiator sends a `final` message to the other end; the server sends back an acknowledgement; the server then sends its own `final` message; and the client sends back its own acknowledgement.
+
+## User protocols
+In addition to the kernel-defined protocols, the default Phoenix distribution implements a number of application layer protocols for things such as dynamic IP assignment, hostname lookup, and file transfer.
