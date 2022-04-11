@@ -19,6 +19,18 @@ The path to each node in the device tree that has the specified name.
 ### Errors
 This syscall does not throw any errors.
 
+## `devfind(type: string): string...`
+Returns all paths to devices that have the specified type implemented.
+
+### Arguments
+1. `name`: The device type to search for
+
+### Return Values
+The path to each node in the device tree that has the specified type.
+
+### Errors
+This syscall does not throw any errors.
+
 ## `devinfo(device: string): table?`
 Returns a table with information describing a device node.
 

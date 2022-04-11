@@ -135,7 +135,7 @@ Changes the permissions (mode) of a file or directory for the specified user.
 2. `user`: The user to set the permissions for. If this is `nil`, sets the permissions for all users.
 3. `mode`: A value representing the permissions. This may be:
     * A UNIX-style octal mode (e.g. `5`)
-    * A UNIX-style mode modification string, without the user specifier (e.g. `"+rx"`)
+    * A UNIX-style mode modification string, without the user specifier (e.g. `"+rx"`) (this does not work with `"-wx"` - use `"-xw"` instead)
     * A 3-character string with "r", "w", and "x" (or "-") (e.g. `"r-x"`)
     * A table with `read: boolean?`, `write: boolean?`, and `execute: boolean?` fields (if a field is `nil`, it uses the previous value)
 

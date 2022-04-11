@@ -7,7 +7,7 @@ parent: System Calls
 # Networking
 These syscalls provide networking capabilities, including both local computer connections as well as external HTTP/WebSocket connections.
 
-## `connect(options: table|string, device: string?): Handle?`
+## `connect(options: table|string): Handle?`
 Creates a connection to a remote resource using the specified options table or URI.
 
 The following URI schemes are built-in:
@@ -19,12 +19,13 @@ The following URI schemes are built-in:
 Other schemes may be implemented in kernel modules.
 
 ### Arguments
-1. `options`: Either a string with a URI (no options), or a table with the following elements:
+1. `options`: Either a string with a URI (no options), or a table with any of the following elements:
   * `url: string`: The URI to connect to (required)
-  * `method: string`: For HTTP connections, the method to use when connecting (defaults to `"GET"`)
-  * `encoding: "utf8" | "utf-8" | "binary"`: Encoding to use when transferring data (defaults to `"binary"`)
-  * `redirect: boolean`: Whether to automatically redirect responses that indicate a redirect (defaults to `true`)
-2. `device`: The path to the device to use to establish the connection (usually a modem), or `nil` to use the default. For local connections, the default is all available modems.
+  * `encoding: "utf8" | "utf-8" | "binary"`: HTTP/WS: Encoding to use when transferring data (defaults to `"binary"`)
+  * `headers: {[string] = string}`: HTTP/WS: Any headers to send in the request
+  * `method: string`: HTTP: The method to use when connecting (defaults to `"GET"`)
+  * `redirect: boolean`: HTTP: Whether to automatically redirect responses that indicate a redirect (defaults to `true`)
+  * `device: string`: Rednet/PSP: The path to the device to use to establish the connection (usually a modem), or `nil` to use all modems (note: if this path points to multiple devices, all are used)
 
 ### Return Values
 A handle object that can be used to send/receive data, or `nil` + an error if the handle could not be created. The handle is not guaranteed to be ready to send/receive data immediately, however, so the `status` method should be checked before using.
@@ -283,7 +284,7 @@ This method may throw an error if:
 Writes the supplied values to the connection.
 
 ### Arguments
-1. `data...`: The values to write. Values that are not strings will be converted with `tostring`.
+1. `data...`: The values to write. Values that are not strings will be converted with `tostring`, unless otherwise specified by the handle type.
 
 ### Return Values
 This method does not return anything.

@@ -5,13 +5,16 @@ parent: Drivers
 ---
 
 # `modem`
-This type represents a modem peripheral. Modems are often used by the system in other components (such as local networking), so they may be locked by another process doing I/O.
+This type represents a modem peripheral. Modems are often used by the system in other components (such as local networking), so they may be locked by another process doing I/O. Opening channels is handled per-process, so closing a channel does not guarantee it will actually close on the real modem; however, it does guarantee the process will no longer receive events for that channel.
 
 ## Drivers that use this type
 * `peripheral_modem`: Implements for local modem peripherals.
 
 ## Metadata
 * `wireless: boolean`: Whether the modem is wireless
+
+## Properties
+* `remainingChannels: number`: The number of additional channels that may be opened on this modem (assuming the limit is 128)
 
 ## Methods
 * `open(channel: number)`: Opens a channel for use. `devlisten` must have been called on this device to receive events.
