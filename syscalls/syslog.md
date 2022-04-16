@@ -29,6 +29,7 @@ Adds a message to the specified log stream, or the system log if not specified. 
     * `process: number`: The PID of the process that sent the message. Defaults to the PID of the calling process.
     * `thread: number`: The thread ID that sent the message. Defaults to none.
     * `module: string`: A custom module name that indicates what part of the program sent the message, for use by listeners for filtering.
+    * `traceback: boolean`: If set to `true`, an automatic colorizer will be applied to format a stack trace.
 2. `message...`: The contents of the message. Each option is serialized and concatenated with a space, so sending tables will show their contents.
 
 ### Return Values

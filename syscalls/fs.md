@@ -66,6 +66,7 @@ A table with the following contents:
 * `created: number`: The time the file was created, in milliseconds since the UNIX epoch
 * `modified: number`: The time the file was last modified, in milliseconds since the UNIX epoch
 * `owner: string`: The owner of the file
+* `mountpoint: string`: The path to the mountpoint the file is on
 * `permissions: table`: The permissions for each user/group
     * `<string>: table`: The permissions for each user/group who has manual permissions
         * `read: boolean`: Whether the user can read the file
@@ -198,18 +199,6 @@ This syscall may throw an error if:
 * The path does not exist.
 * The path specified is not a mount.
 * The user does not have permission to write to the path.
-
-## `mountpoint(path: string)`
-Returns the path of the mount that the specified path is located on.
-
-### Arguments
-1. `path`: The path to check.
-
-### Return Values
-The path to the mount directory that the file is in.
-
-### Errors
-This syscall does not throw errors.
 
 ## `loadCraftOSAPI(apiName: string): table`
 Loads a CraftOS API or module from the ROM. This can be used to get access to certain functions without having to mount the entire ROM.

@@ -107,7 +107,7 @@ A list of route entries with the following fields:
 * `action: string`: The action to take on the message. Valid values:
   * `"unicast"`: Send all messages to the specified destination.
   * `"broadcast"`: Broadcast the message to all destinations on the device.
-  * `"local"`: Send the message back to the system; do not send it anywhere.
+  * `"local"`: Send the message to a known destination on a local network.
   * `"unreachable"`: Send a Destination Unreachable message back to the sender.
   * `"prohibit"`: Send a Prohibit message back to the sender.
   * `"blackhole"`: Ignore the message altogether.
