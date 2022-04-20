@@ -75,8 +75,10 @@ This syscall does not return anything.
 This syscall may throw an error if:
 * The computer is not listening on the specified URI.
 
-## `ipconfig(device: string, info: table?): table`
+## `ipconfig(device: string, info: table?): table?`
 Returns a table with information about the current PIP configuration for the specified modem, and optionally sets new options (requires root).
+
+If no configuration is present, then both the IP and netmask must be specified if `info` is set.
 
 ### Arguments
 1. `device`: The path to the modem to operate on
@@ -87,6 +89,8 @@ A table of PIP configuration entries. These are the currently used members:
 * `ip: string`: The IP address of the modem. No IP is indicated with an empty string. (When setting, this may also be a 32-bit number representing the IP in big-endian format.)
 * `netmask: number`: The subnet mask expressed as a number of bits, as in CIDR notation. No subnet mask is indicated with a value of `0`. (When setting, this may also be an IP-formatted address string.)
 * `up: boolean`: Whether the link is currently up. If a link is down, no Phoenix networking protocols will be serviced on this device. (This allows user applications to manually manage the protocols instead, if required.)
+
+If the device does not have any IP configuration, returns `nil`.
 
 ### Errors
 This syscall may throw an error if:
@@ -123,7 +127,7 @@ This syscall does not throw any errors.
 Adds a new route to the specified route table. If the table does not exist, it will be created.
 
 ### Arguments
-1. `options`: A table with options for the route entry, as specified in the return value section for `routelist`. It can also contain a `table` entry, which is a number specifying the table index to insert into (integer starting at 0; defaults to 1). The actions `"unicast"` and `"broadcast"` both require `device`; `"unicast"` also requires `destination`.
+1. `options`: A table with options for the route entry, as specified in the return value section for `routelist`. It can also contain a `table` entry, which is a number specifying the table index to insert into (integer starting at 1; defaults to 1). The actions `"local"`, `"unicast"` and `"broadcast"` require `device`; `"unicast"` also requires `destination`.
 
 ### Return Values
 This syscall does not return anything.
@@ -135,12 +139,13 @@ This syscall may throw an error if:
 * The device (if specified) is not present.
 * The device (if specified) is not a valid modem.
 
-## `routedel(source: string, num: number?)`
+## `routedel(source: string, mask: number, num: number?)`
 Removes the specified route from the specified table.
 
 ### Arguments
 1. `source`: The source IP address to remove in CIDR notation (e.g. `192.168.0.0/16`)
-2. `num`: The table number to modify as an integer starting at 0 (default 1)
+2. `mask`: The netmask prefix length of the IP to remove
+3. `num`: The table number to modify as an integer starting at 1 (default 1)
 
 ### Return Values
 This syscall does not return anything.
@@ -163,30 +168,13 @@ This syscall may throw an error if:
 * The device is not present.
 * The device is not a valid modem.
 
-## `arpadd(device: string, ip: string, id: number)`
-Adds a computer ID mapping for the specified IP on the requested device.
+## `arpset(device: string, ip: string, id: number?)`
+Sets the computer ID mapping for the specified IP on the requested device.
 
 ### Arguments
 1. `device`: The path to the modem to add for.
 2. `ip`: The IP address of the target computer.
-3. `id`: The computer ID of the target computer.
-
-### Return Values
-This syscall does not return anything.
-
-### Errors
-This syscall may throw an error if:
-* The current user is not root.
-* The device is not present.
-* The device is not a valid modem.
-* A mapping already exists for the specified IP.
-
-## `arpdel(device: string, ip: string)`
-Removes the computer ID mapping for the specified IP on the requested device.
-
-### Arguments
-1. `device`: The path to the modem to remove for.
-2. `ip`: The IP address of the computer to remove.
+3. `id`: The computer ID of the target computer, or `nil` to remove the entry.
 
 ### Return Values
 This syscall does not return anything.
