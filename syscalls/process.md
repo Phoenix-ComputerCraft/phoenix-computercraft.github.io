@@ -105,15 +105,15 @@ The PID of the newly created process.
 ### Errors
 This syscall does not throw errors.
 
-## `exec(path: string, args...: any): number`
-Creates a new process that runs the specified program.
+## `exec(path: string, args...: any): never`
+Replaces the current process with the specified Lua script, keeping all process info intact.
 
 ### Arguments
 1. `path`: The path to the file to run.
 2. `args...`: Any arguments to pass to the program.
 
 ### Return Values
-The PID of the newly created process.
+This syscall does not return.
 
 ### Errors
 This syscall may throw an error if:

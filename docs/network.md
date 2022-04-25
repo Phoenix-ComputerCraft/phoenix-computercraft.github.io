@@ -65,8 +65,10 @@ The payload contains the PIP message that triggered the control message, if pres
 The Phoenix Socket Protocol (PSP) provides a reliable bidirectional socket connection between two computers. PSP is based on TCP, and is the main protocol exposed to user programs. This implements the Transport layer of the TCP/IP model. It has the type `"socket"`, and has the following members:
 * `sequence`: The sequence number of the current message.
 * `acknowledgement`: If set, indicates the message was received, and records the next sequence number the system is expecting (last sequence + 1).
+* `windowSize`: The number of subsequent messages the other computer may send before it must wait for a window size update.
 * `synchronize`: If set to `true`, indicates synchronization of the sequence number.
 * `final`: If set to `true`, indicates the connection is now closing.
+* `reset`: If set to `true`, indicates the connection is being reset.
 
 Ports are not stored in the PSP message; rather, they are implemented through modem channels. Port 0 is reserved for non-PSP applications, and is thus illegal to use in PSP communications.
 

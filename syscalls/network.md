@@ -40,11 +40,11 @@ This syscall may throw an error if:
 ## `listen(uri: string)`
 Starts listening for connections on the specified URI, using the protocol, IP, and port indicated in the URI. For PSP connections, the IP is used to determine the device to listen on - if this is `0.0.0.0`, then all connections are accepted.
 
-When a request is received, a `network_request` event is sent with the URI of the listener, the IP of the other computer (if available), and a handle to the connection. Listening will continue until `unlisten` is called with the same URI.
+When a request is received, a `network_request` event is sent with the URI of the listener, the IP of the other computer (if available), and a handle to the connection. Listening will continue until `unlisten` is called with the same URI. (Note: PSP can only handle one connection at once per port.)
 
 The following URI schemes are built-in:
-* `http`/`https`: Internet HTTP requests (CraftOS-PC only)
-* `ws`/`wss`: Internet WebSocket connections (CraftOS-PC only)
+* `http`: Internet HTTP requests (CraftOS-PC only)
+* `ws`: Internet WebSocket connections (CraftOS-PC only)
 * `psp`: Phoenix Socket Protocol connections
 
 Other schemes may be implemented in kernel modules.
