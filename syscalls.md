@@ -38,6 +38,8 @@ local file = syscall.open("myfile.txt", "r") -- this errors if the file could no
 
 ---
 
-The following pages list every syscall available in the Phoenix kernel. They are grouped by the part of the system they interact with.
+The kernel uses a few syscalls prefixed with `__`. These syscalls are private, and are meant for kernel use only. Do not rely on these syscalls existing or being stable - use the public interfaces instead, as these are guaranteed to be reliable.
+
+The following pages list every public syscall available in the Phoenix kernel. They are grouped by the part of the system they interact with.
 
 Note: All syscalls can throw an error if the arguments are not the right type. The error list specified by each syscall does not include this fact, so even if a syscall says it does not throw errors it may still throw when an argument is invalid.

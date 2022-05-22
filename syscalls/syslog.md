@@ -52,7 +52,6 @@ This syscall does not return anything.
 
 ### Errors
 This syscall may throw an error if:
-* The current user is not the root user.
 * The log already exists.
 * The log file could not be opened.
 
@@ -67,7 +66,6 @@ This syscall does not return anything.
 
 ### Errors
 This syscall may throw an error if:
-* The current user is not the root user.
 * The log does not exist.
 * The log name is `default`.
 

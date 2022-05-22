@@ -43,6 +43,7 @@ A table with the following information:
 type HWInfo = {
     id: string,                // Device hardware ID
     uuid: string,              // Assigned UUID
+    alias: string?,            // User-specified alias
     parent: string,            // Path to parent device
     displayName: string,       // Display name for users
     types: {[string]: string}, // Types of devices implemented: type = driver name
@@ -53,6 +54,20 @@ If the device does not exist, this returns `nil`.
 
 ### Errors
 This syscall does not throw any errors.
+
+## `devalias(device: string, alias: string?)`
+Sets or removes an alias for a device.
+
+### Arguments
+1. `device`: The device path or UUID to modify
+2. `alias`: The new alias to set (`nil` to remove)
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+* The specified device does not exist.
 
 ## `devmethods(device: string): [string]`
 Returns a list of methods that can be called on this device.

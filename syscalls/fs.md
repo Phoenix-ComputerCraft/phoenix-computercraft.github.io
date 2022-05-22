@@ -76,6 +76,7 @@ A table with the following contents:
     * `read: boolean`: Whether everyone else can read the file
     * `write: boolean`: Whether everyone else can write to the file
     * `execute: boolean`: Whether everyone else can execute the file
+* `setuser: boolean`: Whether executing the file will set the user to the owner
 * `special: table?`: A table that can contain mount-specific data.
 
 ### Errors
@@ -129,16 +130,16 @@ This syscall may throw an error if:
 * A path component already exists and is a file.
 
 ## `chmod(path: string, user: string?, mode: number|string|table)`
-Changes the permissions (mode) of a file or directory for the specified user.
+Changes the permissions (mode) of a file or directory for the specified user. If any setuser bit is specified, this will be applied for all users.
 
 ### Arguments
 1. `path`: The path to the file to modify.
 2. `user`: The user to set the permissions for. If this is `nil`, sets the permissions for all users.
 3. `mode`: A value representing the permissions. This may be:
-    * A UNIX-style octal mode (e.g. `5`)
+    * A UNIX-style octal mode (e.g. `5`) - setuid bit is bit 4 (010)
     * A UNIX-style mode modification string, without the user specifier (e.g. `"+rx"`) (this does not work with `"-wx"` - use `"-xw"` instead)
-    * A 3-character string with "r", "w", and "x" (or "-") (e.g. `"r-x"`)
-    * A table with `read: boolean?`, `write: boolean?`, and `execute: boolean?` fields (if a field is `nil`, it uses the previous value)
+    * A 3-character string with "r", "w", and "x" or "s" (or "-") (e.g. `"r-s"`)
+    * A table with `read: boolean?`, `write: boolean?`, `execute: boolean?`, and `setuser: boolean?` fields (if a field is `nil`, it uses the previous value)
 
 ### Return Values
 This syscall does not return anything.
