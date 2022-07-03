@@ -22,7 +22,7 @@ Phoenix is designed with a few main goals in mind:
 The Phoenix operating system is actually a default distribution of components:
 - pxboot bootloader
 - Phoenix kernel
-- startd init system
+- startmgr init system
 - libsystem system libraries
 - baseutils core program pack
 - apt-lua package manager
