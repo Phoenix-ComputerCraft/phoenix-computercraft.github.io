@@ -19,7 +19,7 @@ This site is home to the following first-party components of the default Phoenix
 - libcraftos library
 - baseutils program package
 - coresvc service package
-- startd init system
+- startmgr init system
 - Swift/PhoenixWM window manager
 
 **This site is a work-in-progress.** All information listed here is *pre-release* info, and may be subject to change at any time. It may also be inaccurate with the current state of Phoenix.
