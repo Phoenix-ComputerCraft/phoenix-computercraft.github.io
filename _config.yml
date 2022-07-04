@@ -29,8 +29,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github-username: "Phoenix-ComputerCraft"
 
 # Build settings
-theme: "just-the-docs"
 remote_theme: just-the-docs/just-the-docs
+#theme: "just-the-docs"
 logo: "/assets/images/logo.png"
 
 # Exclude from processing.
