@@ -187,3 +187,15 @@ The value of `_HOST`, which is in the format `ComputerCraft [0-9%.]+ %b()`.
 
 ### Errors
 This syscall does not throw any errors.
+
+## `uptime(): number`
+Returns the amount of time the computer has been running.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+The amount of time the computer has been running in seconds.
+
+### Errors
+This syscall does not throw any errors.
