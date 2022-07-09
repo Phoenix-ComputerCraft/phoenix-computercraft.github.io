@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Demos
-has_children: true
 ---
 
 # Demos
