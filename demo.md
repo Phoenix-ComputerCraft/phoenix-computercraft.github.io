@@ -70,5 +70,12 @@ graphics.drawCircle(term, 50, 120, 50, 30, terminal.colors.orange)
 
 ## Videos
 
-### [GNU nano on Phoenix](https://cdn.discordapp.com/attachments/477911902152949771/992756737809592430/2022-07-02_07-39-14.mp4)
-### [Preemption demo](https://cdn.discordapp.com/attachments/477911902152949771/914712682396000306/2021-11-28_21-55-10.mp4)
+### GNU nano on Phoenix
+<video width=620 height=350 controls>
+<source src="https://cdn.discordapp.com/attachments/477911902152949771/992756737809592430/2022-07-02_07-39-14.mp4" type="video/mp4">
+</video>
+
+### Preemption demo
+<video width=620 height=350 controls>
+<source src="https://cdn.discordapp.com/attachments/477911902152949771/914712682396000306/2021-11-28_21-55-10.mp4" type="video/mp4">
+</video>
