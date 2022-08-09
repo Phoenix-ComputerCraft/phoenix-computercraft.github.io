@@ -91,6 +91,31 @@ Changes the current working directory.
 ### Errors
 This syscall does not throw errors.
 
+## `getuser(): string, string?`
+Returns the user for the current process.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+The user of the current process, plus the previous user if the current user was set using the `setuser` bit.
+
+### Errors
+This syscall does not throw errors.
+
+## `setuser(user: string)`
+Sets the user for the current process. This requires root permissions.
+
+### Arguments
+1. `user`: The new user to switch to
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+* The current process is not root.
+
 ## `fork(func: function, name: string?, args...: any): number`
 Creates a new process that calls the specified function.
 

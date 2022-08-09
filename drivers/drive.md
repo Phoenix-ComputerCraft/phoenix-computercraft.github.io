@@ -11,7 +11,7 @@ This type is used to represent a disk drive peripheral.
 * `peripheral_drive`: Implements for disk drive peripherals.
 
 ## Properties
-* `state: {isAudio: boolean, label: string?, id: number?}? {get}`: Information about the current inserted disk, if one is available.
+* `state: {audio: string?, label: string?, id: number?}? {get}`: Information about the current inserted disk, if one is available.
 
 ## Methods
 * `setLabel(label: string?)`: Sets the label of the disk, if a disk is currently inserted. Throws otherwise.

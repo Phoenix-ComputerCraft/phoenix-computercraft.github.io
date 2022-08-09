@@ -8,6 +8,9 @@ This page lists a number of public demonstrations of the features of Phoenix in 
 
 ## Screenshots
 
+### Installation program
+![installer](https://cdn.discordapp.com/attachments/477911902152949771/1001017356459454514/2022-07-25_02.43.53.gif)
+
 ### libcraftos running CraftOS Lua REPL
 ![libcraftos](https://cdn.discordapp.com/attachments/477911902152949771/994959107545112636/unknown.png)
 

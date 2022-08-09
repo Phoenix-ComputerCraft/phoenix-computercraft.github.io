@@ -62,11 +62,13 @@ Returns a table with information about a file or directory. If the file does not
 ### Return Values
 A table with the following contents:
 * `size: number`: The total size of the file in bytes
-* `type: string`: The type of file, which can be `"file"`, `"directory"`, `"link"`, or `"special"`
+* `type: string`: The type of file, which can be `"file"`, `"directory"`, `"link"`, `"fifo"`, or `"special"`
 * `created: number`: The time the file was created, in milliseconds since the UNIX epoch
 * `modified: number`: The time the file was last modified, in milliseconds since the UNIX epoch
 * `owner: string`: The owner of the file
 * `mountpoint: string`: The path to the mountpoint the file is on
+* `capacity: number`: The total number of bytes the mount can store
+* `freeSpace: number`: The total number of bytes available on the mount
 * `permissions: table`: The permissions for each user/group
     * `<string>: table`: The permissions for each user/group who has manual permissions
         * `read: boolean`: Whether the user can read the file
@@ -150,7 +152,7 @@ This syscall may throw an error if:
 * The current user is not the owner of the file or root.
 
 ## `chown(path: string, user: string)`
-Changes the owner of a file or directory.
+Changes the owner of a file or directory, clearing the `setuser` bit if it's set.
 
 ### Arguments
 1. `path`: The path to the file to modify.
@@ -200,6 +202,18 @@ This syscall may throw an error if:
 * The path does not exist.
 * The path specified is not a mount.
 * The user does not have permission to write to the path.
+
+## `mountlist(): [{path: string, type: string, source: string, options: table}]`
+Returns a list of mounts on the system.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+A list of tables containing the mount path, the filesystem type, the source path, and any options stored in the mount.
+
+### Errors
+This syscall does not throw any errors.
 
 ## `loadCraftOSAPI(apiName: string): table`
 Loads a CraftOS API or module from the ROM. This can be used to get access to certain functions without having to mount the entire ROM.
