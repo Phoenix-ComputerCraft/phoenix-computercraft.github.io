@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Event System
+title: Event system
 parent: Documentation
 ---
 
-# Event System
+# Event system
 Phoenix's event system is a bit different from CraftOS's events. Like CraftOS, events are stored in a queue that are pushed to each process when they yield. However, event parameters are now stored in a key-value table instead of unpacked as multiple return values. This makes it easier for developers to quickly grab the parameters they need, and makes code more readable. An event is only sent through two values: the type of the event (a string), and a table with the parameters. For example, a timer event might return `"timer", {id = 0}`.
 
 Since threads may yield for reasons other than waiting for events (syscalls, preemption), events are only passed when the thread yields with `event` as the first parameter. Each process has its own event queue, and all threads in a process share the event queue. Any thread may wait for an event, and multiple threads may wait at the same time. If multiple threads are waiting for an event, each thread will get the same event when one is passed.
@@ -14,37 +14,45 @@ There are a few different types of events that Phoenix may send.
 ## CraftOS events
 These events are converted from system events that the computer sends and filtered to the right process(es). They hold the same data that the ComputerCraft events do (potentially with additional metadata added), with names for each parameter.
 
-Here's the mappings for each event. Each parameter column lists the new name of the parameter that is in that position in CraftOS. If an event has a variable number of parameters, the last parameter is a table with the rest of the parameters.
+Here's the mappings for each event that's directly exposed to the user. Each parameter column lists the new name of the parameter that is in that position in CraftOS. If an event has a variable number of parameters, the last parameter is a table with the rest of the parameters.
 
 | Event type         | Parameter 1 | Parameter 2 | Parameter 3 | Parameter 4 | Parameter 5 | Additional parameters |
 |--------------------|-------------|-------------|-------------|-------------|-------------|-----------------------|
 | `alarm`            | `id`        |             |             |             |             |                       |
 | `char`             | `character` |             |             |             |             |                       |
 | `computer_command` | `args`...   |             |             |             |             |                       |
-| `disk`             | `device`    |             |             |             |             |                       |
-| `disk_eject`       | `device`    |             |             |             |             |                       |
-| `http_check`       | `url`       | `isValid`   | `error`     |             |             |                       |
-| `http_failure` => `http_response` | `url`      | `error`     | `handle`    |           | |                       |
-| `http_success` => `http_response` | `url`      | `handle`    |             |           | |                       |
+| `disk` (call `hardware.listen` first) | `device` |           |             |           | |                       |
+| `disk_eject` (call `hardware.listen` first) | `device`       |             |         | | |                       |
+| `http_failure` => `handle_status_change` | `id` |            |             |           | | {::nomarkdown}<ul><li><code>status</code>: The new status of the handle</li></ul>{:/} |
+| `http_success` => `handle_status_change` | `id` |            |             |           | | {::nomarkdown}<ul><li><code>status</code>: The new status of the handle</li></ul>{:/} |
 | `key`              | `keycode`   | `isRepeat`  |             |             |             | {::nomarkdown}<ul><li><code>ctrlHeld</code>: Whether Control is held</li><li><code>altHeld</code>: Whether Alt is held</li><li><code>shiftHeld</code>: Whether Shift is held</li></ul>{:/} |
 | `key_up`           | `keycode`   |             |             |             |             | {::nomarkdown}<ul><li><code>ctrlHeld</code>: Whether Control is held</li><li><code>altHeld</code>: Whether Alt is held</li><li><code>shiftHeld</code>: Whether Shift is held</li></ul>{:/} |
-| `monitor_resize`   | `device`    |             |             |             |             |                       |
+| `modem_message` (call `hardware.listen` first) | `device`    | `channel`   | `replyChannel` | `message` | `distance` | |
+| `monitor_resize` (call `hardware.listen` first) | `device`   |             |             |             |             | |
 | `mouse_click`      | `button`    | `x`         | `y`         |             |             | {::nomarkdown}<ul><li><code>buttonMask</code>: Bitmask of all buttons currently down</li><li><code>device</code>: If sent on a monitor, the device it was sent on</li></ul>{:/} |
 | `mouse_drag`       | `button`    | `x`         | `y`         |             |             | {::nomarkdown}<ul><li><code>buttonMask</code>: Bitmask of all buttons currently down</li><li><code>device</code>: If sent on a monitor, the device it was sent on</li></ul>{:/} |
 | `mouse_up`         | `button`    | `x`         | `y`         |             |             | {::nomarkdown}<ul><li><code>buttonMask</code>: Bitmask of all buttons currently down</li><li><code>device</code>: If sent on a monitor, the device it was sent on</li></ul>{:/} |
 | `mouse_scroll`     | `direction` | `x`         | `y`         |             |             | {::nomarkdown}<ul><li><code>device</code>: If sent on a monitor, the device it was sent on</li></ul>{:/} |
 | `paste`            | `text`      |             |             |             |             |                       |
-| `peripheral`       | `device`    |             |             |             |             |                       |
-| `peripheral_detach`| `device`    |             |             |             |             |                       |
+| `peripheral` => `device_added` (call `hardware.listen` first) | `device`   |       | | | |                       |
+| `peripheral_detach` => `device_removed` (call `hardware.listen` first)| `device` | | | | |                       |
 | `redstone`         |             |             |             |             |             |                       |
+| `rednet_message` => `handle_data_ready` | `id` |             |             |           | |                       |
+| `speaker_audio_empty` | `device` |             |             |             |             |                       |
 | `task_complete`    | `id`        | `success`   | `results`...|             |             |                       |
 | `term_resize`      |             |             |             |             |             |                       |
 | `timer`            | `id`        |             |             |             |             |                       |
 | `turtle_inventory` |             |             |             |             |             |                       |
-| `websocket_closed` | `url`       |             |             |             |             |                       |
-| `websocket_failure` => `websocket_response` | `url` | `error`  | |         |             |                       |
-| `websocket_success` => `websocket_response` | `url` | `handle` | |         |             |                       |
-| `websocket_message`| `url`       | `message`   | `isBinary`  |             |             |                       |
+| `websocket_closed` => `handle_status_changed`  | `id`        |             |         | | | {::nomarkdown}<ul><li><code>status</code>: The new status of the handle</li></ul>{:/} |
+| `websocket_failure` => `handle_status_changed` | `id`        |             |         | | | {::nomarkdown}<ul><li><code>status</code>: The new status of the handle</li></ul>{:/} |
+| `websocket_success` => `handle_status_changed` | `id`        |             |         | | | {::nomarkdown}<ul><li><code>status</code>: The new status of the handle</li></ul>{:/} |
+| `websocket_message` => `handle_data_ready`     | `id`        |             |         | | |                       |
+
+Some events aren't directly exposed in Phoenix:
+- `http_check`: The `checkurl` syscall only allows synchronous checking, so `http_check` is automatically consumed while running and not sent to the program.
+- `terminate`: `terminate` events are converted to `SIGINT` signals, and are not sent as events.
+
+Events related to networking (`http_*`, `websocket_*`, `rednet_message`) are converted to new `handle_status_changed` and `handle_data_ready` events for use with the networking system. These only send the ID of handles that changed, and the status if changed - use the handle itself to extract any additional data required. Events related to devices are only sent to processes which call the `devlisten` syscall (`hardware.listen` when using libsystem), and the `device` field replaces the side, pointing to the path or UUID of the device the event applies to.
 
 ### Key event keycodes
 Unlike CraftOS, Phoenix exposes a keycode set that is public and consistent, and using hard-coded constants is not discouraged (though it is recommended to use `libsystem`'s `keys` library for ease of use & reading). Keycodes are automatically converted from CraftOS codes to Phoenix codes in the kernel - it is not necessary to attempt to load the CraftOS `keys` API from your program, and in fact those codes will not work at all.
