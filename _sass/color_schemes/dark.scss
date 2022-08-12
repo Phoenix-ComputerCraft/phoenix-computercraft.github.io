@@ -28,3 +28,13 @@ $feedback-color: darken($sidebar-color, 3%);
     position: relative !important;
     margin-right: 1em !important;
 }
+
+$content-width: 1200px;
+$nav-width: 264px;
+$media-queries: (
+  xs: 320px,
+  sm: 500px,
+  md: 800px,
+  lg: $content-width + $nav-width,
+  xl: 1400px,
+);

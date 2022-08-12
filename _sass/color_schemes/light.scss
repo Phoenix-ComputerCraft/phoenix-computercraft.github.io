@@ -3,3 +3,18 @@ $link-color: #944f00;
 .main-content ol > li ol li::before {
     content: counter(sub-counter) !important;
 }
+
+.main-content ul > li::before {
+    position: relative !important;
+    margin-right: 1em !important;
+}
+
+$content-width: 1200px;
+$nav-width: 264px;
+$media-queries: (
+  xs: 320px,
+  sm: 500px,
+  md: 800px,
+  lg: $content-width + $nav-width,
+  xl: 1400px,
+);
