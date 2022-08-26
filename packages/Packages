@@ -1,0 +1,228 @@
+Package: ar
+Version: 1.0-1
+Section: utils
+Priority: standard
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: ar archive format library and program
+ Allows creating and extracting ar/.a archives.
+Filename: ar.deb
+Size: 2602
+Installed-Size: 6
+
+Package: baseutils
+Version: 0.1-1
+Section: utils
+Priority: important
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: base utility set for Phoenix
+ Contains a standard set of POSIX utilities for Phoenix.
+Filename: baseutils.deb
+Size: 22314
+Installed-Size: 67
+
+Package: diff
+Version: 1.0-1
+Section: utils
+Priority: important
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Depends: libsystem
+Description: File comparison library and utility
+ Provides a library for comparing files, as well as
+ programs for comparing and patching using the lib.
+Filename: diff.deb
+Size: 1586
+Installed-Size: 2
+
+Package: dpkg
+Version: 0.2-1
+Section: admin
+Priority: required
+Architecture: phoenix
+Depends: ar, diff, libdeflate, libsystem, muxzcat, sha2, tar
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Debian Package Manager for Phoenix
+ A port of the Debian Package Manager to the
+ Phoenix operating system, written in Lua.
+Filename: dpkg.deb
+Size: 23398
+Installed-Size: 96
+
+Package: libcraftos
+Version: 0.1-1
+Section: libraries
+Priority: optional
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: CraftOS compatibility library
+ Provides CraftOS shim functions to allow running
+ CraftOS programs on Phoenix.
+Filename: libcraftos.deb
+Size: 10696
+Installed-Size: 33
+
+Package: libdeflate
+Version: 1.0-1
+Section: libraries
+Priority: optional
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: DEFLATE/zlib compression library
+ Provides compression and decompression for DEFLATE
+ formatted archives, including zlib and gzip files.
+Filename: libdeflate.deb
+Size: 14270
+Installed-Size: 40
+
+Package: libsystem
+Version: 0.1-1
+Section: libraries
+Priority: required
+Architecture: phoenix
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: System libraries for Phoenix
+ Provides convenient wrapper functions for using
+ Phoenix syscalls, as well as various useful
+ components for programs.
+Filename: libsystem.deb
+Size: 18766
+Installed-Size: 67
+
+Package: muxzcat
+Version: 1.0-1
+Section: libraries
+Priority: optional
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: LZMA/XZ decompression library
+ Provides functions for decompressing LZMA and XZ
+ format compressed files.
+Filename: muxzcat.deb
+Size: 7216
+Installed-Size: 24
+
+Package: phoenix
+Version: 0.0.1-1
+Section: kernel
+Priority: required
+Architecture: phoenix
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Phoenix kernel
+ The kernel for the Phoenix operating system.
+Filename: phoenix.deb
+Size: 44824
+Installed-Size: 209
+
+Package: pxboot
+Version: 0.1-1
+Section: admin
+Priority: required
+Architecture: phoenix
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Multipurpose bootloader for ComputerCraft
+ A bootloader for ComputerCraft operating systems
+ with built-in UnBIOS functionality, a configurable
+ selection menu, and more. Designed for Phoenix,
+ but supports other OSes as well, including CraftOS.
+Filename: pxboot.deb
+Size: 4342
+Installed-Size: 11
+
+Package: sha2
+Version: 12-1
+Section: libraries
+Priority: optional
+Architecture: phoenix
+Requires: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: SHA-1, SHA-2, SHA-3, BLAKE2 and BLAKE3 functions written in pure Lua and optimized for speed.
+ This module contains functions to calculate SHA digest:
+    MD5, SHA-1,
+    SHA-224, SHA-256, SHA-512/224, SHA-512/256, SHA-384, SHA-512,
+    SHA3-224, SHA3-256, SHA3-384, SHA3-512, SHAKE128, SHAKE256,
+    HMAC,
+    BLAKE2b, BLAKE2s, BLAKE2bp, BLAKE2sp, BLAKE2Xb, BLAKE2Xs,
+    BLAKE3, BLAKE3_KDF
+ Written in pure Lua.
+ Compatible with:
+    Lua 5.1, Lua 5.2, Lua 5.3, Lua 5.4, Fengari, LuaJIT 2.0/2.1 (any CPU endianness).
+ Main feature of this module: it was heavily optimized for speed.
+ For every Lua version the module contains particular implementation branch to get benefits from version-specific features.
+    - branch for Lua 5.1 (emulating bitwise operators using look-up table)
+    - branch for Lua 5.2 (using bit32/bit library), suitable for both Lua 5.2 with native "bit32" and Lua 5.1 with external library "bit"
+    - branch for Lua 5.3/5.4 (using native 64-bit bitwise operators)
+    - branch for Lua 5.3/5.4 (using native 32-bit bitwise operators) for Lua built with LUA_INT_TYPE=LUA_INT_INT
+    - branch for LuaJIT without FFI library (useful in a sandboxed environment)
+    - branch for LuaJIT x86 without FFI library (LuaJIT x86 has oddity because of lack of CPU registers)
+    - branch for LuaJIT 2.0 with FFI library (bit.* functions work only with Lua numbers)
+    - branch for LuaJIT 2.1 with FFI library (bit.* functions can work with "int64_t" arguments)
+Filename: sha2.deb
+Size: 31656
+Installed-Size: 118
+
+Package: startmgr
+Version: 0.1-1
+Section: admin
+Priority: standard
+Architecture: phoenix
+Depends: libsystem
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Phoenix service manager and init system
+ Provides automatic service management facilities
+ for Phoenix systems.
+Filename: startmgr.deb
+Size: 4916
+Installed-Size: 14
+
+Package: tar
+Version: 1.0-1
+Section: utils
+Priority: important
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: TAR archive format library and program
+ Allows creating and extracting TAR archives.
+Filename: tar.deb
+Size: 5754
+Installed-Size: 17
+
+Package: usermgr
+Version: 0.1-1
+Section: admin
+Priority: standard
+Architecture: phoenix
+Requires: libsystem
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: ar archive format library and program
+ Allows creating and extracting ar/.a archives.
+Filename: usermgr.deb
+Size: 7336
+Installed-Size: 24
+
+Package: yahtcc
+Version: 1.0-1
+Section: games
+Priority: optional
+Architecture: phoenix
+Requires: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Yahtzee game for Phoenix
+ Yahtzee game for Phoenix
+Filename: yahtcc.deb
+Size: 3464
+Installed-Size: 13
+
+Package: stage2-tarball
+Size: 655360
+Installed-Size: 610
+

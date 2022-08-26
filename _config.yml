@@ -34,6 +34,7 @@ plugins:
 remote_theme: just-the-docs/just-the-docs
 #theme: "just-the-docs"
 logo: "/assets/images/logo.png"
+permalink: /blog/:year/:month/:day/:title:output_ext
 
 # Exclude from processing.
 # The following items will not be processed, by default.
