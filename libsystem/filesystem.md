@@ -120,12 +120,13 @@ Combines the specified path components into a single path, canonicalizing any li
 ### Return Values
 The combined and canonicalized path
 
-## `copy(from: string, to: string)`
+## `copy(from: string, to: string, preserve: boolean?)`
 Copies a file or directory.
 
 ### Arguments
 1. `from`: The path to copy from
 2. `to`: The path to copy to
+3. `preserve`: Whether to preserve permissions when copying (optional)
 
 ### Return Values
 This function does not return anything.
@@ -203,6 +204,16 @@ Returns whether the path exists and is a link.
 
 ### Return Values
 Whether the path is a link
+
+## `effectivePermissions(file: string|FileStat, user: string?): {read:boolean,write:boolean,execute:boolean}|nil`
+Returns the effective permissions on a file or stat entry for the selected user.
+
+### Arguments
+1. `file`: The file path or stat to check
+2. `user`: The user to check for (defaults to the current user) (optional)
+
+### Return Values
+The permissions for the user, or `nil` if the file doesn't exist
 
 # Class FileStat
 A table which stores file statistics.

@@ -140,14 +140,16 @@ Sets the standard error of the current process.
 ### Return Values
 This function does not return anything.
 
-## `istty(): boolean`
-Returns whether the current stdout is linked to a TTY.
+## `istty(): boolean, boolean`
+Returns whether the current stdio are linked to a TTY.
 
 ### Arguments
 This function does not take any arguments.
 
 ### Return Values
-Whether the current stdout is linked to a TTY.
+This function may return the following values:
+1. Whether the current stdin is linked to a TTY.
+2. Whether the current stdout is linked to a TTY.
 
 ## `termsize(): number, number / nil`
 Returns the current size of the TTY if available.

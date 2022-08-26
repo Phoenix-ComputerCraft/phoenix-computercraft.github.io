@@ -17,11 +17,24 @@ Takes a list of valid arguments + the arguments to a program, and returns a
 ### Arguments
 1. `arguments`: A list of arguments that
  the program accepts. Single-character arguments are handled through `-a`, and
- longer arguments are handled through `--argument`. If the value is a truthy
- value, this argument requires a parameter; if the value is `"number"`, the
- argument requires a number parameter; if the value is `false`, the argument
- does not take a parameter; if the value is `nil`, the argument does not exist
- and will throw an error if passed.
+ longer arguments are handled through `--argument`. The value of the entry
+ specifies how the argument is handled:
+ * If the value is a truthy value, this argument requires a parameter.
+ * If the value is `"number"`, the argument requires a number parameter.
+ * If the value is `"multiple"`, the argument can be specified multiple times,
+   and will require a parameter. The values returned will be in a table.
+ * If the value is `"multiple number"`, the argument can be specified multiple
+   times, and will require a number parameter. These are also in a table.
+ * If the value is `false`, the argument does not take a parameter.
+ * If the value is `nil`, the argument does not exist and will throw an error
+   if passed.
+ * If the value starts with `@`, the parameter is an alias and will be stored
+   in that argument instead, following the same rules as that argument as well.
+ Special parameters to the parser can be added in a `[""]` table. The following
+ parameters are specified:
+ * `stopProcessingOnPositionalArgument` [boolean]: Whether to stop processing
+   arguments when a positional argument is passed, e.g. `myprog -s arg -i` will
+   return `args.s = true`, but `args.i = nil`.
 2. `...`: The arguments as passed to the program.
 
 ### Return Values
@@ -94,12 +107,13 @@ Queues an event to loop back to the process.
 ### Return Values
 This function does not return anything.
 
-## `split(str: string[, sep: string = "%s"]): {string...}`
+## `split(str: string[, sep: string = "%s"][, includeEmpty: boolean = false]): {string...}`
 Splits a string into components.
 
 ### Arguments
 1. `str`: The string to split
 2. `sep`: The delimiter match class to split by (defaults to "%s")
+3. `includeEmpty`: Whether to include empty matches (defaults to false)
 
 ### Return Values
 The components of the string
