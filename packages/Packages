@@ -8,7 +8,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: ar.deb
-Size: 2600
+Size: 2602
 Installed-Size: 6
 
 Package: baseutils
@@ -35,7 +35,7 @@ Description: File comparison library and utility
  Provides a library for comparing files, as well as
  programs for comparing and patching using the lib.
 Filename: diff.deb
-Size: 1588
+Size: 1586
 Installed-Size: 2
 
 Package: dpkg
@@ -49,7 +49,7 @@ Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
 Filename: dpkg.deb
-Size: 23386
+Size: 23398
 Installed-Size: 96
 
 Package: libcraftos
@@ -90,7 +90,7 @@ Description: System libraries for Phoenix
  Phoenix syscalls, as well as various useful
  components for programs.
 Filename: libsystem.deb
-Size: 18766
+Size: 18764
 Installed-Size: 67
 
 Package: muxzcat
@@ -103,7 +103,7 @@ Description: LZMA/XZ decompression library
  Provides functions for decompressing LZMA and XZ
  format compressed files.
 Filename: muxzcat.deb
-Size: 7214
+Size: 7216
 Installed-Size: 24
 
 Package: phoenix
@@ -116,7 +116,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Phoenix kernel
  The kernel for the Phoenix operating system.
 Filename: phoenix.deb
-Size: 44838
+Size: 44836
 Installed-Size: 209
 
 Package: pxboot
@@ -132,7 +132,7 @@ Description: Multipurpose bootloader for ComputerCraft
  selection menu, and more. Designed for Phoenix,
  but supports other OSes as well, including CraftOS.
 Filename: pxboot.deb
-Size: 4344
+Size: 4342
 Installed-Size: 11
 
 Package: sha2
@@ -192,7 +192,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: TAR archive format library and program
  Allows creating and extracting TAR archives.
 Filename: tar.deb
-Size: 5754
+Size: 5752
 Installed-Size: 17
 
 Package: usermgr
@@ -206,7 +206,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: usermgr.deb
-Size: 7336
+Size: 7334
 Installed-Size: 24
 
 Package: yahtcc
@@ -219,7 +219,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Yahtzee game for Phoenix
  Yahtzee game for Phoenix
 Filename: yahtcc.deb
-Size: 3466
+Size: 3464
 Installed-Size: 13
 
 Package: stage2-tarball
