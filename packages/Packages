@@ -8,7 +8,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: ar.deb
-Size: 2604
+Size: 2600
 Installed-Size: 6
 
 Package: baseutils
@@ -21,7 +21,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: base utility set for Phoenix
  Contains a standard set of POSIX utilities for Phoenix.
 Filename: baseutils.deb
-Size: 22300
+Size: 22302
 Installed-Size: 67
 
 Package: diff
@@ -49,7 +49,7 @@ Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
 Filename: dpkg.deb
-Size: 23394
+Size: 23386
 Installed-Size: 96
 
 Package: libcraftos
@@ -62,7 +62,7 @@ Description: CraftOS compatibility library
  Provides CraftOS shim functions to allow running
  CraftOS programs on Phoenix.
 Filename: libcraftos.deb
-Size: 10696
+Size: 10694
 Installed-Size: 33
 
 Package: libdeflate
@@ -75,7 +75,7 @@ Description: DEFLATE/zlib compression library
  Provides compression and decompression for DEFLATE
  formatted archives, including zlib and gzip files.
 Filename: libdeflate.deb
-Size: 14180
+Size: 14182
 Installed-Size: 40
 
 Package: libsystem
@@ -90,7 +90,7 @@ Description: System libraries for Phoenix
  Phoenix syscalls, as well as various useful
  components for programs.
 Filename: libsystem.deb
-Size: 18764
+Size: 18766
 Installed-Size: 67
 
 Package: muxzcat
@@ -116,7 +116,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Phoenix kernel
  The kernel for the Phoenix operating system.
 Filename: phoenix.deb
-Size: 44824
+Size: 44838
 Installed-Size: 209
 
 Package: pxboot
@@ -223,6 +223,6 @@ Size: 3466
 Installed-Size: 13
 
 Package: stage2-tarball
-Size: 655360
-Installed-Size: 610
+Size: 512000
+Installed-Size: 473
 
