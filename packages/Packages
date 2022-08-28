@@ -21,7 +21,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: base utility set for Phoenix
  Contains a standard set of POSIX utilities for Phoenix.
 Filename: baseutils.deb
-Size: 22302
+Size: 22306
 Installed-Size: 67
 
 Package: diff
@@ -35,7 +35,7 @@ Description: File comparison library and utility
  Provides a library for comparing files, as well as
  programs for comparing and patching using the lib.
 Filename: diff.deb
-Size: 1586
+Size: 1588
 Installed-Size: 2
 
 Package: dpkg
@@ -49,7 +49,7 @@ Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
 Filename: dpkg.deb
-Size: 23398
+Size: 23390
 Installed-Size: 96
 
 Package: libcraftos
@@ -62,7 +62,7 @@ Description: CraftOS compatibility library
  Provides CraftOS shim functions to allow running
  CraftOS programs on Phoenix.
 Filename: libcraftos.deb
-Size: 10694
+Size: 10692
 Installed-Size: 33
 
 Package: libdeflate
@@ -75,7 +75,7 @@ Description: DEFLATE/zlib compression library
  Provides compression and decompression for DEFLATE
  formatted archives, including zlib and gzip files.
 Filename: libdeflate.deb
-Size: 14182
+Size: 14178
 Installed-Size: 40
 
 Package: libsystem
@@ -90,7 +90,7 @@ Description: System libraries for Phoenix
  Phoenix syscalls, as well as various useful
  components for programs.
 Filename: libsystem.deb
-Size: 18764
+Size: 18766
 Installed-Size: 67
 
 Package: muxzcat
@@ -103,7 +103,7 @@ Description: LZMA/XZ decompression library
  Provides functions for decompressing LZMA and XZ
  format compressed files.
 Filename: muxzcat.deb
-Size: 7216
+Size: 7214
 Installed-Size: 24
 
 Package: phoenix
@@ -116,8 +116,8 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Phoenix kernel
  The kernel for the Phoenix operating system.
 Filename: phoenix.deb
-Size: 44836
-Installed-Size: 209
+Size: 44990
+Installed-Size: 210
 
 Package: pxboot
 Version: 0.1-1
@@ -132,7 +132,7 @@ Description: Multipurpose bootloader for ComputerCraft
  selection menu, and more. Designed for Phoenix,
  but supports other OSes as well, including CraftOS.
 Filename: pxboot.deb
-Size: 4342
+Size: 4346
 Installed-Size: 11
 
 Package: sha2
@@ -164,7 +164,7 @@ Description: SHA-1, SHA-2, SHA-3, BLAKE2 and BLAKE3 functions written in pure Lu
     - branch for LuaJIT 2.0 with FFI library (bit.* functions work only with Lua numbers)
     - branch for LuaJIT 2.1 with FFI library (bit.* functions can work with "int64_t" arguments)
 Filename: sha2.deb
-Size: 31652
+Size: 31648
 Installed-Size: 118
 
 Package: startmgr
@@ -192,7 +192,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: TAR archive format library and program
  Allows creating and extracting TAR archives.
 Filename: tar.deb
-Size: 5752
+Size: 5756
 Installed-Size: 17
 
 Package: usermgr
@@ -206,7 +206,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: usermgr.deb
-Size: 7334
+Size: 7336
 Installed-Size: 24
 
 Package: yahtcc
@@ -219,7 +219,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Yahtzee game for Phoenix
  Yahtzee game for Phoenix
 Filename: yahtcc.deb
-Size: 3464
+Size: 3466
 Installed-Size: 13
 
 Package: stage2-tarball
