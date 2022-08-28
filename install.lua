@@ -539,8 +539,8 @@ function screens.install_stage1(state)
     while pos < #state.stage2 do
         local path = state.stage2:sub(pos, pos + 99):gsub("%z+$", "")
         if path == "" then break end
-        local size = tonumber(state.stage2:sub(pos + 124, pos + 135), 8)
-        local type = tonumber(state.stage2:sub(pos + 156, pos + 156))
+        local size = tonumber(state.stage2:sub(pos + 124, pos + 135):gsub("[^0-7]", ""), 8)
+        local type = tonumber(state.stage2:sub(pos + 156, pos + 156):gsub("%D", ""), 10)
         if type == 0 then
             files[path] = state.stage2:sub(pos + 512, pos + size + 511)
             total = total + 1
