@@ -68,6 +68,8 @@ After a few months in beta, once the system is running smoothly, Phoenix 1.0 wil
 
 I understand that putting much of the OS behind a paywall will disappoint people. I'm doing this because I will not have as much time to work on Phoenix after this; and knowing I have supporters will help motivate me to speed up development. ~~(Also because I like money :P.)~~ If I ever come to a point where I cannot continue development on Phoenix, I promise to open-source all of the code at that point for anyone to download and use.
 
+*Update 2022-08-29:* For the record, I plan to keep all components that are built for CraftOS open-source. This includes pxboot right now, and CCKit2's (the UI library apps will be built with) platform-independent and CraftOS-specific code will be open as well (whereas the Phoenix-specific code, such as the linking code to the window manager, will be closed).
+
 -----
 
 All documentation for Phoenix will be available on the official website at https://phoenix.madefor.cc as usual. Since full annotated source is not available, I will be posting documentation for all components of Phoenix (besides a few POSIX utilities and libcraftos) on the website. Documentation for the syscalls, libsystem, startmgr, usermgr, pxboot, and some other general information is already posted, and I will be expanding this to include the kernel API in the near future.
