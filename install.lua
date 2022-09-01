@@ -223,7 +223,7 @@ end
 
 function screens.welcome(state)
     local next
-    clearScreen("ENTER=Continue  F5=Quit")
+    clearScreen("ENTER=Continue  Q=Quit")
     label[[
 Welcome to the setup program for Phoenix. You will be guided through the steps necessary to install this software.
 
@@ -232,7 +232,7 @@ Welcome to the setup program for Phoenix. You will be guided through the steps n
 ]]
     keyMap {
         [keys.enter] = function() next, running = true, false end,
-        [keys.f5] = function() next, running = false, false end
+        [keys.q] = function() next, running = false, false end
     }
     run()
     if next then return screens.readme(state)
@@ -241,7 +241,7 @@ end
 
 function screens.readme(state)
     local next
-    clearScreen("ENTER=Continue  F1=Back  F5=Quit")
+    clearScreen("ENTER=Continue  TAB=Back  Q=Quit")
     label("Please read the following important information before installing.")
     textBox() [[
 Welcome to Phoenix, the next generation operating system for ComputerCraft. Phoenix adds many advanced features to ComputerCraft, including preemptive multitasking, a UNIX-like environment, custom filesystems with support for permissions, a cleaner library API, and much more.
@@ -256,8 +256,8 @@ For more information on Phoenix, as well as documentation on APIs, see https://p
 ]]
     keyMap {
         [keys.enter] = function() next, running = true, false end,
-        [keys.f1] = function() next, running = false, false end,
-        [keys.f5] = function() running = false end
+        [keys.tab] = function() next, running = false, false end,
+        [keys.q] = function() running = false end
     }
     run()
     if next then return screens.license(state)
@@ -267,7 +267,7 @@ end
 
 function screens.license(state)
     local next
-    clearScreen("F8=Agree  F5=Decline  F1=Back  \24\25=Scroll")
+    clearScreen("F=Agree  Q=Decline  TAB=Back  \24\25=Scroll")
     label("You must agree to the following license agreement to install Phoenix.")
     textBox() [[
 # PHOENIX OPERATING SYSTEM PRE-RELEASE END-USER LICENSE AGREEMENT
@@ -367,9 +367,9 @@ Permission is granted to anyone to use this software for any purpose, including 
 3. This notice may not be removed or altered from any source distribution.
 ]]
     keyMap {
-        [keys.f8] = function() next, running = true, false end,
-        [keys.f1] = function() next, running = false, false end,
-        [keys.f5] = function() running = false end
+        [keys.f] = function() next, running = true, false end,
+        [keys.tab] = function() next, running = false, false end,
+        [keys.q] = function() running = false end
     }
     run()
     if next then return screens.rootdir(state)
@@ -379,12 +379,12 @@ end
 
 function screens.rootdir(state)
     local next, path
-    clearScreen("ENTER=Continue  F1=Back  F5=Quit")
+    clearScreen("ENTER=Continue  TAB=Back  Q=Quit")
     label("Please enter the path to the desired root directory. This is where all files will be stored while running Phoenix.")
     inputBox(function(p) path, next, running = p, true, false end, state.rootdir or "/root")
     keyMap {
-        [keys.f1] = function() next, running = false, false end,
-        [keys.f5] = function() running = false end
+        [keys.tab] = function() next, running = false, false end,
+        [keys.q] = function() running = false end
     }
     run()
     state.rootdir = path
@@ -395,12 +395,12 @@ end
 
 function screens.username(state)
     local next, path
-    clearScreen("ENTER=Continue  F1=Back  F5=Quit")
+    clearScreen("ENTER=Continue  TAB=Back  Q=Quit")
     label("Please enter the username for the primary user account. More users may be created after installation.")
     inputBox(function(p) path, next, running = p, true, false end, state.username)
     keyMap {
-        [keys.f1] = function() next, running = false, false end,
-        [keys.f5] = function() running = false end
+        [keys.tab] = function() next, running = false, false end,
+        [keys.q] = function() running = false end
     }
     run()
     state.username = path
@@ -411,12 +411,12 @@ end
 
 function screens.password(state)
     local next, path
-    clearScreen("ENTER=Continue  F1=Back  F5=Quit")
+    clearScreen("ENTER=Continue  TAB=Back  Q=Quit")
     label("Please enter the password for the primary user account.")
     inputBox(function(p) path, next, running = p, true, false end, state.password, "\7")
     keyMap {
-        [keys.f1] = function() next, running = false, false end,
-        [keys.f5] = function() running = false end
+        [keys.tab] = function() next, running = false, false end,
+        [keys.q] = function() running = false end
     }
     run()
     state.password = path
@@ -427,14 +427,14 @@ end
 
 function screens.components(state)
     local next
-    clearScreen("ENTER=Continue  SPACE=Toggle  F1=Back  F5=Quit")
+    clearScreen("ENTER=Continue  SPACE=Toggle  TAB=Back  Q=Quit")
     label("Select any additional components to install from the list below.")
     -- TODO: Actually add components here
     textBox() "<No components available>"
     keyMap {
         [keys.enter] = function() next, running = true, false end,
-        [keys.f1] = function() next, running = false, false end,
-        [keys.f5] = function() running = false end
+        [keys.tab] = function() next, running = false, false end,
+        [keys.q] = function() running = false end
     }
     run()
     state.components = {
@@ -472,7 +472,7 @@ function screens.confirm(state)
     local details = ("Root directory: %s\nPrimary user: %s\nDownload size: %dkiB\nInstalled size: %dkiB\nComponents:\n"):format(state.rootdir, state.username, math.floor((dlsize - pkginfo["stage2-tarball"].filesize + pkginfo["stage2-tarball"].pkgsize) / 1024), math.floor(instsize / 1024))
     for _, k in pairs(state.components) do details = details .. "\7 " .. k .. "\n" end
     local next
-    clearScreen("ENTER=Install  F1=Back  F5=Quit")
+    clearScreen("ENTER=Install  TAB=Back  Q=Quit")
     label[[
 The following settings will be used to install Phoenix.
 
@@ -481,8 +481,8 @@ The following settings will be used to install Phoenix.
     textBox()(details)
     keyMap {
         [keys.enter] = function() next, running = true, false end,
-        [keys.f1] = function() next, running = false, false end,
-        [keys.f5] = function() running = false end
+        [keys.tab] = function() next, running = false, false end,
+        [keys.q] = function() running = false end
     }
     run()
     if next then return screens.download(state)
