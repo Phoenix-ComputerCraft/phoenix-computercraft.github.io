@@ -372,19 +372,19 @@ Permission is granted to anyone to use this software for any purpose, including 
         [keys.q] = function() running = false end
     }
     run()
-    if next then return screens.rootdir(state)
+    if next then os.pullEvent("char") return screens.rootdir(state)
     elseif next == false then return screens.readme(state)
     else return false end
 end
 
 function screens.rootdir(state)
     local next, path
-    clearScreen("ENTER=Continue  TAB=Back  Q=Quit")
+    clearScreen("ENTER=Continue  TAB=Back  F5=Quit")
     label("Please enter the path to the desired root directory. This is where all files will be stored while running Phoenix.")
     inputBox(function(p) path, next, running = p, true, false end, state.rootdir or "/root")
     keyMap {
         [keys.tab] = function() next, running = false, false end,
-        [keys.q] = function() running = false end
+        [keys.f5] = function() running = false end
     }
     run()
     state.rootdir = path
@@ -395,12 +395,12 @@ end
 
 function screens.username(state)
     local next, path
-    clearScreen("ENTER=Continue  TAB=Back  Q=Quit")
+    clearScreen("ENTER=Continue  TAB=Back  F5=Quit")
     label("Please enter the username for the primary user account. More users may be created after installation.")
     inputBox(function(p) path, next, running = p, true, false end, state.username)
     keyMap {
         [keys.tab] = function() next, running = false, false end,
-        [keys.q] = function() running = false end
+        [keys.f5] = function() running = false end
     }
     run()
     state.username = path
@@ -411,12 +411,12 @@ end
 
 function screens.password(state)
     local next, path
-    clearScreen("ENTER=Continue  TAB=Back  Q=Quit")
+    clearScreen("ENTER=Continue  TAB=Back  F5=Quit")
     label("Please enter the password for the primary user account.")
     inputBox(function(p) path, next, running = p, true, false end, state.password, "\7")
     keyMap {
         [keys.tab] = function() next, running = false, false end,
-        [keys.q] = function() running = false end
+        [keys.f5] = function() running = false end
     }
     run()
     state.password = path
@@ -427,14 +427,14 @@ end
 
 function screens.components(state)
     local next
-    clearScreen("ENTER=Continue  SPACE=Toggle  TAB=Back  Q=Quit")
+    clearScreen("ENTER=Continue  SPACE=Toggle  TAB=Back  F5=Quit")
     label("Select any additional components to install from the list below.")
     -- TODO: Actually add components here
     textBox() "<No components available>"
     keyMap {
         [keys.enter] = function() next, running = true, false end,
         [keys.tab] = function() next, running = false, false end,
-        [keys.q] = function() running = false end
+        [keys.f5] = function() running = false end
     }
     run()
     state.components = {
