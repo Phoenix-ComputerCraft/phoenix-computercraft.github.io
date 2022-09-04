@@ -170,6 +170,36 @@ This syscall may throw an error if:
 * The specified device does not exist.
 * Another process has locked this device.
 
+## `attach(side: string|number, type: string, args...: any): boolean, string?`
+If using an emulator, attaches a peripheral of the specified type to the computer. This syscall requires root.
+
+### Arguments
+1. `side`: The side to attach to, or an ID to attach as
+2. `type`: The type of peripheral to attach. The peripherals use standard CC/CraftOS-PC naming.
+3. `args...`: Any arguments to pass to the peripheral constructor
+
+### Return Values
+1. Whether the attachment succeeded
+2. If it failed, an optional error message (this may be `nil`!)
+
+### Errors
+This syscall may throw an error if:
+* The user is not root.
+
+## `detach(side: string|number): boolean, string?`
+If using an emulator, detaches a peripheral from a side. This syscall requires root.
+
+### Arguments
+1. `side`: The side or ID to detach
+
+### Return Values
+1. Whether the detachment succeeded
+2. If it failed, an optional error message (this may be `nil`!)
+
+### Errors
+This syscall may throw an error if:
+* The user is not root.
+
 ## `version(buildnum: boolean?): string`
 Returns the Phoenix version or build number.
 
