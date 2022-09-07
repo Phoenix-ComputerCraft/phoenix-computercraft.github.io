@@ -69,6 +69,8 @@ local function textBox(h) return function(text)
     term.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
     local y, w = nextLine + 1, width - 7
     local outer = window.create(term.current(), 4, y, w, h)
+    outer.setBackgroundColor(colors.orange)
+    outer.clear()
     local inner = window.create(outer, 1, 1, w, 9000)
     inner.setBackgroundColor(colors.orange)
     inner.setTextColor(colors.white)
@@ -139,6 +141,96 @@ local function inputBox(callback, default, replace)
         return callback(yield[2])
     end)
     nextLine = nextLine + 4
+end
+
+-- selections: false = unselected, true = selected default, "R" = required
+local function selectionBox(h, selections, callback, didSelect)
+    h = h or height - nextLine - 3
+    local nsel = 0
+    for _ in pairs(selections) do nsel = nsel + 1 end
+    term.setBackgroundColor(colors.orange)
+    term.setTextColor(colors.white)
+    term.setCursorPos(3, nextLine)
+    term.write("\x9C" .. ("\x8C"):rep(width - 6))
+    term.setBackgroundColor(colors.white)
+    term.setTextColor(colors.orange)
+    term.write("\x93")
+    for i = 1, h do
+        term.setCursorPos(term.getCursorPos() - 1, nextLine + i)
+        term.write("\x95")
+    end
+    term.setBackgroundColor(colors.orange)
+    term.setTextColor(colors.white)
+    for i = 1, h do
+        term.setCursorPos(3, nextLine + i)
+        term.write("\x95")
+    end
+    term.setCursorPos(3, nextLine + h + 1)
+    term.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
+    local y, w = nextLine + 1, width - 7
+    local outer = window.create(term.current(), 4, y, w, h)
+    outer.setBackgroundColor(colors.orange)
+    outer.clear()
+    local inner = window.create(outer, 1, 1, w, nsel)
+    inner.setBackgroundColor(colors.orange)
+    inner.setTextColor(colors.white)
+    inner.clear()
+    local lines = {}
+    local nl, selected = 1, 1
+    for k, v in pairs(selections) do
+        inner.setCursorPos(1, nl)
+        inner.write((v and (v == "R" and "[-] " or "[\xD7] ") or "[ ] ") .. k)
+        lines[nl] = {k, not not v}
+        nl = nl + 1
+    end
+    term.setCursorPos(w + 4, y + h - 1)
+    term.blit(1 < nsel - h + 1 and "\31" or " ", "0", "1")
+    inner.setCursorPos(2, selected)
+    inner.setCursorBlink(true)
+    coros[#coros+1] = coroutine.create(function()
+        local scrollPos = 1
+        while true do
+            local ev = table.pack(os.pullEvent())
+            local dir
+            if ev[1] == "key" then
+                if ev[2] == keys.up then dir = -1
+                elseif ev[2] == keys.down then dir = 1
+                elseif ev[2] == keys.space and selections[lines[selected][1]] ~= "R" then
+                    lines[selected][2] = not lines[selected][2]
+                    inner.setCursorPos(2, selected)
+                    inner.write(lines[selected][2] and "\xD7" or " ")
+                    if didSelect and didSelect(lines[selected][1], lines[selected][2]) then
+                        for i, v in ipairs(lines) do
+                            local vv = selections[v[1]] == "R" and "R" or v[2]
+                            inner.setCursorPos(2, i)
+                            inner.write((vv and (vv == "R" and "-" or "\xD7") or " "))
+                        end
+                    end
+                    inner.setCursorPos(2, selected)
+                elseif ev[2] == keys.enter then
+                    local s = {}
+                    for _, v in ipairs(lines) do s[v[1]] = selections[v[1]] == "R" or v[2] end
+                    callback(s)
+                end
+            elseif ev[1] == "mouse_scroll" and ev[3] >= 4 and ev[3] < 4 + w and ev[4] >= y and ev[4] < y + h then
+                dir = ev[2]
+            end
+            if dir and (selected + dir >= 1 and selected + dir <= nsel) then
+                selected = selected + dir
+                if selected - scrollPos < 0 or selected - scrollPos >= h then
+                    scrollPos = scrollPos + dir
+                    inner.reposition(1, 2 - scrollPos)
+                end
+                inner.setCursorPos(2, selected)
+            end
+            term.setCursorPos(w + 4, y)
+            term.blit(scrollPos > 1 and "\30" or " ", "0", "1")
+            term.setCursorPos(w + 4, y + h - 1)
+            term.blit(scrollPos < nsel - h + 1 and "\31" or " ", "0", "1")
+            inner.restoreCursor()
+        end
+    end)
+    nextLine = nextLine + h + 2
 end
 
 local function progressBar()
@@ -214,7 +306,14 @@ function screens.loading(state)
                 pkg = v
                 pkginfo[pkg] = {}
             elseif k == "Size" then pkginfo[pkg].pkgsize = tonumber(v)
-            elseif k == "Installed-Size" then pkginfo[pkg].filesize = tonumber(v) * 1024 end
+            elseif k == "Installed-Size" then pkginfo[pkg].filesize = tonumber(v) * 1024
+            elseif k == "Priority" then pkginfo[pkg].priority = v
+            elseif k == "Essential" then pkginfo[pkg].essential = true
+            elseif k == "Depends" then
+                local d = {}
+                for p in v:gmatch "[^,]+" do d[p:match "[%w%-]+"] = true end
+                pkginfo[pkg].depends = d
+            end
         end
     end
     handle.close()
@@ -428,31 +527,52 @@ end
 function screens.components(state)
     local next
     clearScreen("ENTER=Continue  SPACE=Toggle  TAB=Back  F5=Quit")
-    label("Select any additional components to install from the list below.")
-    -- TODO: Actually add components here
-    textBox() "<No components available>"
+    label("Select the components to install from the list below.\n[-] = required, [\xD7] = selected")
+    local selections = {}
+    for k, v in pairs(pkginfo) do if k ~= "stage2-tarball" then
+        if v.essential or v.priority == "required" then selections[k] = "R"
+        elseif v.priority == "optional" then selections[k] = false
+        else selections[k] = true end
+    end end
+    local function updateRequirements()
+        local function update(pkg)
+            if selections[pkg] and pkginfo[pkg].depends then
+                for k in pairs(pkginfo[pkg].depends) do
+                    selections[k] = "R"
+                    update(k)
+                end
+            end
+        end
+        for k, v in pairs(selections) do selections[k] = (pkginfo[k].essential or pkginfo[k].priority == "required") and "R" or not not v end
+        for k in pairs(selections) do update(k) end
+    end
+    updateRequirements()
+    selectionBox(nil, selections, function(entries)
+        state.components = {}
+        local s, nodes = {}, {}
+        for k, v in pairs(entries) do if v then
+            local d = {}
+            for l, w in pairs(pkginfo[k].depends or {}) do d[l] = w end
+            nodes[k] = d
+            if not _G.next(d) then s[#s+1] = k end
+        end end
+        while #s > 0 do
+            local n = table.remove(s)
+            state.components[#state.components+1] = n
+            for k, v in pairs(nodes) do
+                if v[n] then
+                    v[n] = nil
+                    if not _G.next(v) then s[#s+1] = k end
+                end
+            end
+        end
+        next, running = true, false
+    end, function(k, v) selections[k] = v updateRequirements() return true end)
     keyMap {
-        [keys.enter] = function() next, running = true, false end,
         [keys.tab] = function() next, running = false, false end,
         [keys.f5] = function() running = false end
     }
     run()
-    state.components = {
-        "phoenix",
-        "libsystem",
-        "libcraftos",
-        "baseutils",
-        "pxboot",
-        "startmgr",
-        "usermgr",
-        "ar",
-        "sha2",
-        "tar",
-        "muxzcat",
-        "libdeflate",
-        "diff",
-        "dpkg",
-    }
     if next then return screens.confirm(state)
     elseif next == false then return screens.password(state)
     else return false end
@@ -470,7 +590,7 @@ function screens.confirm(state)
         return screens.message(state, "The selected components require " .. math.ceil(required / 1024) .. "kiB of space, but only " .. math.ceil(space / 1024) .. "kiB is available. Please deselect some components or delete files to make space.", screens.components)
     end
     local details = ("Root directory: %s\nPrimary user: %s\nDownload size: %dkiB\nInstalled size: %dkiB\nComponents:\n"):format(state.rootdir, state.username, math.floor((dlsize - pkginfo["stage2-tarball"].filesize + pkginfo["stage2-tarball"].pkgsize) / 1024), math.floor(instsize / 1024))
-    for _, k in pairs(state.components) do details = details .. "\7 " .. k .. "\n" end
+    for _, k in ipairs(state.components) do details = details .. "\7 " .. k .. "\n" end
     local next
     clearScreen("ENTER=Install  TAB=Back  Q=Quit")
     label[[
