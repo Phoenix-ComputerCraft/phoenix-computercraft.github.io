@@ -8,11 +8,11 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: ar.deb
-Size: 2602
+Size: 2604
 Installed-Size: 6
 
 Package: baseutils
-Version: 0.1-1
+Version: 0.1.1-1
 Section: utils
 Priority: important
 Architecture: phoenix
@@ -21,7 +21,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: base utility set for Phoenix
  Contains a standard set of POSIX utilities for Phoenix.
 Filename: baseutils.deb
-Size: 22302
+Size: 22322
 Installed-Size: 67
 
 Package: diff
@@ -39,7 +39,7 @@ Size: 1586
 Installed-Size: 2
 
 Package: dpkg
-Version: 0.2-1
+Version: 0.2.1-1
 Section: admin
 Priority: required
 Architecture: phoenix
@@ -49,8 +49,21 @@ Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
 Filename: dpkg.deb
-Size: 23392
-Installed-Size: 96
+Size: 26878
+Installed-Size: 108
+
+Package: gfxterm
+Version: 0.0.1-1
+Section: kernel
+Priority: optional
+Architecture: phoenix
+Depends: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Graphics mode terminal driver
+ A kernel module implementing a graphics-mode terminal.
+Filename: gfxterm.deb
+Size: 7664
+Installed-Size: 41
 
 Package: libcraftos
 Version: 0.1-1
@@ -62,7 +75,7 @@ Description: CraftOS compatibility library
  Provides CraftOS shim functions to allow running
  CraftOS programs on Phoenix.
 Filename: libcraftos.deb
-Size: 10694
+Size: 10720
 Installed-Size: 33
 
 Package: libdeflate
@@ -75,11 +88,11 @@ Description: DEFLATE/zlib compression library
  Provides compression and decompression for DEFLATE
  formatted archives, including zlib and gzip files.
 Filename: libdeflate.deb
-Size: 14178
+Size: 14182
 Installed-Size: 40
 
 Package: libsystem
-Version: 0.1-1
+Version: 0.1.1-1
 Section: libraries
 Priority: required
 Architecture: phoenix
@@ -90,8 +103,8 @@ Description: System libraries for Phoenix
  Phoenix syscalls, as well as various useful
  components for programs.
 Filename: libsystem.deb
-Size: 18764
-Installed-Size: 67
+Size: 19654
+Installed-Size: 70
 
 Package: muxzcat
 Version: 1.0-1
@@ -103,11 +116,11 @@ Description: LZMA/XZ decompression library
  Provides functions for decompressing LZMA and XZ
  format compressed files.
 Filename: muxzcat.deb
-Size: 7214
+Size: 7218
 Installed-Size: 24
 
 Package: phoenix
-Version: 0.0.1-1
+Version: 0.0.2-1
 Section: kernel
 Priority: required
 Architecture: phoenix
@@ -116,11 +129,11 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Phoenix kernel
  The kernel for the Phoenix operating system.
 Filename: phoenix.deb
-Size: 44992
-Installed-Size: 210
+Size: 45580
+Installed-Size: 213
 
 Package: pxboot
-Version: 0.1-1
+Version: 0.1.1-1
 Section: admin
 Priority: required
 Architecture: phoenix
@@ -132,7 +145,7 @@ Description: Multipurpose bootloader for ComputerCraft
  selection menu, and more. Designed for Phoenix,
  but supports other OSes as well, including CraftOS.
 Filename: pxboot.deb
-Size: 4344
+Size: 4412
 Installed-Size: 11
 
 Package: sha2
@@ -164,7 +177,7 @@ Description: SHA-1, SHA-2, SHA-3, BLAKE2 and BLAKE3 functions written in pure Lu
     - branch for LuaJIT 2.0 with FFI library (bit.* functions work only with Lua numbers)
     - branch for LuaJIT 2.1 with FFI library (bit.* functions can work with "int64_t" arguments)
 Filename: sha2.deb
-Size: 31652
+Size: 31650
 Installed-Size: 118
 
 Package: startmgr
@@ -206,7 +219,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: usermgr.deb
-Size: 7338
+Size: 7354
 Installed-Size: 24
 
 Package: yahtcc
@@ -219,10 +232,10 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Yahtzee game for Phoenix
  Yahtzee game for Phoenix
 Filename: yahtcc.deb
-Size: 3466
+Size: 3464
 Installed-Size: 13
 
 Package: stage2-tarball
 Size: 512000
-Installed-Size: 473
+Installed-Size: 476
 
