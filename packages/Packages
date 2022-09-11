@@ -8,7 +8,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: ar.deb
-Size: 2604
+Size: 2602
 Installed-Size: 6
 
 Package: baseutils
@@ -21,7 +21,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: base utility set for Phoenix
  Contains a standard set of POSIX utilities for Phoenix.
 Filename: baseutils.deb
-Size: 22322
+Size: 22330
 Installed-Size: 67
 
 Package: diff
@@ -49,7 +49,7 @@ Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
 Filename: dpkg.deb
-Size: 26878
+Size: 26884
 Installed-Size: 108
 
 Package: gfxterm
@@ -62,7 +62,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Graphics mode terminal driver
  A kernel module implementing a graphics-mode terminal.
 Filename: gfxterm.deb
-Size: 7664
+Size: 7662
 Installed-Size: 41
 
 Package: libcraftos
@@ -88,7 +88,7 @@ Description: DEFLATE/zlib compression library
  Provides compression and decompression for DEFLATE
  formatted archives, including zlib and gzip files.
 Filename: libdeflate.deb
-Size: 14182
+Size: 14180
 Installed-Size: 40
 
 Package: libsystem
@@ -103,7 +103,7 @@ Description: System libraries for Phoenix
  Phoenix syscalls, as well as various useful
  components for programs.
 Filename: libsystem.deb
-Size: 19654
+Size: 19652
 Installed-Size: 70
 
 Package: muxzcat
@@ -116,7 +116,7 @@ Description: LZMA/XZ decompression library
  Provides functions for decompressing LZMA and XZ
  format compressed files.
 Filename: muxzcat.deb
-Size: 7218
+Size: 7212
 Installed-Size: 24
 
 Package: phoenix
@@ -177,7 +177,7 @@ Description: SHA-1, SHA-2, SHA-3, BLAKE2 and BLAKE3 functions written in pure Lu
     - branch for LuaJIT 2.0 with FFI library (bit.* functions work only with Lua numbers)
     - branch for LuaJIT 2.1 with FFI library (bit.* functions can work with "int64_t" arguments)
 Filename: sha2.deb
-Size: 31650
+Size: 31648
 Installed-Size: 118
 
 Package: startmgr
@@ -219,7 +219,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: usermgr.deb
-Size: 7354
+Size: 7352
 Installed-Size: 24
 
 Package: yahtcc
