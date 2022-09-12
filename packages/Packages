@@ -8,7 +8,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: ar.deb
-Size: 2602
+Size: 2600
 Installed-Size: 6
 
 Package: baseutils
@@ -21,7 +21,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: base utility set for Phoenix
  Contains a standard set of POSIX utilities for Phoenix.
 Filename: baseutils.deb
-Size: 22330
+Size: 22332
 Installed-Size: 67
 
 Package: diff
@@ -49,7 +49,7 @@ Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
 Filename: dpkg.deb
-Size: 26884
+Size: 26882
 Installed-Size: 108
 
 Package: gfxterm
@@ -62,7 +62,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Graphics mode terminal driver
  A kernel module implementing a graphics-mode terminal.
 Filename: gfxterm.deb
-Size: 7662
+Size: 7666
 Installed-Size: 41
 
 Package: libcraftos
@@ -75,7 +75,7 @@ Description: CraftOS compatibility library
  Provides CraftOS shim functions to allow running
  CraftOS programs on Phoenix.
 Filename: libcraftos.deb
-Size: 10720
+Size: 10716
 Installed-Size: 33
 
 Package: libdeflate
@@ -116,7 +116,7 @@ Description: LZMA/XZ decompression library
  Provides functions for decompressing LZMA and XZ
  format compressed files.
 Filename: muxzcat.deb
-Size: 7212
+Size: 7214
 Installed-Size: 24
 
 Package: phoenix
@@ -129,7 +129,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Phoenix kernel
  The kernel for the Phoenix operating system.
 Filename: phoenix.deb
-Size: 45580
+Size: 45576
 Installed-Size: 213
 
 Package: pxboot
@@ -145,7 +145,7 @@ Description: Multipurpose bootloader for ComputerCraft
  selection menu, and more. Designed for Phoenix,
  but supports other OSes as well, including CraftOS.
 Filename: pxboot.deb
-Size: 4412
+Size: 4410
 Installed-Size: 11
 
 Package: sha2
@@ -192,7 +192,7 @@ Description: Phoenix service manager and init system
  Provides automatic service management facilities
  for Phoenix systems.
 Filename: startmgr.deb
-Size: 4916
+Size: 4914
 Installed-Size: 14
 
 Package: tar
@@ -205,7 +205,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: TAR archive format library and program
  Allows creating and extracting TAR archives.
 Filename: tar.deb
-Size: 5756
+Size: 5754
 Installed-Size: 17
 
 Package: usermgr
@@ -219,7 +219,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: usermgr.deb
-Size: 7352
+Size: 7350
 Installed-Size: 24
 
 Package: yahtcc
