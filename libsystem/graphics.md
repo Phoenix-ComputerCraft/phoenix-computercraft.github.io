@@ -97,7 +97,7 @@ Draws a filled triangle on screen.
 ### Return Values
 This function does not return anything.
 
-## `drawImage(term: Terminal|GFXTerminal, x: number, y: number, image: number)`
+## `drawImage(term: Terminal|GFXTerminal, x: number, y: number, image: table)`
 Draws an image on screen.  The image may be either a valid graphics mode
  pixel region (using either string or table rows), or a blit table with
  {text, text color, background color} table rows (text mode only).

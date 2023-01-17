@@ -32,11 +32,12 @@ Returns a list of files in a directory.
 ### Return Values
 A list of files and folders in the directory
 
-## `stat(path: string): FileStat`
+## `stat(path: string[, nolink: boolean = false]): FileStat`
 Returns a table with various information about a file or directory.
 
 ### Arguments
 1. `path`: The path to query
+2. `nolink`: Whether to not resolve links to the file (defaults to false)
 
 ### Return Values
 A table with information about the path
@@ -69,6 +70,25 @@ Creates a directory, making any parent paths that don't exist.
 ### Return Values
 This function does not return anything.
 
+## `link(path: string, location: string)`
+Creates a (symbolic) link to a file.
+
+### Arguments
+1. `path`: The path of the new link
+2. `location`: The location to point the link to
+
+### Return Values
+This function does not return anything.
+
+## `mkfifo(path: string)`
+Creates a FIFO.
+
+### Arguments
+1. `path`: The FIFO to create
+
+### Return Values
+This function does not return anything.
+
 ## `chmod(path: string, user: string|nil, mode: number|string|{read?=boolean,write?=boolean,execute?=boolean})`
 Changes the permissions (mode) of the file at a path.
 
@@ -90,8 +110,18 @@ Changes the owner of a file or directory.
 ### Return Values
 This function does not return anything.
 
+## `chroot(path: string)`
+Changes the root directory of the current and future child processes.
+ This function requires root.
+
+### Arguments
+1. `path`: The new root path to change to
+
+### Return Values
+This function does not return anything.
+
 ## `mount(type: string, src: string, dest: string, options: table?)`
-Mounts a filesystem of the specified type to a directory.  This can only be run by root.
+Mounts a filesystem of the specified type to a directory.
 
 ### Arguments
 1. `type`: The type of filesystem to mount
@@ -103,13 +133,22 @@ Mounts a filesystem of the specified type to a directory.  This can only be run 
 This function does not return anything.
 
 ## `unmount(path: string)`
-Unmounts a mounted filesystem.  This can only be run by root.
+Unmounts a mounted filesystem.
 
 ### Arguments
 1. `path`: The filesystem to unmount
 
 ### Return Values
 This function does not return anything.
+
+## `mountlist(): [{path:string,type:string,source:string,options:table}]`
+Returns a list of mounts currently available.
+
+### Arguments
+This function does not take any arguments.
+
+### Return Values
+A list of mounts and their properties.
 
 ## `combine(...: string): string`
 Combines the specified path components into a single path, canonicalizing any links and ./..  paths.

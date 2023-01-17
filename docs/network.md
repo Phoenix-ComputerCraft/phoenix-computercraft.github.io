@@ -10,7 +10,7 @@ Phoenix's network stack attempts to simplify the API for network connections bot
 ## Rednet support
 Phoenix includes built-in support for Rednet to allow basic backwards compatibility with CraftOS. To communicate over Rednet, call `connect` with a scheme in the form `rednet[+protocol]` and an IP in the `0.0.0.0/8` range, which represents the target computer's ID. (Example: `rednet://0.0.0.4` = ID 4, `rednet+dns://0.0.2.56` = ID 568 with `dns` protocol.) The special IP `255.255.255.255` can be used to broadcast to all computers, as well as listen to messages from all computers.
 
-The returned handle will be ready to send and receive Rednet messages using the modem specified (or all if none was specified). Because Rednet is a connectionless protocol, the handle will always remain open (until closed) and can never error. Incoming messages are converted to strings automatically unless reading with the `"*a"` mode, but outgoing messages remain as-is.
+The returned handle will be ready to send and receive Rednet messages using the modem specified (or all if none was specified). Because Rednet is a connectionless protocol, the handle will always remain open (until closed manually) and can never error. Incoming messages are converted to strings automatically unless reading with the `"*a"` mode, but outgoing messages remain as-is.
 
 ## Kernel protocols
 The Phoenix kernel implements a number of protocols that establish a full networking stack up to the transport layer. These protocols are documented here.

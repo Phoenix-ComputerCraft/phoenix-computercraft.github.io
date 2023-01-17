@@ -44,7 +44,7 @@ The amount of time used by the current process, in milliseconds.
 This syscall does not throw errors.
 
 ## `getenv(): table`
-Returns the environment table for the current process.
+Returns the environment variable table for the current process.
 
 ### Arguments
 This syscall does not take any arguments.

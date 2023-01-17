@@ -67,6 +67,7 @@ A table with the following contents:
 * `modified: number`: The time the file was last modified, in milliseconds since the UNIX epoch
 * `owner: string`: The owner of the file
 * `mountpoint: string`: The path to the mountpoint the file is on
+* `link: string?`: If the file is a link, the path it links to
 * `capacity: number`: The total number of bytes the mount can store
 * `freeSpace: number`: The total number of bytes available on the mount
 * `permissions: table`: The permissions for each user/group
@@ -131,6 +132,35 @@ This syscall may throw an error if:
 * The current user does not have permission to write the parent directory of the first directory created.
 * A path component already exists and is a file.
 
+## `link(path: string, location: string)`
+Creates a new symbolic link at a path, creating any parent directories if they don't exist.
+
+### Arguments
+1. `path`: The path to the link to create.
+2. `location`: The location the link should point to. This may be on another filesystem, as the link is symbolic.
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+* The current user does not have permission to write the parent directory of the first directory created.
+* The path already exists.
+
+## `mkfifo(path: string)`
+Creates a new FIFO (first in first out) pipe file at a path, creating any parent directories if they don't exist.
+
+### Arguments
+1. `path`: The path to the FIFO to create.
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+* The current user does not have permission to write the parent directory of the first directory created.
+* The path already exists.
+
 ## `chmod(path: string, user: string?, mode: number|string|table)`
 Changes the permissions (mode) of a file or directory for the specified user. If any setuser bit is specified, this will be applied for all users.
 
@@ -165,6 +195,20 @@ This syscall does not return anything.
 This syscall may throw an error if:
 * The file does not exist.
 * The current user is not the owner of the file or root.
+
+## `chroot(path: string)`
+Changes the root directory of the current and future child processes. This syscall requires root.
+
+### Arguments
+1. `path`: The path to the new root directory.
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+* The current user is not root.
+* The new root directory does not exist.
 
 ## `mount(type: string, src: string, dest: string, options: table?)`
 Mounts a disk device to a path using the specified filesystem and options.

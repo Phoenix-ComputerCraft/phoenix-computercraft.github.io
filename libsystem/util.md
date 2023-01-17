@@ -86,6 +86,19 @@ Pauses the process for a certain amount of time.
 ### Return Values
 This function does not return anything.
 
+## `pullEvent(): string, table`
+Returns the next event from the event queue.  This is intended to make it more
+ clear when events are being pulled, and also has the benefit of supporting
+ libsystem-craftos better.
+
+### Arguments
+This function does not take any arguments.
+
+### Return Values
+This function may return the following values:
+1. The event pulled
+2. The parameters for the event
+
 ## `filterEvent(...: string): string, table`
 Waits until an event of the specified type(s) occurs.
 

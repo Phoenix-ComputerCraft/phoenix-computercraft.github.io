@@ -114,6 +114,18 @@ Replaces the current process with the contents of the specified file.
 ### Return Values
 This function does not return anything.
 
+## `execp(command: string, ...: any)`
+Replaces the current process with the contents of the specified file or
+ command, searching the PATH environment variable if necessary.
+ This function does not return - it can only throw an error.
+
+### Arguments
+1. `command`: The command or file to execute.
+2. `...`: Any arguments to pass to the file.
+
+### Return Values
+This function does not return anything.
+
 ## `start(path: string, ...: any): number`
 Starts a new process from the specified path.
 
@@ -128,7 +140,7 @@ The PID of the new process.
 Runs a program from the specified path in a new process, waiting until it completes.
 
 ### Arguments
-1. `path`: The path to the file to execute
+1. `path`: The command or file to execute
 2. `...`: Any arguments to pass to the file
 
 ### Return Values
