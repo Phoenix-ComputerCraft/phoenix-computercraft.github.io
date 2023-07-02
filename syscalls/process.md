@@ -159,7 +159,7 @@ The ID of the newly created thread.
 ### Errors
 This syscall does not throw errors.
 
-## `exit(code: number?)`
+## `exit(code: number?): never`
 Exits the current process with the specified exit code.
 
 ### Arguments
@@ -209,4 +209,4 @@ A table with the following fields:
 If the information could not be read, the syscall will return `nil` + an error message.
 
 ### Errors
-This syscall does not throw errors
+This syscall does not throw errors.
