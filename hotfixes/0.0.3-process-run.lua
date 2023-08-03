@@ -1,0 +1,7 @@
+local file = assert(io.open("/lib/libsystem.a", "rb"))
+local data = file:read("*a")
+file:close()
+file = assert(io.open("/lib/libsystem.a", "wb"))
+file:write(data:gsub('"syscall","execp"', '"syscall","exec"'))
+file:close()
+return coroutine.yield("syscall", "exec", "/usr/bin/update.lua")

@@ -192,3 +192,15 @@ Returns a table with various information about the specified process.
 ### Return Values
 The process information, or nil if the process doesn't exist.
 
+## `nice(level: number, pid: number?)`
+Sets the niceness level of the specified process, or the current one if left
+ unspecified.  Nice values cause the process to run longer with a lower number
+ (requires root), or shorter with a higher number. Values range from -20 to 20.
+
+### Arguments
+1. `level`: The nice level to set to
+2. `pid`: The process ID to modify (must be root or same user) (optional)
+
+### Return Values
+This function does not return anything.
+

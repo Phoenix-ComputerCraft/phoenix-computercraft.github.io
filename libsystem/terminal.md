@@ -54,6 +54,19 @@ This function does not take any arguments.
 ### Return Values
 The text read, or nil if EOF was reached.
 
+## `readline2(history: table?, completion: function(partial:string):string[]?): string|nil`
+Reads a line of text from the standard input stream, allowing history and
+ autocompletion.
+
+### Arguments
+1. `history`: A list of history items to scroll through with the
+ arrow keys, with the first index being the most recent (optional)
+2. `completion`: A function to use
+ to get completion options (optional)
+
+### Return Values
+The text read, or nil if EOF was reached.
+
 ## `termctl(flags: {cbreak?=boolean,delay?=boolean,echo?=boolean,keypad?=boolean,nlcr?=boolean,raw?=boolean}): {cbreak=boolean,delay=boolean,echo=boolean,keypad=boolean,nlcr=boolean,raw=boolean}|nil`
 Sets certain terminal control flags on the current TTY if available.
 

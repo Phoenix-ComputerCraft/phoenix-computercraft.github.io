@@ -229,3 +229,15 @@ The amount of time the computer has been running in seconds.
 
 ### Errors
 This syscall does not throw any errors.
+
+## `kernargs(): table`
+Returns the command-line arguments passed when starting the kernel.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+A key-value table of kernel arguments.
+
+### Errors
+This syscall does not throw any errors.

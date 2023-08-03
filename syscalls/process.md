@@ -210,3 +210,19 @@ If the information could not be read, the syscall will return `nil` + an error m
 
 ### Errors
 This syscall does not throw errors.
+
+## `nice(level: number[, pid: number])`
+Sets the niceness level of the specified process, or the current one if left unspecified. Nice values cause the process to run longer with a lower number (requires root), or shorter with a higher number. Values range from -20 to 20.
+
+### Arguments
+1. `level`: The niceness level to set
+2. `pid`: The ID of the process to modify (defaults to the current one)
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may error if:
+* The process ID does not exist.
+* The user does not have permission to modify the selected process.
+* The user tries to set a negative niceness level and is not `root`.

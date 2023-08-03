@@ -1,5 +1,6 @@
 local url = "https://phoenix.madefor.cc/packages/"
 
+if not term then error("This program requires CraftOS. Use the components program to add and remove components.") end
 term.setPaletteColor(colors.orange, 0xD06018)
 term.setPaletteColor(colors.white, 0xD8D8D8)
 
@@ -187,6 +188,7 @@ local function selectionBox(h, selections, callback, didSelect)
     term.blit(1 < nsel - h + 1 and "\31" or " ", "0", "1")
     inner.setCursorPos(2, selected)
     inner.setCursorBlink(true)
+    restoreCursor = inner.restoreCursor
     coros[#coros+1] = coroutine.create(function()
         local scrollPos = 1
         while true do
@@ -441,11 +443,12 @@ Electronic communications are permitted to both Parties under this Agreement, in
 
 
 
-This product contains portions from Recrafted, cash and json.lua, which are licensed under the MIT license.
+This product contains portions from Recrafted, cash, lualzw, and json.lua, which are licensed under the MIT license.
 
 Copyright (c) 2020-2022 JackMacWindows
-Copyright (c) 2022 Ocawesome101 (libcraftos.init)
-Copyright (c) 2020 rxi (libsystem.serialization.json)
+Copyright (c) 2022 Ocawesome101 (libcraftos.init - https://github.com/Ocawesome101/recrafted)
+Copyright (c) 2020 rxi (libsystem.serialization.json - https://github.com/rxi/json.lua)
+Copyright (c) 2016 Rochet2 (baseutils compress, decompress - https://github.com/Rochet2/lualzw)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -487,8 +490,68 @@ function screens.rootdir(state)
     }
     run()
     state.rootdir = path
-    if next then return screens.username(state)
+    if next then return screens.spanfs_intro(state)
     elseif next == false then return screens.license(state)
+    else return false end
+end
+
+function screens.spanfs_intro(state)
+    local next, path
+    clearScreen("ENTER=Skip  S=Continue  TAB=Back  F5=Quit")
+    label("Phoenix can be installed across multiple disk drives to increase the available disk space by using a span. This requires at least two connected disk drives, which cannot be removed while the OS is running.\n\n \7 Press S to set up and install to a span.\n \7 Press Enter to skip and install on the local filesystem normally.")
+    keyMap {
+        [keys.tab] = function() next, running = false, false end,
+        [keys.f5] = function() running = false end,
+        [keys.enter] = function() next, running = true, false end,
+        [keys.s] = function() next, running = "s", false end
+    }
+    run()
+    state.freeSpace = fs.getFreeSpace("/")
+    state.spanfs_disks = nil
+    if next == "s" then os.pullEvent("char") return screens.spanfs_name(state)
+    elseif next then return screens.username(state)
+    elseif next == false then return screens.license(state)
+    else return false end
+end
+
+function screens.spanfs_name(state)
+    local next, path
+    clearScreen("ENTER=Continue  TAB=Back  F5=Quit")
+    label("Please enter a name for the span. This is used to identify the disks.")
+    inputBox(function(p) path, next, running = p, true, false end, state.spanfs_name or "Phoenix")
+    keyMap {
+        [keys.tab] = function() next, running = false, false end,
+        [keys.f5] = function() running = false end
+    }
+    run()
+    state.spanfs_name = path
+    if next then return screens.spanfs_select(state)
+    elseif next == false then return screens.spanfs_intro(state)
+    else return false end
+end
+
+function screens.spanfs_select(state)
+    local next
+    clearScreen("ENTER=Continue  SPACE=Toggle  TAB=Back  F5=Quit")
+    label("Select the disk drives to include in the span. Order or IDs will not matter after installation. ALL SELECTED DISKS WILL BE ERASED.")
+    local selections = {}
+    for _, drive in ipairs{peripheral.find("drive")} do if drive.isDiskPresent() then selections[peripheral.getName(drive)] = false end end
+    selectionBox(nil, selections, function(entries)
+        state.spanfs_disks = {}
+        state.freeSpace = 0
+        for k, v in pairs(entries) do if v then
+            if #state.spanfs_disks > 0 then state.freeSpace = state.freeSpace + fs.getCapacity(peripheral.call(k, "getMountPath")) - 500 end
+            state.spanfs_disks[#state.spanfs_disks+1] = k
+        end end
+        next, running = true, false
+    end)
+    keyMap {
+        [keys.tab] = function() next, running = false, false end,
+        [keys.f5] = function() running = false end
+    }
+    run()
+    if next then return screens.username(state)
+    elseif next == false then return screens.spanfs_name(state)
     else return false end
 end
 
@@ -504,7 +567,7 @@ function screens.username(state)
     run()
     state.username = path
     if next then return screens.password(state)
-    elseif next == false then return screens.rootdir(state)
+    elseif next == false then return screens.spanfs_intro(state)
     else return false end
 end
 
@@ -530,7 +593,7 @@ function screens.components(state)
     label("Select the components to install from the list below.\n[-] = required, [\xD7] = selected")
     local selections = {}
     for k, v in pairs(pkginfo) do if k ~= "stage2-tarball" then
-        if v.essential or v.priority == "required" then selections[k] = "R"
+        if v.essential or v.priority == "required" or (state.spanfs_disks and (k == "initrd-utils" or k == "spanfs")) then selections[k] = "R"
         elseif v.priority == "optional" then selections[k] = false
         else selections[k] = true end
     end end
@@ -543,7 +606,7 @@ function screens.components(state)
                 end
             end
         end
-        for k, v in pairs(selections) do selections[k] = (pkginfo[k].essential or pkginfo[k].priority == "required") and "R" or not not v end
+        for k, v in pairs(selections) do selections[k] = (pkginfo[k].essential or pkginfo[k].priority == "required" or (state.spanfs_disks and (k == "initrd-utils" or k == "spanfs"))) and "R" or not not v end
         for k in pairs(selections) do update(k) end
     end
     updateRequirements()
@@ -585,11 +648,11 @@ function screens.confirm(state)
         dlsize = dlsize + pkginfo[v].pkgsize
         instsize = instsize + pkginfo[v].filesize
     end
-    local required, space = math.max(dlsize, instsize), fs.getFreeSpace(state.rootdir)
+    local required, space = math.max(dlsize, instsize), state.freeSpace
     if space < required then
         return screens.message(state, "The selected components require " .. math.ceil(required / 1024) .. "kiB of space, but only " .. math.ceil(space / 1024) .. "kiB is available. Please deselect some components or delete files to make space.", screens.components)
     end
-    local details = ("Root directory: %s\nPrimary user: %s\nDownload size: %dkiB\nInstalled size: %dkiB\nComponents:\n"):format(state.rootdir, state.username, math.floor((dlsize - pkginfo["stage2-tarball"].filesize + pkginfo["stage2-tarball"].pkgsize) / 1024), math.floor(instsize / 1024))
+    local details = ("Root directory: %s\nUsing spanfs: %s\nPrimary user: %s\nDownload size: %dkiB\nInstalled size: %dkiB\nComponents:\n"):format(state.rootdir, state.spanfs_disks and "Yes, on " .. table.concat(state.spanfs_disks, ", ") or "No", state.username, math.floor((dlsize - pkginfo["stage2-tarball"].filesize + pkginfo["stage2-tarball"].pkgsize) / 1024), math.floor(instsize / 1024))
     for _, k in ipairs(state.components) do details = details .. "\7 " .. k .. "\n" end
     local next
     clearScreen("ENTER=Install  TAB=Back  Q=Quit")
@@ -682,6 +745,35 @@ function screens.install_stage1(state)
         n = n + 1
         progress(n / total)
     end
+    if state.spanfs_disks then
+        drawStatus("Formatting span...")
+        state.spanfs = ('xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'):gsub('[xy]', function (c)
+            local v = (c == 'x') and math.random(0, 0xf) or math.random(8, 0xb)
+            return ('%x'):format(v)
+        end)
+        for i, v in ipairs(state.spanfs_disks) do
+            local path = peripheral.call(v, "getMountPath")
+            for _, p in ipairs(fs.find(fs.combine(path, "*"))) do fs.delete(p) end
+            local file, err = fs.open(fs.combine(path, ".spanfs"), "w")
+            if not file then
+                sleep(0)
+                return screens.message(state, "An error occurred while formatting the span. Installation cannot continue.\n\nPress ENTER to exit.\n\nError message: " .. err, function() return false end)
+            end
+            file.writeLine(state.spanfs_name)
+            file.writeLine(state.spanfs)
+            file.writeLine(i-1)
+            file.close()
+            if i == 1 then
+                local file, err = fs.open(fs.combine(path, "index"), "wb")
+                if not file then
+                    sleep(0)
+                    return screens.message(state, "An error occurred while formatting the span. Installation cannot continue.\n\nPress ENTER to exit.\n\nError message: " .. err, function() return false end)
+                end
+                file.write(("<III8I8BBs2s2Bs2BI"):pack(38 + #state.spanfs_name, 0, os.time() * 1000, os.time() * 1000, 5, 5, state.spanfs_name, "root", 1, "root", 7, 0))
+                file.close()
+            end
+        end
+    end
     drawStatus("Saving configuration...")
     local file, err = fs.open(fs.combine(state.rootdir, "install_config.lua"), "w")
     if not file then
@@ -692,7 +784,7 @@ function screens.install_stage1(state)
     file.write(textutils.serialize(state))
     file.close()
     file = fs.open("startup.lua", "w")
-    file.write("if not fs.exists('" .. fs.combine(state.rootdir, "install_config.lua") .. "') then local file = fs.open('startup.lua', 'w') file.write('shell.run(\"" .. fs.combine(state.rootdir, "boot/pxboot.lua") .. "\")') file.close() return shell.run('/startup.lua') else fs.delete('startup.lua') end")
+    file.write("if not fs.exists('" .. fs.combine(state.rootdir, "install_config.lua") .. "') then local file = fs.open('startup.lua', 'w') file.write('sleep(0) shell.run(\"" .. fs.combine(state.rootdir, "boot/pxboot.lua") .. "\")') file.close() return shell.run('/startup.lua') else fs.delete('startup.lua') end")
     file.close()
     progress(1)
     return screens.reboot(state)
