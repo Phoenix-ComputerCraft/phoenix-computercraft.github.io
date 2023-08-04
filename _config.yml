@@ -52,5 +52,3 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules/
-  - packages/
-  - hotfixes/
