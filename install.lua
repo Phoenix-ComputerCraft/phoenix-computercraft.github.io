@@ -319,6 +319,7 @@ function screens.loading(state)
         end
     end
     handle.close()
+    if jit then return screens.message(state, "Phoenix does not support running on CraftOS-PC Accelerated. Please re-run the installer using normal CraftOS-PC.\n\nSetup cannot continue. Press ENTER to exit.", function() end) end
     return screens.welcome(state)
 end
 
