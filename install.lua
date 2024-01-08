@@ -1,6 +1,7 @@
 local url = "https://phoenix.madefor.cc/packages/"
 
 if not term then error("This program requires CraftOS. Use the components program to add and remove components.") end
+if _VERSION == "Lua 5.2" then error("Phoenix does not currently support ComputerCraft 1.109. Please wait for an updated version to be released.") end
 term.setPaletteColor(colors.orange, 0xD06018)
 term.setPaletteColor(colors.white, 0xD8D8D8)
 
@@ -319,6 +320,7 @@ function screens.loading(state)
         end
     end
     handle.close()
+    if jit then return screens.message(state, "Phoenix does not support running on CraftOS-PC Accelerated. Please re-run the installer using normal CraftOS-PC.\n\nSetup cannot continue. Press ENTER to exit.", function() end) end
     return screens.welcome(state)
 end
 
