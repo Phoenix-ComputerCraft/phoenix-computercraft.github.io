@@ -1,7 +1,6 @@
 local url = "https://phoenix.madefor.cc/packages/"
 
 if not term then error("This program requires CraftOS. Use the components program to add and remove components.") end
-if _VERSION == "Lua 5.2" then error("Phoenix does not currently support ComputerCraft 1.109. Please wait for an updated version to be released.") end
 term.setPaletteColor(colors.orange, 0xD06018)
 term.setPaletteColor(colors.white, 0xD8D8D8)
 
@@ -25,10 +24,10 @@ local function clearScreen(status)
     term.setTextColor(colors.white)
     term.clear()
     term.setCursorBlink(false)
-    term.setCursorPos(2, 2)
+    term.setCursorPos(3, 2)
     term.write("Phoenix Setup")
     term.setCursorPos(1, 3)
-    term.write(("\x8C"):rep(15))
+    term.write(("\x8C"):rep(16))
     drawStatus(status)
     nextLine = 5
     coros = {}
@@ -492,8 +491,27 @@ function screens.rootdir(state)
     }
     run()
     state.rootdir = path
-    if next then return screens.spanfs_intro(state)
+    if next then return screens.luz(state)
     elseif next == false then return screens.license(state)
+    else return false end
+end
+
+function screens.luz(state)
+    local next, path
+    clearScreen("ENTER=Skip  L=Use Luz  TAB=Back  F5=Quit")
+    label("The Phoenix kernel is available as a Luz file, which is highly compressed and reduces the kernel's disk usage by ~200 kB. However, using it will increase boot times by a few seconds.\n\n \7 Press L to use the Luz-compressed kernel.\n \7 Press Enter to skip and use the full-size kernel.")
+    keyMap {
+        [keys.tab] = function() next, running = false, false end,
+        [keys.f5] = function() running = false end,
+        [keys.enter] = function() next, running = true, false end,
+        [keys.l] = function() next, running = "l", false end
+    }
+    run()
+    state.freeSpace = fs.getFreeSpace("/")
+    state.spanfs_disks = nil
+    if next == "l" then os.pullEvent("char") state.luz = true return screens.spanfs_intro(state)
+    elseif next then return screens.spanfs_intro(state)
+    elseif next == false then return screens.rootdir(state)
     else return false end
 end
 
@@ -512,7 +530,7 @@ function screens.spanfs_intro(state)
     state.spanfs_disks = nil
     if next == "s" then os.pullEvent("char") return screens.spanfs_name(state)
     elseif next then return screens.username(state)
-    elseif next == false then return screens.license(state)
+    elseif next == false then return screens.luz(state)
     else return false end
 end
 
@@ -584,8 +602,27 @@ function screens.password(state)
     }
     run()
     state.password = path
-    if next then return screens.components(state)
+    if next then return screens.password2(state)
     elseif next == false then return screens.username(state)
+    else return false end
+end
+
+function screens.password2(state)
+    local next, path
+    clearScreen("ENTER=Continue  TAB=Back  F5=Quit")
+    label("Please type the password again to confirm.")
+    inputBox(function(p) path, next, running = p, true, false end, "", "\7")
+    keyMap {
+        [keys.tab] = function() next, running = false, false end,
+        [keys.f5] = function() running = false end
+    }
+    run()
+    if next then
+        if state.password ~= path then
+            return screens.message(state, "The provided passwords do not match. Please try again.", screens.password)
+        end
+        return screens.components(state)
+    elseif next == false then return screens.password(state)
     else return false end
 end
 
@@ -595,7 +632,9 @@ function screens.components(state)
     label("Select the components to install from the list below.\n[-] = required, [\xD7] = selected")
     local selections = {}
     for k, v in pairs(pkginfo) do if k ~= "stage2-tarball" then
-        if v.essential or v.priority == "required" or (state.spanfs_disks and (k == "initrd-utils" or k == "spanfs")) then selections[k] = "R"
+        if k == "phoenix" or k == "phoenix-luz" then
+            if (state.luz and k == "phoenix-luz") or (not state.luz and k == "phoenix") then selections[k] = "R" end
+        elseif v.essential or v.priority == "required" or (state.spanfs_disks and (k == "initrd-utils" or k == "spanfs")) then selections[k] = "R"
         elseif v.priority == "optional" then selections[k] = false
         else selections[k] = true end
     end end

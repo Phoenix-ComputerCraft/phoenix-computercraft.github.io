@@ -29,8 +29,11 @@ A filesystem class must implement all filesystem syscalls that are not related t
 * `remove`
 * `rename`
 * `mkdir`
+* `link`
+* `mkfifo`
 * `chmod`
 * `chown`
+* `unmount` (optional)
 
 In addition, they must implement an `info` method that takes no arguments (except `self`) and returns three values: the name of the filesystem type, the source of the mount, and a table with any options passed when mounting.
 

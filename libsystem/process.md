@@ -103,6 +103,20 @@ Creates a new process running the specified function with arguments.
 ### Return Values
 The PID of the new process.
 
+## `forkbg(func: function, name: string, ...: any): number`
+Creates a new process running the specified function with arguments.  This
+ process will be placed in the background, meaning it has no stdin/out.
+
+### Arguments
+1. `func`: The function to run in the new process. This will be the
+ main function of the first thread, and will have its environment set to the
+ new process's environment.
+2. `name`: ? The name of the new process.
+3. `...`: Any arguments to pass to the function.
+
+### Return Values
+The PID of the new process.
+
 ## `exec(path: string, ...: any)`
 Replaces the current process with the contents of the specified file.
  This function does not return - it can only throw an error.
@@ -128,6 +142,17 @@ This function does not return anything.
 
 ## `start(path: string, ...: any): number`
 Starts a new process from the specified path.
+
+### Arguments
+1. `path`: The path to the file to execute.
+2. `...`: Any arguments to pass to the file.
+
+### Return Values
+The PID of the new process.
+
+## `startbg(path: string, ...: any): number`
+Starts a new process from the specified path.  This process will be placed in
+ the background, meaning it has no stdin/out.
 
 ### Arguments
 1. `path`: The path to the file to execute.

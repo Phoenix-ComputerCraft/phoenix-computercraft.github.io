@@ -113,3 +113,48 @@ Loads a serialized Lua file into a Lua value.
 ### Return Values
 The loaded value
 
+# serialization.toml
+
+
+## `serialization.toml.encode(tbl: table, opts: {indent=boolean}?): string`
+Encodes a table into TOML format.  This table must only have integer or
+ string keys in itself and each subtable, and cannot mix strings and ints.
+
+### Arguments
+1. `tbl`: The table to encode
+2. `opts`: Any options to specify while encoding (optional)
+
+### Return Values
+The encoded TOML data
+
+## `serialization.toml.decode(str: string, opts: table?): table`
+Parses TOML data into a table.
+
+### Arguments
+1. `str`: The TOML data to decode
+2. `opts`: Options (none available in this version) (optional)
+
+### Return Values
+A table representing the TOML data
+
+## `serialization.toml.save(val: table, path: string, opts: {indent=boolean}?)`
+Saves a table to a TOML file.
+
+### Arguments
+1. `val`: The value to save
+2. `path`: The path to the file to save
+3. `opts`: Any options to specify while encoding (optional)
+
+### Return Values
+This function does not return anything.
+
+## `serialization.toml.load(path: string, opts: table?): table`
+Loads a TOML file into a table.
+
+### Arguments
+1. `path`: The path to the file to load
+2. `opts`: Options (none available in this version) (optional)
+
+### Return Values
+The loaded value
+

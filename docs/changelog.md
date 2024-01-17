@@ -7,7 +7,113 @@ parent: Documentation
 # Changelog
 This page lists the changes in each major update to Phoenix, broken down by package.
 
-## 0.0.4
+## 0.0.5 - 2024-01-17
+
+### `phoenix`
+Package version: 0.0.5
+- Improved support for Lua 5.2 runtimes
+- Changed some details about how system calls are run in the kernel
+  - Syscalls are now run in a separate coroutine
+  - This allows them to yield for events
+  - User callbacks to syscalls can yield as well
+- Added `quiet` boot argument to set the log level to warning
+- Added new key translation allocation method that doesn't use bytecode
+- Added more protection around kernel panics
+- Added checks to make sure the kernel doesn't yield in the wrong places
+- Added implementations of common Lua functions in the kernel environment
+- Added `unmount` method to filesystems
+- Added `localIP` method to PSP socket handles
+- Added `transfer` method to PSP socket handles to transfer the handle to another process
+- PSP can now listen to multiple clients on the same port, as long as the remote clients use different outgoing ports
+- Fixed a bug in `mkdir`
+- Fixed a vulnerability in `loadfile` allowing access to the kernel environment
+- Fixed a vulnerability in dbprotect allowing accessing the environment of stack functions
+- `openterm` and `opengfx` now hold references to their handles, allowing them to be called again to get the handle after initialization
+- Fixed many issues in PSP layer
+- `craftos` filesystems no longer sync metadata on every write
+- Fixed tabs not always aligning correctly
+- `mklog` no longer errors if the log already exists
+- Improved how the `exit` syscall works
+
+### `pxboot`
+Package version: 0.1.3
+- Fixed support for Lua 5.2
+- Added `insmod` command in entry definitions
+
+### `libsystem`
+Package version: 0.1.4
+- Added `serialization.toml` TOML parser
+- Added `expect.struct`, `expect.array`, `expect.match` type matchers for `expect`
+- Added `process.forkbg`, `process.startbg` to create background tasks
+- Fixed error when using `filesystem.copy` on a source that doesn't exist
+- Fixed some typos in `sync.conditionVariable:waitFor` and `terminal.readline2`
+
+### `libcraftos`
+Package version: 0.2.2
+- Reverted changes to terminal colors
+- Fixed bug in `disk.isPresent` when the requested peripheral isn't a drive
+- Fixed typo in `colors.pink`
+- Fixed environment error in `init` module
+- Fixed some issues with syscalls in `shell` program
+
+### `baseutils`
+Package version: 0.2.1
+- Added `attach` program for CraftOS-PC
+- Added automatic `/rom` mount to `/etc/fstab`
+- Fixed issues displaying infinite drive sizes in `df`
+
+### `dpkg`
+Package version: 0.2.4
+- Fixed bug when extracting links
+- Fixed bug causing non-empty directories to be deleted when a single package removes them
+
+### `ccryptolib`
+Package version: 1.1.0
+- Updated to latest upstream version
+- This version stabilizes the API in `ccryptolib.x25519c`.
+  - Functions that mixed exchanges with Ed25519 keys were removed.
+
+### `luz` *(new)*
+Package version: 0.1
+- Initial release
+- Lua script compression and decompression utility, library & kernel module
+- Can be used with `pxboot` to boot Luz-compressed kernel images
+
+### `phoenix-luz` *(new)*
+Package version: 0.0.5
+- Initial release
+- Alternate distribution of `phoenix` using Luz compression
+
+### `fuse` *(new)*
+Package version: 0.1
+- Initial release
+- Implements filesystems in userspace, allowing filesystems to be implemented without using kernel modules
+
+### `ftp` *(new)*
+Package version: 0.1
+- Initial release
+- RFC 959-compliant File Transfer Protocol client, server, and filesystem driver over PSP
+
+### `netutils` *(new)*
+Package version: 0.1
+- Initial release
+- Various Linux-inspired utilities to manage the current network configurations
+
+### `dhcpmgr` *(new)*
+Package version: 0.1
+- Initial release
+- DHCP autoconfiguration server for assigning IP addresses to clients
+
+### `netmgr` *(new)*
+Package version: 0.1
+- Initial release
+- Network management daemon to set IP addresses from a configuration file, including a DHCP client
+
+### Installer
+- Added prompt to use `phoenix-luz` Luz kernel instead of full `phoenix` kernel
+- Added confirmation prompt for passwords
+
+## 0.0.4 - 2023-08-03
 
 ### `phoenix`
 Package version: 0.0.4

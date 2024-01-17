@@ -34,3 +34,5 @@ gem "webrick"
 
 gem "jekyll-include-cache"
 
+gem "json"
+
