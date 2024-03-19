@@ -121,7 +121,7 @@ Creates a new virtual TTY with the specified size.  This can later be used in
 2. `height`: The height of the new TTY.
 
 ### Return Values
-A new TTY object which is registered with the kernel.
+A new TTY object which is registered with the kernel. See [the syscall docs](/syscalls/terminal#mkttywidth-number-height-number-tty) for more info.
 
 ## `stdin(handle: number|TTY|FileHandle|nil)`
 Sets the standard input of the current process.

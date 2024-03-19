@@ -112,6 +112,24 @@ Creates a new pseudo-TTY of the specified size.
 ### Return Values
 The new TTY handle.
 
+A TTY handle has the following properties:
+- `isTTY`: `true`
+- `flags`: Table of flags, from `termctl`
+- `cursor`: Table with `x` and `y` properties for cursor position in text mode
+- `cursorBlink`: Boolean for cursor blink
+- `colors`: Table with `bg` and `fg` single-character strings, plus `bold` boolean for colors in text mode
+- `size`: Table with `width` and `height` properties
+- `dirtyLines`: A set with the lines that need to be redrawn
+- `palette`: A table with the palette info, indexed 0-15
+- `dirtyPalette`: A set with the palette entries that need to be updated
+- `buffer`: Text input into the TTY that is awaiting being read
+- `isLocked`: Whether the terminal is in an exclusive mode
+- `isGraphics`: Whether the terminal is in exclusive graphics mode
+- `textBuffer`: A buffer for exclusive text mode, with indexed lines, plus `cursor`, `cursorBlink`, `colors`, `palette`, `dirtyLines`, and `dirtyPalette`
+- `graphicsBuffer`: A buffer for exclusive graphics mode, with indexed 256-color lines, plus `palette`, `dirtyRects`, `dirtyPalette`, and `frozen`
+
+Lines of text are stored in `tty[y]`, with three blit string entries for text, text colors, and background colors.
+
 ### Errors
 This syscall does not throw errors.
 
@@ -119,7 +137,12 @@ This syscall does not throw errors.
 Sets the standard input handle of the current process.
 
 ### Arguments
-1. `handle`: The handle to set the input to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `read` function, a device path or UUID to a peripheral that has a TTY (such as a monitor), or `nil` to disable.
+1. `handle`: The handle to set the input to. This may be one of:
+  * a number indicating a virtual terminal to use
+  * a TTY created with `mktty`
+  * a handle with a `read` function
+  * a device path or UUID to a peripheral that has a TTY (such as a monitor)
+  * `nil` to disable stdin.
 
 ### Return Values
 This syscall does not return anything.
@@ -131,7 +154,12 @@ This syscall does not throw errors.
 Sets the standard output handle of the current process.
 
 ### Arguments
-1. `handle`: The handle to set the output to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `write` function, a device path or UUID to a peripheral that has a TTY (such as a monitor), or `nil` to disable.
+1. `handle`: The handle to set the output to. This may be one of:
+  * a number indicating a virtual terminal to use
+  * a TTY created with `mktty`
+  * a handle with a `write` function
+  * a device path or UUID to a peripheral that has a TTY (such as a monitor)
+  * `nil` to disable stdout.
 
 ### Return Values
 This syscall does not return anything.
@@ -143,7 +171,12 @@ This syscall does not throw errors.
 Sets the standard error handle of the current process.
 
 ### Arguments
-1. `handle`: The handle to set the output to. This may be a number indicating a virtual terminal to use, a TTY created with `mktty`, a handle with a `write` function, a device path or UUID to a peripheral that has a TTY (such as a monitor), or `nil` to disable.
+1. `handle`: The handle to set the output to. This may be one of:
+  * a number indicating a virtual terminal to use
+  * a TTY created with `mktty`
+  * a handle with a `write` function
+  * a device path or UUID to a peripheral that has a TTY (such as a monitor)
+  * `nil` to disable stderr.
 
 ### Return Values
 This syscall does not return anything.
