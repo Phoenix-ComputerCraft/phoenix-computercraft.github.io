@@ -7,7 +7,7 @@ parent: Documentation
 # Changelog
 This page lists the changes in each major update to Phoenix, broken down by package.
 
-## 0.0.6
+## 0.0.6 - 2024-07-31
 
 ### `phoenix`
 Package version: 0.0.6
