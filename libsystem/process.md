@@ -55,6 +55,15 @@ This function does not take any arguments.
 The amount of time this process has executed
 
 ## `getenv(): table`
+Returns the environment variable table for the current process.
+
+### Arguments
+This function does not take any arguments.
+
+### Return Values
+The environment variable table for the current process
+
+## `getfenv(): table`
 Returns the environment table for the current process.
 
 ### Arguments
@@ -195,6 +204,19 @@ Ends the current process immediately, stopping all threads and sending the
 
 ### Arguments
 1. `code`: ? The value to return.
+
+### Return Values
+This function does not return anything.
+
+## `atexit(fn: function)`
+Runs a function when the program exists.  This function will never get any
+ events, and is time-limited to 100 syscalls due to running in a different
+ context than normal threads - avoid passing long-running functions.
+ Functions added here cannot be removed later, so if the function may not be
+ needed after being added, use a variable check to disable it instead.
+
+### Arguments
+1. `fn`: The function to call at exit
 
 ### Return Values
 This function does not return anything.

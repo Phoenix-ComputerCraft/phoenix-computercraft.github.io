@@ -275,3 +275,16 @@ This syscall may throw an error if:
 * The API name is malformed.
 * The API does not exist.
 * An error occurred while loading the API.
+
+## `fsevent(path: string, enabled: boolean?)`
+Enables or disables filesystem event reporting on a specified path. When enabled, any modifications to the file or directory at the path will send a `fsevent` event to the process.
+
+### Arguments
+1. `path`: The path to monitor
+2. `enabled`: Whether to enable listening (defaults to true)
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall does not throw any errors.

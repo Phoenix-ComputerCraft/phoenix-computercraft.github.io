@@ -150,6 +150,16 @@ This function does not take any arguments.
 ### Return Values
 A list of mounts and their properties.
 
+## `fsevent(path: string, enabled: boolean?)`
+Registers the process to receive filesystem events for a path.  Note that this is not recursive.
+
+### Arguments
+1. `path`: The path to register for
+2. `enabled`: Whether to enable events (defaults to true) (optional)
+
+### Return Values
+This function does not return anything.
+
 ## `combine(...: string): string`
 Combines the specified path components into a single path, canonicalizing any links and ./..  paths.
 
@@ -158,6 +168,15 @@ Combines the specified path components into a single path, canonicalizing any li
 
 ### Return Values
 The combined and canonicalized path
+
+## `absolute(path: string): string`
+Gets the absolute path from a path string.
+
+### Arguments
+1. `path`: The path to convert
+
+### Return Values
+An absolute path pointing to the file
 
 ## `copy(from: string, to: string, preserve: boolean?)`
 Copies a file or directory.

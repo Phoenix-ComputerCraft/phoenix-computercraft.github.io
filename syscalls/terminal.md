@@ -128,6 +128,10 @@ A TTY handle has the following properties:
 - `textBuffer`: A buffer for exclusive text mode, with indexed lines, plus `cursor`, `cursorBlink`, `colors`, `palette`, `dirtyLines`, and `dirtyPalette`
 - `graphicsBuffer`: A buffer for exclusive graphics mode, with indexed 256-color lines, plus `palette`, `dirtyRects`, `dirtyPalette`, and `frozen`
 
+It also has the following methods:
+- `write(text: string)`: Writes text to the text mode screen as if it were called through the `write` syscall.
+- `sendEvent(event: string, param: table)`: Sends a user interaction event to the TTY. The event must be a valid Phoenix event for `key`, `key_up`, `char`, `paste`, or a mouse event.
+
 Lines of text are stored in `tty[y]`, with three blit string entries for text, text colors, and background colors.
 
 ### Errors

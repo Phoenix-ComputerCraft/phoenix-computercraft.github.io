@@ -7,6 +7,114 @@ parent: Documentation
 # Changelog
 This page lists the changes in each major update to Phoenix, broken down by package.
 
+## 0.0.6
+
+### `phoenix`
+Package version: 0.0.6
+- Reduced default quantum to 20,000 instructions
+- Fixed `string.pack` backport not working on CC older than 1.89.0
+- Fixed some issues around passing tables in system call parameters
+- Added `secure_syscall`, `secure_event` yield types (experimental)
+- Added file system events system through the `fsevent` syscall
+  - Call `fsevent` on a path to receive events when the file or directory is modified
+- Fixed read handles on empty files not working in custom filesystems
+- Fixed environment of user mode callbacks to custom write file handles
+- Fixed root user not having absolute permissions on files
+- Re-added `utf8` library to programs
+- Changed VT key combo to Ctrl+Shift+F*n*
+- Text mode cursor color is now set to the active foreground color
+- Fixed `(GFX)Terminal.nativePaletteColor` being missing
+- Added `tty.write` and `tty.sendEvent` methods
+- Fixed issues with standard handle redirection relating to frontmost processes
+- Added `require`/`package` implementation in the kernel environment
+- Added `getfenv` syscall to get the process environment table
+- Fixed global metatables per process using kernel global APIs
+- Added `atexit` syscall to run a function before the process quits
+- Mutexes can now be shared across processes properly
+- Fixed panic from resizing an attached monitor
+- Fixed missing initialization function for speakers
+- Fixed small bug on HTTP failures
+
+### `libsystem`
+Package version: 0.1.5
+- Added `filesystem.fsevent`, `filesystem.absolute`, `process.getfenv`, `process.atexit`, `sync.synctab`
+- Added transparency option to `framebuffer.framebuffer`
+- Added range check to colors in `graphics.drawFilledBox`
+
+### `libcraftos`
+Package version: 0.2.3
+- Added `cc.strings` library to libcc
+- Fixed `fs.getFreeSpace`, `fs.getCapacity`, and `fs.move` not finding mount info when destination path doesn't exist
+- Fixed `fs.getName` not working
+- Moved event conversion logic into `os._convertEvent(event, param)`
+- Fixed `peripheral.hasType` not working
+- `term.native()` now returns a copy of the TTY handle
+
+### `aes` *(new)*
+Package version: 1.0
+- Initial release
+- Provides functions to encrypt and decrypt data using the AES algorithm.
+- Ported from https://gist.github.com/afonya2/489c3306a7d85f8f9512df321d904dbb
+
+### `ar`
+Package version: 1.1.1
+- Fixed issue with long file names in some archives
+
+### `asn1` *(new)*
+Package version: 1.0
+- Initial release
+- Handles serializing and deserializing tables in ASN.1 DER format.
+
+### `ccryptolib`
+Package version: 1.2.2
+- This version adds a way to initialize the generator from noise present in VM instruction timings. This is a reworked version of the previous approach used for initializing the `ecc.lua` random generator.
+
+### `compressfs` *(new)*
+Package version: 1.0
+- Initial release
+- Implements a file system that compresses disk contents automatically.
+
+### `deflateans` *(new)*
+Package version: 1.0
+- Initial release
+- A variant of DEFLATE that uses asymmetrical numeral systems instead of Huffman coding, increasing decompression speed with similar compression ratios.
+
+### `dpkg`
+Package version: 0.2.5
+- Fixed error when a package has Conflicts
+- Fixed `--force-depends-version` not working
+
+### `encryptfs` *(new)*
+Package version: 1.0
+- Initial release
+- Implements a file system that encrypts disk contents automatically.
+
+### `libcert` *(new)*
+Package version: 1.0
+- Initial release
+- Implements a library for working with X.509 and PKCS container formats.
+
+### `libdeflate`
+Package version: 1.0.2-2
+- Added link to capitalized name in case a program uses it
+
+### `luz`
+Package version: 0.1.1
+- Fixed issue in init code
+
+### `spanfs`
+Package version: 0.1.1
+- Refactored some userspace code for safety
+
+### `typescript`
+Package version: 1.22.0
+- Updated to newer upstream version
+
+### `yellowbox` *(new)*
+Package version: 0.1
+- Initial release
+- Kernel module that implements a ComputerCraft emulator in the Phoenix kernel.
+
 ## 0.0.5 - 2024-01-17
 
 ### `phoenix`

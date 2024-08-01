@@ -50,6 +50,18 @@ Returns the environment variable table for the current process.
 This syscall does not take any arguments.
 
 ### Return Values
+The environment variable table of the process.
+
+### Errors
+This syscall does not throw errors.
+
+## `getfenv(): table`
+Returns the environment table for the current process.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
 The environment table of the process.
 
 ### Errors
@@ -226,3 +238,15 @@ This syscall may error if:
 * The process ID does not exist.
 * The user does not have permission to modify the selected process.
 * The user tries to set a negative niceness level and is not `root`.
+
+## `atexit(fn: function)`
+Calls a function when the process exits. This function is run in a new temporary thread, and is run outside of the scheduler - no other processes or threads will run until this function ends. Due to this, the function is time-limited, and inter-process communication will not be possible, so only use this for last-minute tasks inside the process.
+
+### Arguments
+1. `fn`: The function to run
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall does not throw any errors.

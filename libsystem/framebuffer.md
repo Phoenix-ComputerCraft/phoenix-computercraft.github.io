@@ -37,7 +37,7 @@ Creates a new window object.
 ### Return Values
 The new window object
 
-## `framebuffer(parent: Terminal|GFXTerminal, wx: number|nil, wy: number|nil, w: number, h: number, visible: boolean?): Terminal|GFXTerminal`
+## `framebuffer(parent: Terminal|GFXTerminal, wx: number|nil, wy: number|nil, w: number, h: number, visible: boolean?, transparency: boolean?): Terminal|GFXTerminal`
 Creates a new framebuffer object.
 
 ### Arguments
@@ -47,6 +47,7 @@ Creates a new framebuffer object.
 4. `w`: The width of the framebuffer
 5. `h`: The height of the framebuffer
 6. `visible`: Whether the window should be visible upon creation (optional)
+7. `transparency`: Whether the window should support transparency (i.e. replaces space colors with the color behind it) (optional)
 
 ### Return Values
 The new framebuffer object
