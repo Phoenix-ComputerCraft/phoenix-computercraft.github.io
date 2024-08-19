@@ -345,7 +345,7 @@ Size: 3692
 Installed-Size: 8
 
 Package: phoenix
-Version: 0.0.6-1
+Version: 0.0.6-2
 Section: kernel
 Priority: required
 Architecture: phoenix
@@ -354,7 +354,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Phoenix kernel
  The kernel for the Phoenix operating system.
 Filename: phoenix.deb
-Size: 56178
+Size: 56362
 Installed-Size: 258
 
 Package: phoenix-docs
@@ -373,7 +373,7 @@ Size: 33800
 Installed-Size: 128
 
 Package: phoenix-luz
-Version: 0.0.6-1
+Version: 0.0.6-2
 Section: kernel
 Priority: optional
 Architecture: phoenix
@@ -386,7 +386,7 @@ Description: Phoenix kernel, compressed with Luz
  compressed with the Luz Lua compression algorithm,
  reducing the kernel size by ~80%.
 Filename: phoenix-luz.deb
-Size: 51082
+Size: 51260
 Installed-Size: 53
 
 Package: pxboot
