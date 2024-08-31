@@ -1,0 +1,658 @@
+Package: aes
+Version: 1.0-1
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/a/aes/aes_1.0-1_phoenix.deb
+Size: 7362
+SHA512: c84899cc1b5537e0e2c575b3a79b78b76749252e44a84f23080bd5af019b7180c0c7a144eeb732483e0014c0abc1c04e45eee05b71a54995011d388ab756a071
+SHA256: 89eabbee0c316ca15268ae7dd2f64377d6fe21fbc49ad6ae91a9d9a3413e205f
+SHA1: cef94857cf7964051452b538b468c613ac811039
+MD5sum: b3c738320eaf5562e77ced9fa7a60cf7
+Description: AES encryption library
+ Provides functions to encrypt and decrypt data
+ using the AES algorithm. Supports 128, 192, 256
+ bit keys, and ECB or CBC cipher modes.
+
+Package: ar
+Version: 1.1.1-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: standard
+Section: utils
+Filename: pool/main/a/ar/ar_1.1.1-1_phoenix.deb
+Size: 2822
+SHA512: 5ecaf049e80850a6b8539dac18f45b6c21ef87826c4adb102e0698386b9e7515d4b8aeb8647b058a312ae5d7f6d674fd788c920e92e8a7824c8df149a17a60de
+SHA256: b155dbf082a6011ad38541c6ed430d7fe74ae29fd7d0d140b341a44e6fa58a21
+SHA1: c64ba3be41de39ca6338fba552ef0124e23d61d2
+MD5sum: 6ee5d642ee48ab5e04334b6238a1ffaa
+Description: ar archive format library and program
+ Allows creating and extracting ar/.a archives.
+
+Package: asn1
+Version: 1.0-1
+Architecture: phoenix
+Homepage: https://github.com/kunkku/lua-asn1
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/a/asn1/asn1_1.0-1_phoenix.deb
+Size: 4410
+SHA512: 6c2f3e2d80d6f25a10e35e41dac38b842254b862fbcf9e664772373e22948768ca8dea788cd146eae6193fe05260ff7b6b5afb9faee7c5bdb2449e3edd2d2c90
+SHA256: 21a8c9d79acf5e1f19b713992dbe79937e25d687d9b3cf096a9fa77be7abdd12
+SHA1: 075f43f73ce00aeee1f6031fb7202e25408d5e60
+MD5sum: e82699650f68f3e5c6228ac6e5d464e3
+Description: ASN.1 serialization library
+ Handles serializing and deserializing tables in
+ ASN.1 DER format.
+
+Package: baseutils
+Version: 0.2.1-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: important
+Section: utils
+Filename: pool/main/b/baseutils/baseutils_0.2.1-1_phoenix.deb
+Size: 34134
+SHA512: 0c7627b0624b6cdb9ec84b4e63b84ed0f2af08e4d077b4747b4706300f75358d904e044c4c316ef6fa9ccf0f334c21e86b61e776c1360ff07ceee8dc7460ec55
+SHA256: e70327db91ac13cc713b482a9ae7b9a832bdfcbeb5f391c63369322775332feb
+SHA1: 967848a5ee2fbd38e4d0d5d207695ca3e26509fc
+MD5sum: 2fd832fb931cedf46c0551334709495b
+Description: base utility set for Phoenix
+ Contains a standard set of POSIX utilities for Phoenix.
+
+Package: ccryptolib
+Version: 1.2.2-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/c/ccryptolib/ccryptolib_1.2.2-1_phoenix.deb
+Size: 15886
+SHA512: 9480173b9bab7d5142772638af557fa2369a9ad6c948d76e22b2d2d9688f5fcf6dfeea8470443d976735a2a63b901cbcd377250028c2b01fdeb084febd13f2f6
+SHA256: 85fa791122534d65feafc6c4901c0b47fa51eb96735f802a0aea053254d98795
+SHA1: f962bb8d5e4e1bc39d0be0a1aac81e20a58839b0
+MD5sum: 4c2e38ddbece9b719543a28ffb663bf3
+Description: cryptography library for Phoenix
+ An integrated collection of cryptographic
+ primitives written in Lua using the ComputerCraft/
+ Phoenix system API.
+
+Package: compressfs
+Version: 1.0-1
+Architecture: phoenix
+Depends: libsystem, libdeflate
+Recommends: deflateans, luz
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: kernel
+Filename: pool/main/c/compressfs/compressfs_1.0-1_phoenix.deb
+Size: 2716
+SHA512: c30c9075eb643ac4de33d04d90548192d10b51aafbeacaeccce9b1d3e1d1ebe6815f35a89eb7f0b33d1d6e0e3580616286bccb10bc40a227155fb8c7a208f7aa
+SHA256: 43a9a1b1a42bbe92a3e75e861b5c02f74ad32893996fd29dffc8bbbcf2de1931
+SHA1: 3bbe881ae97d1928a9fa51cbb5f20e6650a4c135
+MD5sum: d5d3508e83c7272949e52388cd1b7920
+Description: Compressed file system driver
+ Implements a file system that compresses disk
+ contents automatically. Supports DEFLATE (through
+ libdeflate), DEFLATE-ANS (through deflateans), and
+ Luz (through luz) on supported Lua files.
+ 
+
+Package: deflateans
+Version: 1.0-1
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/d/deflateans/deflateans_1.0-1_phoenix.deb
+Size: 5296
+SHA512: b63537f5fbabd32137ef714cec0e93337de915ac0dd6bde3921397c54de652b5f3c54978c76595e2cf64f4468f12a66455bdfda31fa98c394bf23922bb379598
+SHA256: e66383928c6ae4087d9b89bb6581d98aaa74916bddfd9d7390256f3235a6c70d
+SHA1: 332245d2b5558dee25d8dfd2963866c372b39320
+MD5sum: 72901006fe09f70ab7c9ec377b532e76
+Description: Compression algorithm utilizing ANS
+ A variant of DEFLATE that uses asymmetrical numeral systems
+ instead of Huffman coding, increasing decompression speed with similar
+ compression ratios.
+ 
+
+Package: dhcpmgr
+Version: 0.1-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: net
+Filename: pool/main/d/dhcpmgr/dhcpmgr_0.1-1_phoenix.deb
+Size: 3740
+SHA512: fd437e1202b7ff719fd9611560c6585cd49e8bee369d076f238b56a21452e9b9984d7a1a555f63ec8e621fdeb4bc020d666c64128df00dc47c2c627e382cc494
+SHA256: d4d8c0f4b2de8aa575a5a17f3db1ec53b5b8ff1ac7eb00ef5dc49da369351fb0
+SHA1: f31a031dd35898e518bc0edbef9fcc8847aa6755
+MD5sum: 473e1c828885aa3d7f892da732492264
+Description: DHCP server manager for Phoenix
+ Implements a Dynamic Host Configuration Protocol
+ server, which allocates and assigns IP addresses
+ to computers on a network.
+
+Package: diff
+Version: 1.0-1
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Depends: libsystem
+Priority: important
+Section: utils
+Filename: pool/main/d/diff/diff_1.0-1_phoenix.deb
+Size: 2464
+SHA512: 0a6048d0d8e4458cadc446491339f822187feec54324b6371e5ac3bcc78e05b83230fb34b9f98c3c2b5e48f148bc45d3c86c817efeabae9e8acf049591e2c182
+SHA256: ce6f9b8ee60a92d75d9bf34547f350d551386213bf810dfef802ea947bdf67ad
+SHA1: 626590892e897df54c5d2190b1917dc5cc748c34
+MD5sum: c8d3dfab798189bb8420ac61b627e23a
+Description: File comparison library and utility
+ Provides a library for comparing files, as well as
+ programs for comparing and patching using the lib.
+
+Package: diskmgr
+Version: 1.0-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: standard
+Section: utils
+Filename: pool/main/d/diskmgr/diskmgr_1.0-1_phoenix.deb
+Size: 1780
+SHA512: 3e3125893b90c94bd6906c050e0183570361af09d130acee431cc79cd1aba1b7834dc7c88902c6081d22e189a497c7f29e39d566956c2c964ed2c75e7e097355
+SHA256: 43f8410b66da7d523a919b7f3c7bef1345e55559cb42abf35bb3a5c5781e057c
+SHA1: adf421d936083d1bd03ffdfa51a365d3456408db
+MD5sum: bb187cb0e1d6afebcd9d2c288c5494fa
+Description: disk auto mounting manager
+ Manager service to handle automatically mounting
+ attached disks.
+ 
+
+Package: dpkg
+Version: 0.2.5-1
+Architecture: phoenix
+Depends: ar, diff, libdeflate, libsystem, muxzcat, sha2, tar
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: required
+Section: admin
+Filename: pool/main/d/dpkg/dpkg_0.2.5-1_phoenix.deb
+Size: 27740
+SHA512: 2bca83260733bf3a8c6b4d0208bb521a9ce6c6ffe2acf1d64d04f87199d58d194339578ba95de05d6059904d4bf66393b8b7bc258e3b62d6dc702228b132c491
+SHA256: 66d29adfd5780317704df4fd69d23ce94a329eae4e45148f81e238b3e45add7e
+SHA1: fda1605096709f5b7f5d5b714261085c97e25df8
+MD5sum: 0bd8d4b68ed77f2b8f593a04e40cb9cc
+Description: Debian Package Manager for Phoenix
+ A port of the Debian Package Manager to the
+ Phoenix operating system, written in Lua.
+
+Package: encryptfs
+Version: 1.0-1
+Architecture: phoenix
+Depends: libsystem, ccryptolib (>= 1.2.0)
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: kernel
+Filename: pool/main/e/encryptfs/encryptfs_1.0-1_phoenix.deb
+Size: 5784
+SHA512: 639b77090f87cdcb555fa8601fd512c74cf6f211f927d7be412d3fcc3267203c22ba64ebfe52f03f256a33bd60fd2a28b04ab8551bc20e97399fe59608721e37
+SHA256: 3137ed2416475b924d25e024d1390a2055a432587522a0fe4c050c0ecf13ac9d
+SHA1: 8ee9245fc19e77d28a0500ed9fc07e6cf575b281
+MD5sum: e7f18f202b533332be87d2e5815ebd3a
+Description: Encrypted file system driver
+ Implements a file system that encrypts disk
+ contents automatically.
+ 
+
+Package: ftp
+Version: 0.1-1
+Depends: libsystem, sha2
+Recommends: fuse, usermgr, startmgr
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: net
+Filename: pool/main/f/ftp/ftp_0.1-1_phoenix.deb
+Size: 11062
+SHA512: a701531a4def53d32977a7fed2332b6e28f12a2d832c167cc7e16ef064d0d8ad3f4e89947716061de16c8f91864023b72e4b53bb040a6746a5a03cf1e7055431
+SHA256: 9174841d29a891480d878a7cba94abc193c0afd44b50bfde6168a46d2964cbeb
+SHA1: c8b39bffbfaf1467e6bf0ce75f2784d7f944bea4
+MD5sum: 6d2893bb715a293664b7e16e4b16f1e9
+Description: RFC 959-compliant FTP client & server
+ Implements the FTP protocol on top of Phoenix
+ sockets. Includes an object-oriented library for
+ managing clients and servers, as well as a small
+ server manager for FTP access, and a FUSE
+ filesystem for mounting FTP shares locally.
+
+Package: fuse
+Version: 0.1-1
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: kernel
+Filename: pool/main/f/fuse/fuse_0.1-1_phoenix.deb
+Size: 4524
+SHA512: fd48c9cdd66d57aeb725107d92008f2a01f87960081ff6882ab2134af5a5af944ff0200a8d4bf78ea2898e19db530a5ac73aeaa2149845d42e2f11a0b56cc938
+SHA256: f6686f85e840939acff98f708ae6505bc271961fd10a1f4a468c2678022a5e88
+SHA1: 811f419e0dfeff51f62a112ea4b8b0a5841d6a81
+MD5sum: 664cedd28b285002ae7b0242e291b48e
+Description: Filesystem in userspace module
+ fuse implements filesystems in userspace, allowing
+ filesystems to be implemented without using kernel
+ modules.
+
+Package: gfxterm
+Version: 0.0.1-1
+Architecture: phoenix
+Depends: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: kernel
+Filename: pool/main/g/gfxterm/gfxterm_0.0.1-1_phoenix.deb
+Size: 7828
+SHA512: 0545b8e072639bc99e1a64e678f006e03a937a525b25f2184bf8519159c40aa941ff01c65c9c87180bbd7db4342ff89b5489cd67707a41fd0602be98458c4ae1
+SHA256: ce02cf0c906640ab4370b3cb87553c4d0d5999b855eb7d4367448edca3a275e5
+SHA1: af6a2287680c173b896be0da820acfaecf5a77ab
+MD5sum: eb77c23023015cde0b39286a8ecef59c
+Description: Graphics mode terminal driver
+ A kernel module implementing a graphics-mode terminal.
+
+Package: initrd-utils
+Version: 0.1.1-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: admin
+Filename: pool/main/i/initrd-utils/initrd-utils_0.1.1-1_phoenix.deb
+Size: 3490
+SHA512: e7693dc9f3e26463cdec70d7548f8fb0e84993940ec86b58d5ae0a4d2903859c849170d3245dd2b0771266b84e80967ffe6ecd5dde68cf2846018d715aa1ed93
+SHA256: 078e93c8a7e85c0afb068ca739054ce306c9589feb9a74da37ca56b6c7d3ea71
+SHA1: c5ced0d1a1a4d1467d0e114ff4d29ea007fc1352
+MD5sum: ed175d1b0ac7119a4fa1496ffa30394b
+Description: initrd management tools
+ Contains a collection of utility programs to create
+ and manage initial ramdisk (initrd) files.
+
+Package: libcert
+Version: 1.0-1
+Architecture: phoenix
+Depends: libsystem, ccryptolib, sha2, aes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/libc/libcert/libcert_1.0-1_phoenix.deb
+Size: 10612
+SHA512: 46321a0ec71b1dca761b024e984ae34dd0c664dca52ebc6f0a12e2d63b8806af4b4df136e05e26124deb7f61a212c841907abb400b393577fe4a93e762967488
+SHA256: 9c649ec2fcd70e80e3b4c41f9765c2cc0421d18d10c60c2634093ceb5f61663c
+SHA1: 5ea4adc62a7b02bd2d6cc1c6c5f77070d3fbc900
+MD5sum: 44abc04ee37cb09da7b9dd209d88090b
+Description: Certificate and security library
+ Handles the storage and use of cryptographic
+ resources on the system, including certificates,
+ passwords, API keys, and encryption keys. Also
+ provides functions for validating certificate
+ roots, verifying signatures, and encryption of
+ data using certificates.
+
+Package: libcraftos
+Version: 0.2.3-1
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/libc/libcraftos/libcraftos_0.2.3-1_phoenix.deb
+Size: 20138
+SHA512: 5267dbfd60c5875a35e23b80a6c182e00a6e75ffd61288ceefc584811cb7f60010ad8411bb942f31a87398f884c7db19805b395b4763816c0f2ef6ef64aac863
+SHA256: deb5f505cfffef5610e65a99751bba941fe5d876466e2d160248a840af68d7a5
+SHA1: 0b2fc5dcc403600f92bc8b895b99c46153ebe64d
+MD5sum: 7347693bca9971ac66cf2a84701c0021
+Description: CraftOS compatibility library
+ Provides CraftOS shim functions to allow running
+ CraftOS programs on Phoenix.
+
+Package: libdeflate
+Version: 1.0.2-2
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/libd/libdeflate/libdeflate_1.0.2-2_phoenix.deb
+Size: 11096
+SHA512: 7092434f618c306d63692882186c68f06314874a9b43ec759f64a0eb53e90f992d853ec2d7170838779188cb8280831d3c426b8043fd8638fa3fce77436ad620
+SHA256: 49ec201fc7e230270aa11767528b83c625f728d4db581e892de49f2db235caec
+SHA1: e9c690578a5d12c8c0d465bafc0fa2af9c239df2
+MD5sum: 7af965ea203a18ff5ad48db2043281c6
+Description: DEFLATE/zlib compression library
+ Provides compression and decompression for DEFLATE
+ formatted archives, including zlib and gzip files.
+
+Package: libsystem
+Version: 0.1.5-1
+Architecture: phoenix
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: required
+Section: libraries
+Filename: pool/main/libs/libsystem/libsystem_0.1.5-1_phoenix.deb
+Size: 23570
+SHA512: 5084a7e61659946191dd386da1a2570db45d67285459700418e9f17b041e13423143e1370be229595d3249d7d1df6fa60db1cf38a86b51dd1f665bd933adc575
+SHA256: 28619df8442f04b24641269a001a4de77a4afae15c9329cad050edb56c92125c
+SHA1: 37df6e88d5d390d1f35859bdbdf8215ced5258c4
+MD5sum: e99e675014ebf711377c9a65036c8a8f
+Description: System libraries for Phoenix
+ Provides convenient wrapper functions for using
+ Phoenix syscalls, as well as various useful
+ components for programs.
+
+Package: luz
+Version: 0.1.1-1
+Architecture: phoenix
+Depends: libdeflate
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/l/luz/luz_0.1.1-1_phoenix.deb
+Size: 10982
+SHA512: 8039b1746c22466825d3a4d3ca3cf220328aed4172dbd89108c6f37e7d1d6b308741ad992c1bcaf2bfbda9df138a5975bd05111d59f72984c0ccaec007051101
+SHA256: c9a9766875729f37ecf9f6d931ddcd1d73fe297ebe73f36fbf0a587a5d9d0fb3
+SHA1: 7d1e87d5c127e7453bbf4e557f155bc56da4b2d7
+MD5sum: 7e90b21596a9a8f6909f5515de191c5b
+Description: Lua compression algorithm
+ Efficient compressor for Lua scripts. Includes a
+ shared library, a command-line utility to compress
+ and decompress Lua files, and a kernel module to
+ allow direct execution of Luz files.
+
+Package: muxzcat
+Version: 1.0-1
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/m/muxzcat/muxzcat_1.0-1_phoenix.deb
+Size: 7390
+SHA512: 9414e0e696cb41848a55852bdc7d02746875112e1a2cbd6725a08d2355508a1532b6a6a12d5de840ba529c6bf47a86d7eb17e3589e619bcc803310e7aab7fb97
+SHA256: 217af8f4f44746ae97a8a1f18f85612b4f1082646bc4efdc51e14a5759eebda5
+SHA1: 801de23212fc915f87311cdf428b407f651dd539
+MD5sum: 81b1eec0a058e1dc4c8be2cf8b804e66
+Description: LZMA/XZ decompression library
+ Provides functions for decompressing LZMA and XZ
+ format compressed files.
+
+Package: netmgr
+Version: 0.1-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: net
+Filename: pool/main/n/netmgr/netmgr_0.1-1_phoenix.deb
+Size: 3082
+SHA512: cfc937921006b8bf40207ea9fee68a74ecaea6bd7bd26bdafc616b45784accd1faef2738cdeca8edee9165a833e6e00e3f62d16a83efa70c0eb04dd78025f51b
+SHA256: d9791e76ec18d7d09966bbd901187a8012296d7e0471c1305cf9118cba2d7de3
+SHA1: dccd4ac169870d1f60b154fd0178a64883e2c178
+MD5sum: 4e85ebd11a17d3bcef5e99d3c9d1a19d
+Description: Network manager service
+ Background manager that automatically configures
+ networking on all available modems.
+
+Package: netutils
+Version: 0.1-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: net
+Filename: pool/main/n/netutils/netutils_0.1-1_phoenix.deb
+Size: 3692
+SHA512: 1a33313a294b309d89cc07b1b32df9d4765edca6ddc38654f39cf7f29fe0404b9e52a36887341300169a935c5980799fea85c18129a931c5fee8eac5baa49807
+SHA256: cecac7317e7cc8fece9d56df54ba37a9178d2829aaa6b674d41f698237f31ded
+SHA1: bbd36d0dbae541642f09ebf37862bbdf55c37d3f
+MD5sum: 9eb4d9946e85bda236621b0bd1cc75ef
+Description: Network configuration utilities
+ Provides a set of programs to configure the system
+ networking layer.
+
+Package: phoenix
+Version: 0.0.6-1
+Architecture: phoenix
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: required
+Section: kernel
+Filename: pool/main/p/phoenix/phoenix_0.0.6-1_phoenix.deb
+Size: 56276
+SHA512: f959b6931400895742435d3f1fa483ef1ee93530e5b37d6b7232c1a8ef02ca2a68e04b5e577e816d564a4ae7ffbec5e134f79e0829690a647230cdeccf379c06
+SHA256: 42b4dcdf20d691fe48f7213670f7d7299fdb5e5e2ee809e2f902ba1a76d73e64
+SHA1: 4def8a80c124aa15d034ea23bb266b503659b334
+MD5sum: 40b429a257a670a3d692b01c2e3d251e
+Description: Phoenix kernel
+ The kernel for the Phoenix operating system.
+
+Package: phoenix-docs
+Version: 0.0.4-1
+Architecture: all
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: doc
+Filename: pool/main/p/phoenix-docs/phoenix-docs_0.0.4-1_all.deb
+Size: 33800
+SHA512: 3e6458e6f0163af0a8245e945907a0295e36a49247c16ac6e9be4ac2870ad6ae69905a6617db88850af2650af3b0f7f05f56d3154e05449512475e6a0481c491
+SHA256: 8ba977ccee720d1ddfa0a06aa4cf145f97d03bcf52204e2a35ca42792ff6ff00
+SHA1: 5d923007783bad3cfc9275040a55b7801aeb8cf1
+MD5sum: 9901aeb0891ba26bff0b17c70be38c33
+Description: Documentation files for Phoenix
+ Contains manual files for Phoenix syscalls and
+ kernel API functions, libsystem modules, and
+ baseutils programs. These are separated from the
+ main packages to save space.
+
+Package: phoenix-luz
+Version: 0.0.6-1
+Architecture: phoenix
+Essential: yes
+Depends: luz
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: kernel
+Filename: pool/main/p/phoenix-luz/phoenix-luz_0.0.6-1_phoenix.deb
+Size: 51190
+SHA512: 58bf394b2120c370a99ea09791a0d9abc51e6d73d221e9c00da8f7f67cc77fc202681ddb9869e975874c86fe9573b314b1a261a83a116678e4ef00c0b28f0fda
+SHA256: e4714a747f5109568f08e808e6dbf0027e84c8a1e1f6635d1cb6e3199c9b7779
+SHA1: f8a3bd3471a3dbaec20f22416acc658980c4f86b
+MD5sum: ad239d12f079ea279b6feb0f733a9702
+Description: Phoenix kernel, compressed with Luz
+ The kernel for the Phoenix operating system. This
+ package distributes a version of the kernel
+ compressed with the Luz Lua compression algorithm,
+ reducing the kernel size by ~80%.
+
+Package: pxboot
+Version: 0.1.3-1
+Architecture: phoenix
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: required
+Section: admin
+Filename: pool/main/p/pxboot/pxboot_0.1.3-1_phoenix.deb
+Size: 4886
+SHA512: 08acbd8308102851f77bb21be5ccb3c08f0a884ef6dd35f8e09a43ab16603903c18d892e87100aeb3c024c1e3f655646ec360d3780ec2f23805eefcb7a77a75d
+SHA256: 7934794c77fb9290bb7e4361b0de0e0f9f590f972b874ff5fa28ed020ceb5bf3
+SHA1: bba392271cdc30c6257c524a77f45f0d43dc1bd7
+MD5sum: 30d4b82c846e85fad616edde44f01cfe
+Description: Multipurpose bootloader for ComputerCraft
+ A bootloader for ComputerCraft operating systems
+ with built-in UnBIOS functionality, a configurable
+ selection menu, and more. Designed for Phoenix,
+ but supports other OSes as well, including CraftOS.
+
+Package: sha2
+Version: 12-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/s/sha2/sha2_12-1_phoenix.deb
+Size: 23056
+SHA512: 2e425ab1dedfc74b18d8a1f1abaa77d4b2d61b6b33d2ff63e857246b6cff4438a0aacaa9e3899907abf22cd4e74e8b9aba94e4d393e61c854b902a159161f0bc
+SHA256: cebe079959b0b087bdf16d161d86f7b0ba0f511aa34255a488b14ced29859fbb
+SHA1: 32dd7ecced3abbc7cfed4659e93c2801e9e89c0f
+MD5sum: 6eefe76ae18c4dc4623ce38eb12606ad
+Description: SHA-1, SHA-2, SHA-3, BLAKE2 and BLAKE3 functions written in pure Lua and optimized for speed.
+ This module contains functions to calculate SHA digest:
+    MD5, SHA-1,
+    SHA-224, SHA-256, SHA-512/224, SHA-512/256, SHA-384, SHA-512,
+    SHA3-224, SHA3-256, SHA3-384, SHA3-512, SHAKE128, SHAKE256,
+    HMAC,
+    BLAKE2b, BLAKE2s, BLAKE2bp, BLAKE2sp, BLAKE2Xb, BLAKE2Xs,
+    BLAKE3, BLAKE3_KDF
+ Written in pure Lua.
+ Compatible with:
+    Lua 5.1, Lua 5.2, Lua 5.3, Lua 5.4, Fengari, LuaJIT 2.0/2.1 (any CPU endianness).
+ Main feature of this module: it was heavily optimized for speed.
+ For every Lua version the module contains particular implementation branch to get benefits from version-specific features.
+    - branch for Lua 5.1 (emulating bitwise operators using look-up table)
+    - branch for Lua 5.2 (using bit32/bit library), suitable for both Lua 5.2 with native "bit32" and Lua 5.1 with external library "bit"
+    - branch for Lua 5.3/5.4 (using native 64-bit bitwise operators)
+    - branch for Lua 5.3/5.4 (using native 32-bit bitwise operators) for Lua built with LUA_INT_TYPE=LUA_INT_INT
+    - branch for LuaJIT without FFI library (useful in a sandboxed environment)
+    - branch for LuaJIT x86 without FFI library (LuaJIT x86 has oddity because of lack of CPU registers)
+    - branch for LuaJIT 2.0 with FFI library (bit.* functions work only with Lua numbers)
+    - branch for LuaJIT 2.1 with FFI library (bit.* functions can work with "int64_t" arguments)
+
+Package: spanfs
+Version: 0.1.1-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: kernel
+Filename: pool/main/s/spanfs/spanfs_0.1.1-1_phoenix.deb
+Size: 11948
+SHA512: beb7932fd60393d5ba48297b150b093b23ef0c85b94471e3d7a6cea3807ca251ab5daf98726e037fcd0e0c3b54605db119a39caf931db723bf9851b15af70978
+SHA256: dedae83fb1b17199603c892744da69b6f5c98d844f1f1c1bf003f0755d8340ff
+SHA1: da7c929537339f904027a37eddb2d347b2bf6dc7
+MD5sum: 793c18e60143cfbe8d2d09f272eec065
+Description: Spanning filesystem kernel module & utilities
+ spanfs provides a RAID-like spanning filesystem
+ that allows concatenating multiple disk drives
+ into a single large virtual disk. One disk stores
+ an index file containing the filesystem structure,
+ and the file data is spread across the rest of the
+ disks.
+
+Package: startmgr
+Version: 0.1.1-1
+Architecture: phoenix
+Depends: libsystem
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: standard
+Section: admin
+Filename: pool/main/s/startmgr/startmgr_0.1.1-1_phoenix.deb
+Size: 6020
+SHA512: ca5802625db5dba31d5a2a0059c5e71bba6ebd7316f45eb8a2dbb3836f45f0fb132149d3113635fe8e7d38e0619f4e06361496927f064b3a22f60bb619b1093b
+SHA256: bf2e79c7dcd8c0bc70a1e4b6837610e91944f14abe3782fe716df5a5a1fe6d50
+SHA1: a3d9cabf7a8b32f09c7db3ec70c329e8f248675b
+MD5sum: 272c3b4beca6cc3d5fb859250a843e55
+Description: Phoenix service manager and init system
+ Provides automatic service management facilities
+ for Phoenix systems.
+
+Package: tar
+Version: 1.0.1-1
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: important
+Section: utils
+Filename: pool/main/t/tar/tar_1.0.1-1_phoenix.deb
+Size: 6040
+SHA512: 11c61ff65109a10e077697c2f8de9b7c8bf9ec0e2a4c9aad4ad006a0c7930556efc77eb25257c95ab306f011f1725d6fca28314491706cd264d09203bbf92ccf
+SHA256: 7533e0c7331235078cb7f991ff62a25859e67859edefbc21cc6087e56f3cd1c0
+SHA1: 278af51b2b9aedcbf00653feedf32165d00b178c
+MD5sum: edd6283384c14209bc3fb05bd4720175
+Description: TAR archive format library and program
+ Allows creating and extracting TAR archives.
+
+Package: typescript
+Version: 1.22.0-1
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Homepage: https://typescript-to-lua.github.io
+Priority: optional
+Section: libraries
+Filename: pool/main/t/typescript/typescript_1.22.0-1_phoenix.deb
+Size: 10114
+SHA512: 796fa691d14b4b4b9941c033d0b60d543a61918fde5ca59844467b0dd71e2b77f8f4da1189bb649d166aa8840aea9c5bba3576a0a9aafc28490c56460c7a12d6
+SHA256: 9a3209dad091b739a3398261de185bace703699513cbdfec29306ee91e2b5e92
+SHA1: 77397aa3e278b852e405b89bd8e139cafbf23196
+MD5sum: ff1df874484c9a2541a15966c208ee3d
+Description: TypeScriptToLua library features bundle
+ Provides important polyfills to allow TypeScript code to run on Lua platforms.
+ To use, set "luaLibImport" to "require" in tsconfig.json, and either set
+ "luaLibName" to "typescript" (requires @jackmacwindows/typescript-to-lua), or
+ replace `require("lualib-bundle")` with `require("typescript")` in generated
+ files.
+
+Package: usermgr
+Version: 0.1.2-1
+Architecture: phoenix
+Depends: libsystem
+Essential: yes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: standard
+Section: admin
+Filename: pool/main/u/usermgr/usermgr_0.1.2-1_phoenix.deb
+Size: 8456
+SHA512: a4380b454ece6221e155456bed372c35b3936882daff6a9836541015e45b6e305412c88eebee881ad9e0af5e269dc15622a0912ea507403f82e2bd2a81621730
+SHA256: 10794f978bfb81215fcfa112dc3aa4524d07342abb9ee571cace1b710b6ba1d5
+SHA1: 9177c2a8d865650efcc54b6f10c1d6bbe1f75734
+MD5sum: 8e824cc64deef1570ab5fe1e44ed6c04
+Description: user account manager
+ Manager service to handle user accounts, including
+ login, passwords, creation, and deletion.
+
+Package: yahtcc
+Version: 1.0-2
+Architecture: phoenix
+Depends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: games
+Filename: pool/main/y/yahtcc/yahtcc_1.0-2_phoenix.deb
+Size: 5326
+SHA512: 835a1c6e78cf8c4a2b819c28cc797137e6b81e188f3bb1734987a7829dca17f864d13ea17e4a2e172925dffaed6f97f94e63e7c5b5aa95ff33f22c2f80418b7d
+SHA256: 6c7bfc1a5c4d18f444905a76f19b90abb735d1945f68046957b3dbcd79fa3252
+SHA1: 720ac9d02793767f9cd590c3d0998ce754b00152
+MD5sum: c48f105f7702457d44fdbb80518cd5db
+Description: Yahtzee game for Phoenix
+ Yahtzee game for Phoenix
+
+Package: yellowbox
+Version: 0.1-1
+Architecture: phoenix
+Depends: libsystem, libcraftos
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: otherosfs
+Filename: pool/main/y/yellowbox/yellowbox_0.1-1_phoenix.deb
+Size: 9144
+SHA512: bff75faeac2170d86f810c968f50b98c7f8e223befe4623721cca17a9a10517ba571ab75ac470115dfa5fe4fd18bbe53607d30d275710cedcd542f6ad3c4f75d
+SHA256: 4f7097ed0871b195067c6f5098551bb0e5dc906ca52c1869a1a6d1b6301262b3
+SHA1: 128178224eecb3937ef6c3ce5d0115849febb60b
+MD5sum: d0b9a894ad21c2a69a3c88d4c7df7785
+Description: CraftOS emulator in the kernel
+    Kernel module that implements a ComputerCraft
+    emulator in the Phoenix kernel. Allows running
+ CraftOS programs on a proper CraftOS machine,
+ without using shims or compatibility libraries.
+

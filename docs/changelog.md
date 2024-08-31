@@ -7,6 +7,34 @@ parent: Documentation
 # Changelog
 This page lists the changes in each major update to Phoenix, broken down by package.
 
+## 0.0.7 - 2024-08-31
+
+Some packages had version bumps without changing the contents, to fix some missed version bumps before:
+- `diskmgr`: 1.0 -> 1.0.1
+- `startmgr`: 0.1.1 -> 0.1.2
+- `yahtcc`: 0.1-2 -> 0.1-3
+
+### `phoenix`
+Package version: 0.0.7
+- Fixed compatibility with CC:T 1.112.0 and later
+- Fixed crash in installer
+- Added overlay mounting capabilities
+- Implemented ^L shortcut to clear terminal screen
+- Improved handling of deeply recursive links
+- Fixed some issues with links in craftos mounts
+- Removed some unnecessary debug log lines
+
+### `baseutils`
+Package version: 0.2.2
+- Added `-h` option to `ls`
+- Fixed argument passing to `mount`
+
+### `dpkg`
+Package version: 0.2.6
+- Fixed some handling of links
+- Fixed version comparison issues
+- Fixed issues with parsing certain control files
+
 ## 0.0.6 - 2024-07-31
 
 ### `phoenix`
