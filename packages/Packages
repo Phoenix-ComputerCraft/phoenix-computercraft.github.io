@@ -142,7 +142,7 @@ Size: 1778
 Installed-Size: 2
 
 Package: dpkg
-Version: 0.2.6-1
+Version: 0.2.6-2
 Section: admin
 Priority: required
 Architecture: phoenix
@@ -260,7 +260,7 @@ Size: 20138
 Installed-Size: 64
 
 Package: libdeflate
-Version: 1.0.2-2
+Version: 1.0.2-3
 Section: libraries
 Priority: optional
 Architecture: phoenix
