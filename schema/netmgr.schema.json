@@ -1,0 +1,41 @@
+{
+    "$schema": "https://json-schema.org/draft-04/schema",
+    "$id": "netmgr.schema.json",
+    "title": "netmgr",
+    "description": "netmgr configuration",
+    "type": "object",
+    "patternProperties": {
+        ".*": {
+            "description": "Default configuration",
+            "type": "object",
+            "properties": {
+                "acquire": {
+                    "description": "Sets the way to acquire a network address.",
+                    "type": "string",
+                    "enum": ["none", "dhcp", "dhcp-static", "static"]
+                },
+                "address": {
+                    "description": "The IP address to use for a static address",
+                    "type": "string"
+                },
+                "netmask": {
+                    "description": "The network mask to use for a static address.",
+                    "type": "string"
+                },
+                "gateway": {
+                    "description": "The gateway (router) address to use for a static address.",
+                    "type": "string"
+                },
+                "dns": {
+                    "description": "DNS servers to use when resolving domain names.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": ["acquire"]
+        }
+    }
+}
+    

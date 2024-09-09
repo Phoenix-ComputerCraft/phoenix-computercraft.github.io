@@ -1,0 +1,70 @@
+{
+    "$schema": "https://json-schema.org/draft-04/schema",
+    "$id": "ftpmgr.schema.json",
+    "title": "ftpmgr",
+    "description": "ftpmgr configuration",
+    "type": "object",
+    "properties": {
+        "ip": {
+            "description": "The IP address to serve on. \"0.0.0.0\" indicates any IP/interface.",
+            "type": "string"
+        },
+        "port": {
+            "description": "The port to serve the command stream on. FTP standard is 21.",
+            "type": "number"
+        },
+        "passivePortRange": {
+            "description": "The range of ports to reserve for passive connections.",
+            "type": "array",
+            "items": {"type": "number"},
+            "minItems": 2,
+            "maxItems": 2
+        },
+        "allUsers": {
+            "description": "Set this to allow any user registered on the system to log in.",
+            "type": "boolean"
+        },
+        "users": {
+            "description": "The users allowed to connect. A special \"anonymous\" user is used for connections without a login - if not present, clients will be required to log in before accessing files.",
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "object",
+                    "properties": {
+                        "systemUser": {
+                            "description": "The Phoenix username to run the server as.",
+                            "type": "string"
+                        },
+                        "useSystemLogin": {
+                            "description": "Whether to use usermgr to authenticate logins.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "allowWrite": {
+                            "description": "Whether to allow the user to write files.",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "root": {
+                            "description": "The filesystem root visible to the user.",
+                            "type": "string"
+                        },
+                        "password": {
+                            "description": "The password for the user (plaintext!).",
+                            "type": "string"
+                        },
+                        "passwordHash": {
+                            "description": "The hash of the password in SHA-256.",
+                            "type": "string"
+                        },
+                        "passwordSalt": {
+                            "description": "The salt applied to the end of the password.",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": ["ip", "port", "passivePortRange", "users"]
+}

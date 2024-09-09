@@ -1,0 +1,65 @@
+{
+    "$schema": "https://json-schema.org/draft-04/schema",
+    "$id": "dhcpmgr.schema.json",
+    "title": "dhcpmgr",
+    "description": "dhcpmgr configuration",
+    "type": "object",
+    "properties": {
+        "interface": {
+            "description": "The network interface to host on. Leaving it undefined will host on a random interface - this is not recommended for most uses, so make sure to set it.",
+            "type": "string"
+        },
+        "firstaddr": {
+            "description": "The first address to assign to clients.",
+            "type": "string"
+        },
+        "lastaddr": {
+            "description": "The last address to assign to clients.",
+            "type": "string"
+        },
+        "netmask": {
+            "description": "The network mask for assigned addresses. If not set, the mask will be inferred from the first and last addresses.",
+            "type": "string"
+        },
+        "gateway": {
+            "description": "The gateway address to report to clients. Leave unset to not report a gateway.",
+            "type": "string"
+        },
+        "dns": {
+            "description": "The DNS server addresses to report to clients. Leave unset to not report DNS.",
+            "type": "array",
+            "items": {"type": "string"}
+        },
+        "leasetime": {
+            "description": "The length of a DHCP lease, in seconds. Unset means the lease never expires.",
+            "type": "number"
+        },
+        "allowrequests": {
+            "description": "Whether to allow clients to request static addresses.",
+            "type": "boolean"
+        },
+        "storeassignments": {
+            "description": "Whether to store address assignments for clients permanently. If this is enabled, the server will store the first address assigned to a client, and will prefer to use that address if available.",
+            "type": "boolean"
+        },
+        "forcereassign": {
+            "description": "Whether to force re-assigning addresses if a client requests an IP before its lease expires.",
+            "type": "boolean"
+        },
+        "static": {
+            "description": "Static address assignments. This maps computer IDs to IP addresses.",
+            "type": "object",
+            "patternProperties": {
+                "^\\d+$": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "options": {
+            "description": "Other options to provide to clients.",
+            "type": "object"
+        }
+    },
+    "required": ["firstaddr", "lastaddr", "allowrequests", "storeassignments", "forcereassign", "static", "options"]
+}
