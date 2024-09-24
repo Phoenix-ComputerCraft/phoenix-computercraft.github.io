@@ -214,6 +214,20 @@ Filename: gfxterm.deb
 Size: 7822
 Installed-Size: 41
 
+Package: githubfs
+Version: 1.0-1
+Section: utils
+Priority: optional
+Architecture: phoenix
+Depends: libsystem, fuse
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: GitHub filesystem provider
+ Provides a filesystem for mounting GitHub
+ repositories on the local system.
+Filename: githubfs.deb
+Size: 2418
+Installed-Size: 3
+
 Package: initrd-utils
 Version: 0.1.1-1
 Section: admin
