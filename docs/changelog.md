@@ -7,6 +7,48 @@ parent: Documentation
 # Changelog
 This page lists the changes in each major update to Phoenix, broken down by package.
 
+## 0.0.8 - 2025-03-02
+
+### `phoenix`
+Package version: 0.0.8
+- Added debugging system calls
+  - See [the docs page](/docs/debugging.html) for more info on debugging.
+- Added enhanced support for running in CraftOS-PC headless mode
+- Added driver for new redstone relay peripheral
+- Added time-to-live parameter to PIP control messages
+- Added `capture` and `release` syscalls to force capture input from stdin
+- Added `peekEvent` syscall to see the next event without consuming it or waiting
+- Debug hooks now work properly per-coroutine
+- Implemented bell character
+- Signal handler and user mode callback threads are now named as such
+- Fixed wired modems not registering drivers on attached devices
+- Fixed many issues caused by processes not being woken up on queued events
+- Fixed `mouse_scroll.direction` type
+
+### `libsystem`
+Package version: 0.1.6
+- Added debugging system calls
+- Added `network.parseURI`, `network.urlEncode`
+- Added `terminal.capture` and `terminal.release` syscalls to force capture input from stdin
+  - `terminal.readline2` now captures input automatically
+- Fixed many issues with framebuffers
+- Fixed typo in `util.copy`
+
+### `githubfs` *(new)*
+Package version: 1.0
+- Initial release
+- Provides a FUSE filesystem for mounting GitHub repositories on the local system.
+
+### `pdb` *(new)*
+Package version: 0.1
+- Initial release
+- Implements a GDB-like debugger for Phoenix programs.
+- Will include a DAP debugger for connecting to VS Code in a future release.
+
+### `typescript`
+Package version: 1.28.1
+- Updated to newer version
+
 ## 0.0.7 - 2024-08-31
 
 Some packages had version bumps without changing the contents, to fix some missed version bumps before:

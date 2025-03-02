@@ -22,7 +22,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: ar archive format library and program
  Allows creating and extracting ar/.a archives.
 Filename: ar.deb
-Size: 2830
+Size: 2826
 Installed-Size: 6
 
 Package: asn1
@@ -49,7 +49,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: base utility set for Phoenix
  Contains a standard set of POSIX utilities for Phoenix.
 Filename: baseutils.deb
-Size: 34200
+Size: 34210
 Installed-Size: 95
 
 Package: ccryptolib
@@ -81,7 +81,7 @@ Description: Compressed file system driver
  libdeflate), DEFLATE-ANS (through deflateans), and
  Luz (through luz) on supported Lua files.
  Filename: compressfs.deb
-Size: 2716
+Size: 2722
 Installed-Size: 5
 
 Package: deflateans
@@ -95,7 +95,7 @@ Description: Compression algorithm utilizing ANS
  instead of Huffman coding, increasing decompression speed with similar
  compression ratios.
  Filename: deflateans.deb
-Size: 5296
+Size: 5298
 Installed-Size: 11
 
 Package: dhcpmgr
@@ -110,7 +110,7 @@ Description: DHCP server manager for Phoenix
  server, which allocates and assigns IP addresses
  to computers on a network.
 Filename: dhcpmgr.deb
-Size: 3726
+Size: 3730
 Installed-Size: 7
 
 Package: diff
@@ -138,7 +138,7 @@ Description: disk auto mounting manager
  Manager service to handle automatically mounting
  attached disks.
  Filename: diskmgr.deb
-Size: 1778
+Size: 1782
 Installed-Size: 2
 
 Package: dpkg
@@ -152,7 +152,7 @@ Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
 Filename: dpkg.deb
-Size: 27764
+Size: 27778
 Installed-Size: 109
 
 Package: encryptfs
@@ -166,7 +166,7 @@ Description: Encrypted file system driver
  Implements a file system that encrypts disk
  contents automatically.
  Filename: encryptfs.deb
-Size: 5786
+Size: 5794
 Installed-Size: 17
 
 Package: ftp
@@ -184,7 +184,7 @@ Description: RFC 959-compliant FTP client & server
  server manager for FTP access, and a FUSE
  filesystem for mounting FTP shares locally.
 Filename: ftp.deb
-Size: 11042
+Size: 11060
 Installed-Size: 42
 
 Package: fuse
@@ -198,7 +198,7 @@ Description: Filesystem in userspace module
  filesystems to be implemented without using kernel
  modules.
 Filename: fuse.deb
-Size: 4514
+Size: 4516
 Installed-Size: 12
 
 Package: gfxterm
@@ -225,7 +225,7 @@ Description: GitHub filesystem provider
  Provides a filesystem for mounting GitHub
  repositories on the local system.
 Filename: githubfs.deb
-Size: 2418
+Size: 2448
 Installed-Size: 3
 
 Package: initrd-utils
@@ -239,7 +239,7 @@ Description: initrd management tools
  Contains a collection of utility programs to create
  and manage initial ramdisk (initrd) files.
 Filename: initrd-utils.deb
-Size: 3480
+Size: 3498
 Installed-Size: 6
 
 Package: libcert
@@ -257,7 +257,7 @@ Description: Certificate and security library
  roots, verifying signatures, and encryption of
  data using certificates.
 Filename: libcert.deb
-Size: 10612
+Size: 10630
 Installed-Size: 44
 
 Package: libcraftos
@@ -270,7 +270,7 @@ Description: CraftOS compatibility library
  Provides CraftOS shim functions to allow running
  CraftOS programs on Phoenix.
 Filename: libcraftos.deb
-Size: 20138
+Size: 20144
 Installed-Size: 64
 
 Package: libdeflate
@@ -283,11 +283,11 @@ Description: DEFLATE/zlib compression library
  Provides compression and decompression for DEFLATE
  formatted archives, including zlib and gzip files.
 Filename: libdeflate.deb
-Size: 11114
+Size: 11086
 Installed-Size: 30
 
 Package: libsystem
-Version: 0.1.5-1
+Version: 0.1.6-1
 Section: libraries
 Priority: required
 Architecture: phoenix
@@ -298,8 +298,8 @@ Description: System libraries for Phoenix
  Phoenix syscalls, as well as various useful
  components for programs.
 Filename: libsystem.deb
-Size: 23570
-Installed-Size: 86
+Size: 24366
+Installed-Size: 90
 
 Package: luz
 Version: 0.1.1-1
@@ -314,7 +314,7 @@ Description: Lua compression algorithm
  and decompress Lua files, and a kernel module to
  allow direct execution of Luz files.
 Filename: luz.deb
-Size: 10972
+Size: 10986
 Installed-Size: 28
 
 Package: muxzcat
@@ -327,7 +327,7 @@ Description: LZMA/XZ decompression library
  Provides functions for decompressing LZMA and XZ
  format compressed files.
 Filename: muxzcat.deb
-Size: 7386
+Size: 7388
 Installed-Size: 24
 
 Package: netmgr
@@ -341,7 +341,7 @@ Description: Network manager service
  Background manager that automatically configures
  networking on all available modems.
 Filename: netmgr.deb
-Size: 3072
+Size: 3074
 Installed-Size: 5
 
 Package: netutils
@@ -355,11 +355,25 @@ Description: Network configuration utilities
  Provides a set of programs to configure the system
  networking layer.
 Filename: netutils.deb
-Size: 3690
+Size: 3696
 Installed-Size: 8
 
+Package: pdb
+Version: 0.1-1
+Section: devel
+Priority: optional
+Architecture: phoenix
+Depends: libsystem (>= 0.1.6)
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Phoenix debugger program
+ Implements a GDB-like debugger for Phoenix
+ programs.
+Filename: pdb.deb
+Size: 3292
+Installed-Size: 7
+
 Package: phoenix
-Version: 0.0.7-1
+Version: 0.0.8-1
 Section: kernel
 Priority: required
 Architecture: phoenix
@@ -368,8 +382,8 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Phoenix kernel
  The kernel for the Phoenix operating system.
 Filename: phoenix.deb
-Size: 56506
-Installed-Size: 259
+Size: 59056
+Installed-Size: 274
 
 Package: phoenix-docs
 Version: 0.0.4-1
@@ -387,7 +401,7 @@ Size: 33800
 Installed-Size: 128
 
 Package: phoenix-luz
-Version: 0.0.7-1
+Version: 0.0.8-1
 Section: kernel
 Priority: optional
 Architecture: phoenix
@@ -400,8 +414,8 @@ Description: Phoenix kernel, compressed with Luz
  compressed with the Luz Lua compression algorithm,
  reducing the kernel size by ~80%.
 Filename: phoenix-luz.deb
-Size: 51360
-Installed-Size: 53
+Size: 53210
+Installed-Size: 56
 
 Package: pxboot
 Version: 0.1.3-1
@@ -416,7 +430,7 @@ Description: Multipurpose bootloader for ComputerCraft
  selection menu, and more. Designed for Phoenix,
  but supports other OSes as well, including CraftOS.
 Filename: pxboot.deb
-Size: 4884
+Size: 4882
 Installed-Size: 12
 
 Package: sha2
@@ -448,7 +462,7 @@ Description: SHA-1, SHA-2, SHA-3, BLAKE2 and BLAKE3 functions written in pure Lu
     - branch for LuaJIT 2.0 with FFI library (bit.* functions work only with Lua numbers)
     - branch for LuaJIT 2.1 with FFI library (bit.* functions can work with "int64_t" arguments)
 Filename: sha2.deb
-Size: 23062
+Size: 23068
 Installed-Size: 87
 
 Package: spanfs
@@ -466,7 +480,7 @@ Description: Spanning filesystem kernel module & utilities
  and the file data is spread across the rest of the
  disks.
 Filename: spanfs.deb
-Size: 11946
+Size: 11956
 Installed-Size: 33
 
 Package: startmgr
@@ -481,7 +495,7 @@ Description: Phoenix service manager and init system
  Provides automatic service management facilities
  for Phoenix systems.
 Filename: startmgr.deb
-Size: 6020
+Size: 6032
 Installed-Size: 15
 
 Package: tar
@@ -494,11 +508,11 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: TAR archive format library and program
  Allows creating and extracting TAR archives.
 Filename: tar.deb
-Size: 6034
+Size: 6032
 Installed-Size: 17
 
 Package: typescript
-Version: 1.22.0-1
+Version: 1.28.1-1
 Section: libraries
 Priority: optional
 Architecture: phoenix
@@ -511,8 +525,8 @@ Description: TypeScriptToLua library features bundle
  replace `require("lualib-bundle")` with `require("typescript")` in generated
  files.
 Filename: typescript.deb
-Size: 10108
-Installed-Size: 34
+Size: 11214
+Installed-Size: 38
 
 Package: usermgr
 Version: 0.1.2-1
@@ -526,7 +540,7 @@ Description: user account manager
  Manager service to handle user accounts, including
  login, passwords, creation, and deletion.
 Filename: usermgr.deb
-Size: 8440
+Size: 8454
 Installed-Size: 24
 
 Package: yahtcc
@@ -539,7 +553,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Yahtzee game for Phoenix
  Yahtzee game for Phoenix
 Filename: yahtcc.deb
-Size: 5326
+Size: 5330
 Installed-Size: 16
 
 Package: yellowbox
@@ -555,10 +569,10 @@ Description: CraftOS emulator in the kernel
  CraftOS programs on a proper CraftOS machine,
  without using shims or compatibility libraries.
 Filename: yellowbox.deb
-Size: 9144
+Size: 9154
 Installed-Size: 26
 
 Package: stage2-tarball
-Size: 542720
-Installed-Size: 500
+Size: 552960
+Installed-Size: 515
 

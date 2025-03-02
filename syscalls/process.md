@@ -250,3 +250,205 @@ This syscall does not return anything.
 
 ### Errors
 This syscall does not throw any errors.
+
+## `debug_enable(pid: number|nil, enabled: boolean)`
+Enables or disables debugging for the specified process. If `pid` is `nil`, it will set whether other processes can debug this one. In other words, calling `debug_enable(nil, false)` will disable any form of debugging on the current program, even by root.
+
+### Arguments
+1. `pid`: The process ID to operate on
+2. `enabled`: Whether to enable debugging
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process has disabled debugging itself.
+- The process is not owned by the current user, unless the caller is root.
+
+## `debug_break(pid: number|nil, thread: number|nil)`
+Pauses the specified thread, or all threads if none is specified, in the target process. This will trigger a `debug_break` event in the calling process for each thread that was paused as a result of this syscall.
+
+If `pid` is `nil`, then this syscall operates differently: it will pause the current thread (regardless of the `thread` parameter), and sends a `debug_break` event to the last process that called `debug_enable` on this process. If debugging is not enabled, then this syscall is a no-op, allowing for programs to break to a debugger only if one is enabled.
+
+### Arguments
+1. `pid`: The process ID to pause, or `nil` to pause the current process
+2. `thread`: The thread to pause, or `nil` to pause all threads
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process does not have debugging enabled, unless `pid` is `nil`.
+- The process is not owned by the current user, unless the caller is root.
+- The thread specified (if any) does not exist.
+
+## `debug_continue(pid: number, thread: number|nil)`
+Continues a paused thread, or all threads if none is specified.
+
+### Arguments
+1. `pid`: The process ID to unpause
+2. `thread`: The thread to unpause, or `nil` to unpause all threads
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process does not have debugging enabled.
+- The process is not owned by the current user, unless the caller is root.
+- The thread specified (if any) does not exist.
+
+## `debug_setbreakpoint(pid: number, thread: number|nil, type: string|number, filter: table?): number`
+Sets a breakpoint for the specified process, optionally filtering by thread. When a breakpoint is hit in the target process, the thread (or all threads if none is specified) is paused, and a `debug_break` event is queued in the process that set the breakpoint.
+
+The type can be one of these values:
+- `call`: Break on a function call
+- `return`: Break on a function return
+- `line`: Break when execution changes lines
+- `error`: Break when an error is thrown
+- `resume`: Break when a coroutine is resumed
+- `yield`: Break when a coroutine yields (not including preemption)
+- `syscall`: Break when the process executes a system call
+  - For this case, the filter argument will only respect the `name` field (for syscall name)
+- Any number: Break after this number of VM instructions
+
+The filter contains entries from a `debug.getinfo` table to match before breaking. The breakpoint will only be triggered if all provided filters match.
+
+This example shows how to set a breakpoint on a specific line of a file, and then wait for the breakpoint to be hit:
+
+```lua
+local bp = syscall.debug_setbreakpoint(processID, nil, "line", {
+    source = "@/home/user/program.lua",
+    currentline = 11
+})
+repeat
+    local event, param = coroutine.yield()
+until event == "debug_break" and param.breakpoint == bp
+```
+
+### Arguments
+1. `pid`: The process ID to set the breakpoint on
+2. `thread`: The thread to set the breakpoint on (or `nil` for any thread)
+3. `type`: The type of breakpoint to set
+4. `filter`: A filter to set on the breakpoint (see above)
+
+### Return Values
+The ID of the new breakpoint.
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process does not have debugging enabled.
+- The process is not owned by the current user, unless the caller is root.
+
+## `debug_unsetbreakpoint(pid: number, breakpoint: number)`
+Unsets a previously set breakpoint.
+
+### Arguments
+1. `pid`: The process ID to operate on
+2. `breakpoint`: The ID of the breakpoint to remove
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process does not have debugging enabled.
+- The process is not owned by the current user, unless the caller is root.
+
+## `debug_listbreakpoints(pid: number): table[]`
+Returns a list of currently set breakpoints. Each entry has a `type` field, as well as an optional `thread` field, and any filter items passed to `debug_setbreakpoint`.
+
+### Arguments
+1. `pid`: The process ID to check
+
+### Return Values
+A list of currently set breakpoints. This table may have holes in it if some breakpoints were unset!
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process does not have debugging enabled.
+- The process is not owned by the current user, unless the caller is root.
+
+## `debug_getinfo(pid: number, thread: number, level: number, what: string?): table`
+Calls `debug.getinfo` on the specified thread in another process. Debugging must be enabled for the target process, and the target thread must be paused.
+
+### Arguments
+1. `pid`: The process ID to operate on
+2. `thread`: The thread ID to operate on
+3. `level`: The level in the call stack to get info for
+4. `what`: A string with the info to extract, or `nil` for all
+
+### Return Values
+Returns the same info as `debug.getinfo`.
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process does not have debugging enabled.
+- The process is not owned by the current user, unless the caller is root.
+- The thread is not currently paused.
+
+## `debug_getlocal(pid: number, thread: number, level: number, n: number): string?, any?`
+Calls `debug.getlocal` on the specified thread in another process. Debugging must be enabled for the target process, and the target thread must be paused.
+
+### Arguments
+1. `pid`: The process ID to operate on
+2. `thread`: The thread ID to operate on
+3. `level`: The level in the call stack to get info for
+4. `n`: The index of the local to select
+
+### Return Values
+Returns the same info as `debug.getlocal`.
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process does not have debugging enabled.
+- The process is not owned by the current user, unless the caller is root.
+- The thread is not currently paused.
+- The selected level is out of range.
+
+## `debug_getupvalue(pid: number, thread: number, level: number, n: number): string?, any?`
+Calls `debug.getupvalue` on the specified thread in another process. Debugging must be enabled for the target process, and the target thread must be paused.
+
+### Arguments
+1. `pid`: The process ID to operate on
+2. `thread`: The thread ID to operate on
+3. `level`: The level in the call stack to get info for
+4. `n`: The index of the upvalue to select
+
+### Return Values
+Returns the same info as `debug.getupvalue`.
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process does not have debugging enabled.
+- The process is not owned by the current user, unless the caller is root.
+- The thread is not currently paused.
+
+## `debug_exec(pid: number, thread: number, fn: function)`
+Calls a user-specified function in the specified thread in another process asynchronously. Debugging must be enabled for the target process, and the target thread must be paused. The environment for the function will be set to the environment of the process. The result of the function call will be passed in a `debug_exec_result` event. Note that the function runs under the hook environment, and thus will not be preempted - avoid long-running tasks in this environment. (This may be fixed in the future!)
+
+### Arguments
+1. `pid`: The process ID to operate on
+2. `thread`: The thread ID to operate on
+3. `fn`: The function to call
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+- The specified process ID does not exist.
+- The process does not have debugging enabled.
+- The process is not owned by the current user, unless the caller is root.
+- The thread is not currently paused.

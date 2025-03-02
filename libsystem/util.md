@@ -120,6 +120,17 @@ Queues an event to loop back to the process.
 ### Return Values
 This function does not return anything.
 
+## `peekEvent(): string|nil, table|nil`
+Peeks at the next event in the queue.
+
+### Arguments
+This function does not take any arguments.
+
+### Return Values
+This function may return the following values:
+1. The name of the next event, or `nil` if there is none
+2. The parameters of the next event.
+
 ## `split(str: string[, sep: string = "%s"][, includeEmpty: boolean = false]): {string...}`
 Splits a string into components.
 

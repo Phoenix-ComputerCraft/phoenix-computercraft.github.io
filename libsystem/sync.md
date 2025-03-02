@@ -221,7 +221,7 @@ This function does not take any arguments.
 ### Return Values
 This function does not return anything.
 
-## `sync.lockGuard(mutex: mutex, fn: function, ...: any): any...`
+## `rwlock:lockGuard(mutex: mutex, fn: function, ...: any): any...`
 Calls a function, ensuring that the mutex is locked before calling and unlocked
  after calling, even if the function returns early or throws an error.
 
@@ -233,7 +233,7 @@ Calls a function, ensuring that the mutex is locked before calling and unlocked
 ### Return Values
 The return values from the function
 
-## `sync.synctab(): function(callback:function(any):any)`
+## `rwlock:synctab(): function(callback:function(any):any)`
 Creates a new synchronized table.  A synchronized table is a table that's
  protected by a mutex. The table can only be accessed by calling it as a
  function, which will lock the mutex and calls the callback with the table.

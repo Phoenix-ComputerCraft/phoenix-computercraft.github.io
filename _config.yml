@@ -52,3 +52,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules/
+
+sass:
+  quiet_deps: true

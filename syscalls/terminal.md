@@ -137,6 +137,31 @@ Lines of text are stored in `tty[y]`, with three blit string entries for text, t
 ### Errors
 This syscall does not throw errors.
 
+## `capture()`
+Captures input on the current stdin TTY, making this process the active input handler.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall may throw an error if:
+- The current stdin handle is not a TTY.
+
+## `release()`
+Releases a previous `capture` call, restoring input to the previous process.
+
+### Arguments
+This syscall does not take any arguments.
+
+### Return Values
+This syscall does not return anything.
+
+### Errors
+This syscall does not throw errors.
+
 ## `stdin(handle: number | table | string | nil)`
 Sets the standard input handle of the current process.
 

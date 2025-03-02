@@ -9,6 +9,15 @@ The network module implements functions for making and hosting connections
  with local and Internet-connected computers, as well as managing the network
  stack configuration.
 
+## `parseURI(uri: string): table`
+Parses a URI into its components.
+
+### Arguments
+1. `uri`: The URI to parse
+
+### Return Values
+The components of the URI
+
 ## `connect(options: string|table): Handle`
 Creates a new connection to a remote server.
 
@@ -34,7 +43,7 @@ Or:
 1. If the connection failed
 2. An error describing why the connection failed
 
-## `getData(url: string, headers: table?): string / nil, string`
+## `getData(url: string, headers: table?): string, number / nil, string`
 Connects to an HTTP(S) server, sends a GET request, waits for a response,
  and returns the data received after closing the connection.
 
@@ -45,6 +54,7 @@ Connects to an HTTP(S) server, sends a GET request, waits for a response,
 ### Return Values
 This function may return the following values:
 1. The response data sent from the server
+2. The HTTP response code for the response
 
 Or:
 1. If the connection failed

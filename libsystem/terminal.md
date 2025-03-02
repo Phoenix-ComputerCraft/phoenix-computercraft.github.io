@@ -123,6 +123,24 @@ Creates a new virtual TTY with the specified size.  This can later be used in
 ### Return Values
 A new TTY object which is registered with the kernel. See [the syscall docs](/syscalls/terminal#mkttywidth-number-height-number-tty) for more info.
 
+## `capture()`
+Captures input on the current stdin TTY, bringing the process to the front.
+
+### Arguments
+This function does not take any arguments.
+
+### Return Values
+This function does not return anything.
+
+## `release()`
+Releases a previously captured input on the current stdin TTY.
+
+### Arguments
+This function does not take any arguments.
+
+### Return Values
+This function does not return anything.
+
 ## `stdin(handle: number|TTY|FileHandle|nil)`
 Sets the standard input of the current process.
 

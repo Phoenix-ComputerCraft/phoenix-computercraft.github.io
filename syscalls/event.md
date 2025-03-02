@@ -50,6 +50,18 @@ This syscall does not return anything.
 ### Errors
 This syscall does not throw errors.
 
+## `peekEvent(): (string, table) | nil`
+Returns the next event in the queue if present, without removing it from the queue.
+
+### Parameters
+This syscall does not take any parameters.
+
+### Return Values
+The next event name and parameter table, or `nil` if no event is in the queue.
+
+### Errors
+This syscall does not throw errors.
+
 ## `sendEvent(pid: number, name: string, params: any)`
 Queues a [remote event](/docs/events.html#remote-events) to be sent to another process.
 

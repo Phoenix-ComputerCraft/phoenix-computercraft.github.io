@@ -8,6 +8,12 @@ This page lists a number of public demonstrations of the features of Phoenix in 
 
 ## Screenshots
 
+### Phoenix debugger demo
+![pdb](demos/pdb.png)
+
+### CCKit2 element test
+![cckit2](demos/cckit2.webp)
+
 ### Installation program
 ![installer](demos/installer.gif)
 
