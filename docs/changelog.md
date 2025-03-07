@@ -7,6 +7,24 @@ parent: Documentation
 # Changelog
 This page lists the changes in each major update to Phoenix, broken down by package.
 
+## 2025-03-07
+
+### `dpkg`
+Package version: 0.2.7
+- Fixed errors when updating a package with links
+- Fixed incorrect version comparisons for versions with a revision
+
+### `apt` *(new)*
+Package version: 0.2
+- Initial release
+- Port of Debian APT package manager to Phoenix.
+- This will eventually become the standard package management tool, replacing the temporary `update` and `components` programs
+
+### `pgp` *(new)*
+Package version: 0.1
+- Initial release
+- Provides a library for handling PGP keys and signature verification.
+
 ## 0.0.8 - 2025-03-02
 
 ### `phoenix`

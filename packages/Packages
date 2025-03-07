@@ -12,6 +12,20 @@ Filename: aes.deb
 Size: 7360
 Installed-Size: 19
 
+Package: apt
+Version: 0.2-1
+Section: admin
+Priority: standard
+Architecture: phoenix
+Depends: libsystem (>= 0.1.6), dpkg (>= 0.2.6), sha2, pgp, libdeflate, muxzcat
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Advanced Package Tool for Phoenix
+ A port of the Debian Advanced Package Tool to the
+ Phoenix operating system, written in Lua.
+Filename: apt.deb
+Size: 19048
+Installed-Size: 59
+
 Package: ar
 Version: 1.1.1-1
 Section: utils
@@ -142,7 +156,7 @@ Size: 1782
 Installed-Size: 2
 
 Package: dpkg
-Version: 0.2.6-2
+Version: 0.2.7-1
 Section: admin
 Priority: required
 Architecture: phoenix
@@ -371,6 +385,21 @@ Description: Phoenix debugger program
 Filename: pdb.deb
 Size: 3292
 Installed-Size: 7
+
+Package: pgp
+Version: 0.1-1
+Section: utils
+Priority: standard
+Architecture: phoenix
+Depends: libsystem, ccryptolib, sha2, aes
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: OpenPGP implementation for Phoenix
+ Implements the OpenPGP (RFC 4880/9580) standard
+ cryptography scheme in Phoenix, including GPG
+ extensions.
+Filename: pgp.deb
+Size: 2768
+Installed-Size: 5
 
 Package: phoenix
 Version: 0.0.8-1

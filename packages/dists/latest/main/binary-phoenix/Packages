@@ -16,18 +16,18 @@ Description: AES encryption library
  bit keys, and ECB or CBC cipher modes.
 
 Package: apt
-Version: 0.1-1
+Version: 0.2-1
 Architecture: phoenix
-Depends: libsystem (>= 0.1.6), dpkg (>= 0.2.6), sha2, pgp, libdeflate
+Depends: libsystem (>= 0.1.6), dpkg (>= 0.2.6), sha2, pgp, libdeflate, muxzcat
 Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Priority: standard
 Section: admin
-Filename: pool/main/a/apt/apt_0.1-1_phoenix.deb
-Size: 16814
-SHA512: aa3307698fd0781db10f366942fe75fb8b704f179dd639892e4258f8678c8594fd764ad0d174d19008c8a619e6935bc4b96114748ac2f487323fbdf7f0ad52b8
-SHA256: 10b9c29a1b506927b8ecc227ae647918149f9390f02c1d63f94d4311fd305783
-SHA1: 63e21c097cdf27fbfd5abb07e5f3dc9e4ad7c86f
-MD5sum: d453e3b5537b110964c287073d65f06f
+Filename: pool/main/a/apt/apt_0.2-1_phoenix.deb
+Size: 19048
+SHA512: 122a41dcd60c05abd9fdfcaa782e56cfb406833ac350bdd9a16f5addb04aeeb2a58dcbdb2d1aedc4c3c3a6bc21f7854ca472da56fa48efad87f00e6a0035c439
+SHA256: c8dd269ffa2a76d6b06d381724cc523ccae1153157aa77fe5a5f8866c8ffee40
+SHA1: 97726973115c153c94bcd1067f5f12553aa59c1d
+MD5sum: e3a8d138c430dc6c6ebcb64df322370c
 Description: Advanced Package Tool for Phoenix
  A port of the Debian Advanced Package Tool to the
  Phoenix operating system, written in Lua.
@@ -192,18 +192,18 @@ Description: disk auto mounting manager
  
 
 Package: dpkg
-Version: 0.2.6-2
+Version: 0.2.7-1
 Architecture: phoenix
 Depends: ar, diff, libdeflate, libsystem, muxzcat, sha2, tar
 Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Priority: required
 Section: admin
-Filename: pool/main/d/dpkg/dpkg_0.2.6-2_phoenix.deb
-Size: 27770
-SHA512: 0847d828b48f8915db3496c2231db74b2c621f5c67f065a571ed67648fa203486ecd8f545b1a568618e883c707e671e8080982264648a63a0245e35da3b94d84
-SHA256: 1055cd82412280221adcb2e8c4cd640c6d9ec35558c918f887ed75b5d45642eb
-SHA1: 27cf284d2b02da9c01216269ac0650467e38bf92
-MD5sum: 6e45a57dae84f80826dff4c6ac28a65a
+Filename: pool/main/d/dpkg/dpkg_0.2.7-1_phoenix.deb
+Size: 27778
+SHA512: 50813324359e528845a86879ff01e71d13c849e07ffd353bf3ddfba9b1c27afce700070243583ce05b58ee320b1a9d042e89ee03ffd83a476b08ddb78ed235e7
+SHA256: 0021b742b49985d28c08690ae9ee5c6b25022113ad419ddb3e0ecf8a85dc636b
+SHA1: 16c006909fce864aa0b9c4aed39f9fb0dd274881
+MD5sum: 13064d406c0719f61364e6be571419e0
 Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
