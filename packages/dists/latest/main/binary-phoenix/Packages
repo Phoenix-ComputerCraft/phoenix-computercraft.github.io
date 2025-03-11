@@ -16,18 +16,18 @@ Description: AES encryption library
  bit keys, and ECB or CBC cipher modes.
 
 Package: apt
-Version: 0.2-1
+Version: 0.2.1-1
 Architecture: phoenix
 Depends: libsystem (>= 0.1.6), dpkg (>= 0.2.6), sha2, pgp, libdeflate, muxzcat
 Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Priority: standard
 Section: admin
-Filename: pool/main/a/apt/apt_0.2-1_phoenix.deb
-Size: 19048
-SHA512: 122a41dcd60c05abd9fdfcaa782e56cfb406833ac350bdd9a16f5addb04aeeb2a58dcbdb2d1aedc4c3c3a6bc21f7854ca472da56fa48efad87f00e6a0035c439
-SHA256: c8dd269ffa2a76d6b06d381724cc523ccae1153157aa77fe5a5f8866c8ffee40
-SHA1: 97726973115c153c94bcd1067f5f12553aa59c1d
-MD5sum: e3a8d138c430dc6c6ebcb64df322370c
+Filename: pool/main/a/apt/apt_0.2.1-1_phoenix.deb
+Size: 19206
+SHA512: fae478826be6c72a46b114eda77c942c17b0cb8df91f86eda8812d4ec901890f91e6e9cbf2bda781da13321b5004d9d1fe59e49084d356b4f185f41ae5bbd31c
+SHA256: 8315395fa17757b6d52dbb1f3166d133c925b1ac4ce020faa27c38467fc8b261
+SHA1: 62840a4183567e7c65fb37a47e287eb32d447959
+MD5sum: 1cdcaefec53a75bbc4a8ba7105b92d75
 Description: Advanced Package Tool for Phoenix
  A port of the Debian Advanced Package Tool to the
  Phoenix operating system, written in Lua.
@@ -192,18 +192,18 @@ Description: disk auto mounting manager
  
 
 Package: dpkg
-Version: 0.2.7-1
+Version: 0.2.8-1
 Architecture: phoenix
 Depends: ar, diff, libdeflate, libsystem, muxzcat, sha2, tar
 Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Priority: required
 Section: admin
-Filename: pool/main/d/dpkg/dpkg_0.2.7-1_phoenix.deb
-Size: 27778
-SHA512: 50813324359e528845a86879ff01e71d13c849e07ffd353bf3ddfba9b1c27afce700070243583ce05b58ee320b1a9d042e89ee03ffd83a476b08ddb78ed235e7
-SHA256: 0021b742b49985d28c08690ae9ee5c6b25022113ad419ddb3e0ecf8a85dc636b
-SHA1: 16c006909fce864aa0b9c4aed39f9fb0dd274881
-MD5sum: 13064d406c0719f61364e6be571419e0
+Filename: pool/main/d/dpkg/dpkg_0.2.8-1_phoenix.deb
+Size: 27794
+SHA512: 650e2a004b92bb1aeea7a60493153cbf2a90014ff07459f363dfadb5ba6d6639261ab3ba30d4159a8ee2713d7227ca0e1b55055d36f5a384b73d960e731c01ef
+SHA256: 58c5c3df609ffdaf41a83f9e6c7b6d6d7a8f766a40b1af6be8c4abab73311822
+SHA1: 1c57938ba0e9197678746ed969bea6da3b3dfdd4
+MD5sum: 78bfdfc72af5781684cbb55b99483c0c
 Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
@@ -404,18 +404,35 @@ Description: Lua compression algorithm
  and decompress Lua files, and a kernel module to
  allow direct execution of Luz files.
 
-Package: muxzcat
+Package: mpi
 Version: 1.0-1
 Architecture: phoenix
 Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Priority: optional
 Section: libraries
-Filename: pool/main/m/muxzcat/muxzcat_1.0-1_phoenix.deb
-Size: 7390
-SHA512: 9414e0e696cb41848a55852bdc7d02746875112e1a2cbd6725a08d2355508a1532b6a6a12d5de840ba529c6bf47a86d7eb17e3589e619bcc803310e7aab7fb97
-SHA256: 217af8f4f44746ae97a8a1f18f85612b4f1082646bc4efdc51e14a5759eebda5
-SHA1: 801de23212fc915f87311cdf428b407f651dd539
-MD5sum: 81b1eec0a058e1dc4c8be2cf8b804e66
+Filename: pool/main/m/mpi/mpi_1.0-1_phoenix.deb
+Size: 2752
+SHA512: ade5cdd4fd4680c40babf5effcff5b185ef0b41ed2e116b9678b96324fa9df05723e4e0d92df2c364c65a9c4f1b94e9e68b747159cf591a90796f64383d0a025
+SHA256: 84e2267d68c21a517a714f86e14494f60059970923a02af4c92268a29d1a0e94
+SHA1: ec3e25296fc310752686a96bbd6e52288695702f
+MD5sum: 5bedfa42accd8d96cd65d2fef05bdcca
+Description: Multi-precision integer library
+ Provides functions for working with multi-
+ precision integers, with functions for RSA
+ encryption included.
+
+Package: muxzcat
+Version: 1.1-1
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Priority: optional
+Section: libraries
+Filename: pool/main/m/muxzcat/muxzcat_1.1-1_phoenix.deb
+Size: 6784
+SHA512: c1af02a40a7e501742f03277412228f4b35497ee682c2e6a8cbd0abae35d05f859285793fc548a0c893754342746fce1fa02c719e30b1061b6ae467790ccaa80
+SHA256: baf4eafdd8ea58d4f762fb51daa89220a6648d694603a0f5a194d83748e5afdb
+SHA1: e2a29f6129699867f3c89d470ba76f8231b6147c
+MD5sum: 39dd53e531eb4d4b75d5f5c4e88d4c76
 Description: LZMA/XZ decompression library
  Provides functions for decompressing LZMA and XZ
  format compressed files.
@@ -472,20 +489,20 @@ Description: Phoenix debugger program
  programs.
 
 Package: pgp
-Version: 0.1-1
+Version: 0.2-1
 Architecture: phoenix
-Depends: libsystem, ccryptolib, sha2, aes
+Depends: libsystem, ccryptolib, sha2, aes, mpi
 Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Priority: standard
 Section: utils
-Filename: pool/main/p/pgp/pgp_0.1-1_phoenix.deb
-Size: 2822
-SHA512: cb978d5442345d4bcd16f3b009ec74c8c706413f3e229238bcd5794400bcd55880393484004742cedfa7fb010cd475c70f4609d1d0d29ee34f068ddc3b7d165e
-SHA256: b8b306084e705b5be515ff99189a9f7eea5e3f5cd670bd89c6c698ab32a59bf1
-SHA1: fba5a9bcb746b27781b92ab581efe4136caae812
-MD5sum: 6fc8de18be7c1dcafaf50471bd87476d
+Filename: pool/main/p/pgp/pgp_0.2-1_phoenix.deb
+Size: 3090
+SHA512: cf44c0d82f0003b8e2d9885b1675a18397ccfcc551ce24186eb91381a240c5988a6cab56a305190563fc33ab39bdea98081c85ae71acdd07b80f673f1e25dc9d
+SHA256: 13dbb9faa786dc380edf5edf97f4b8efc59a2e1df7715d8ea4b3e4896005397a
+SHA1: 8d98f8ca184e448ab02b41b799b77299e9a5436d
+MD5sum: 3797bd6961cb8d84d4abfc6c90e3f8c2
 Description: OpenPGP implementation for Phoenix
- Implements the OpenPGP (RFC 4880/9580  ) standard
+ Implements the OpenPGP (RFC 4880/9580) standard
  cryptography scheme in Phoenix, including GPG
  extensions.
 

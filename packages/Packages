@@ -13,7 +13,7 @@ Size: 7360
 Installed-Size: 19
 
 Package: apt
-Version: 0.2-1
+Version: 0.2.1-1
 Section: admin
 Priority: standard
 Architecture: phoenix
@@ -23,8 +23,8 @@ Description: Advanced Package Tool for Phoenix
  A port of the Debian Advanced Package Tool to the
  Phoenix operating system, written in Lua.
 Filename: apt.deb
-Size: 19048
-Installed-Size: 59
+Size: 19206
+Installed-Size: 60
 
 Package: ar
 Version: 1.1.1-1
@@ -156,7 +156,7 @@ Size: 1782
 Installed-Size: 2
 
 Package: dpkg
-Version: 0.2.7-1
+Version: 0.2.8-1
 Section: admin
 Priority: required
 Architecture: phoenix
@@ -166,7 +166,7 @@ Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
 Filename: dpkg.deb
-Size: 27778
+Size: 27794
 Installed-Size: 109
 
 Package: encryptfs
@@ -331,6 +331,20 @@ Filename: luz.deb
 Size: 10986
 Installed-Size: 28
 
+Package: mpi
+Version: 1.0-1
+Section: libraries
+Priority: optional
+Architecture: phoenix
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Multi-precision integer library
+ Provides functions for working with multi-
+ precision integers, with functions for RSA
+ encryption included.
+Filename: mpi.deb
+Size: 2752
+Installed-Size: 6
+
 Package: muxzcat
 Version: 1.0-1
 Section: libraries
@@ -387,19 +401,19 @@ Size: 3292
 Installed-Size: 7
 
 Package: pgp
-Version: 0.1-1
+Version: 0.2-1
 Section: utils
 Priority: standard
 Architecture: phoenix
-Depends: libsystem, ccryptolib, sha2, aes
+Depends: libsystem, ccryptolib, sha2, aes, mpi
 Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: OpenPGP implementation for Phoenix
  Implements the OpenPGP (RFC 4880/9580) standard
  cryptography scheme in Phoenix, including GPG
  extensions.
 Filename: pgp.deb
-Size: 2768
-Installed-Size: 5
+Size: 3090
+Installed-Size: 7
 
 Package: phoenix
 Version: 0.0.8-1
