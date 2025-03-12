@@ -8,11 +8,20 @@ This page lists a number of public demonstrations of the features of Phoenix in 
 
 ## Screenshots
 
+### APT installing packages from Ubuntu PPA
+![apt ppa](demos/apt ppa.png)
+
 ### Phoenix debugger demo
 ![pdb](demos/pdb.png)
 
 ### CCKit2 element test
 ![cckit2](demos/cckit2.webp)
+
+### YellowBox virtual machines for CraftOS
+![yellowbox](demos/yellowbox.gif)
+
+### FTP mounting over network
+![ftp](demos/ftp.png)
 
 ### Installation program
 ![installer](demos/installer.gif)
