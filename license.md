@@ -71,4 +71,6 @@ No agency, partnership, or joint venture has been created between the Parties as
 The Developer is not liable for any failure to perform due to causes beyond its reasonable control including, but not limited to, acts of God, acts of civil authorities, acts of military authorities, riots, embargoes, acts of nature and natural disasters, and other acts which may be due to unforeseen circumstances.
 
 ### ELECTRONIC COMMUNICATIONS PERMITTED
-Electronic communications are permitted to both Parties under this Agreement, including e-mail or online chat over the Discord platform. For any questions or concerns, please email us at the following address: jackmacwindowslinux (gmail.com), or contact us on Discord at the following username: JackMacWindows#9776.
+Electronic communications are permitted to both Parties under this Agreement, including e-mail or online chat over the Discord platform. For any questions or concerns, please email us at the following address: jackmacwindowslinux (gmail.com), or contact us on Discord at the following username: jackmacwindows (formerly JackMacWindows#9776).
+
+This software complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This software may not cause harmful interference, and (2) this software must accept any interference received, including interference that may cause undesired operation.

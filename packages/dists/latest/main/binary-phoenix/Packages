@@ -507,18 +507,18 @@ Description: OpenPGP implementation for Phoenix
  extensions.
 
 Package: phoenix
-Version: 0.0.8-1
+Version: 0.0.8-2
 Architecture: phoenix
 Essential: yes
 Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Priority: required
 Section: kernel
-Filename: pool/main/p/phoenix/phoenix_0.0.8-1_phoenix.deb
-Size: 59056
-SHA512: 4855e8e1fc36fdba7dedf33ca238cec50c2d52f16aec9a298de37186c28c1be9822a95a0845a77de1d468c84425d6c836044bf51d2b4ea1c8c493f484b768c12
-SHA256: b4135bd437697e11a5c881323bd11ce723331375efc68a8b56ad8d78835c4c47
-SHA1: 1be35dc6010fd1875c1d1e96e7b77c55d3fa0d73
-MD5sum: 7ecd1f94b23cc9bce3b2361300ff0ca0
+Filename: pool/main/p/phoenix/phoenix_0.0.8-2_phoenix.deb
+Size: 59412
+SHA512: 649a6e4a6de984d1a4ca30a02c10fb4804345d3147bf6401d1851ff37a0df8f52f7a8a6406d3b49bfc0f046e9c004d32ac6c6027054cad36c5ea8f33d507158e
+SHA256: 03b3cb0b5356d275dacf62a738c21554d5e476b0f73e5225b4aab95257eba957
+SHA1: 29ccaf2897e6e249ab1eb9e455286a08d37cae37
+MD5sum: 1c3fea52e247d3eea050863ed65a9031
 Description: Phoenix kernel
  The kernel for the Phoenix operating system.
 

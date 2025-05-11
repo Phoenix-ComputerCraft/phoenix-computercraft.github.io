@@ -416,7 +416,7 @@ Size: 3090
 Installed-Size: 7
 
 Package: phoenix
-Version: 0.0.8-1
+Version: 0.0.8-2
 Section: kernel
 Priority: required
 Architecture: phoenix
