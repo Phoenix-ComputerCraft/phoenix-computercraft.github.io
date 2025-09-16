@@ -7,6 +7,132 @@ parent: Documentation
 # Changelog
 This page lists the changes in each major update to Phoenix, broken down by package.
 
+## 0.0.9 - 2025-09-16
+
+### Installer
+- Added drag-and-drop compatibility for use without HTTP
+  - When a file is requested, download it manually from `https://phoenix.madefor.cc/packages/<file>`
+  - Drop it on the computer to copy over - downloading will proceed automatically
+  - You can drag multiple files at once to cache them and speed up transfer
+- Reworked stage 1 procedure - kernel is now downloaded separately and kept in memory; UnBIOS is now included in the installer instead of a separate file
+
+### `phoenix`
+Package version: 0.0.9
+- Added PDP (Phoenix Datagram Protocol) network protocol for oneshot messages to PIP addresses
+  - Use the `pdp://<ip>[:<port>]` scheme to open a handle
+  - There are no connection semantics, delivery is not guaranteed
+  - `connect` opens a handle on a random local port to the specified remote port
+  - `listen` listens on the specified local port and queues a handle event on first message from each remote sender
+- Added `chvt` syscall to change current TTY (requires root)
+- Added improved kernel debugger using a temporary TTY
+  - A module implementing global `pretty_print(tty, value)` can be used for pretty printing
+- HTTP is no longer required to boot the kernel
+- Moved `cc.expect` and `textutils.serialize` into the kernel - the only CraftOS API required to boot now is `keys`
+- `loadfile()` now loads from stdin as expected
+- Programs with a `lua` shebang are now executed directly
+- The VT cursor now moves within bounds when the terminal is resized
+- `modem:isOpen` now always returns a boolean as expected
+- Fixed a multitude of issues with sockets
+  - The `unlisten` syscall is now mostly implemented (still needs testing for robustness)
+  - Modem channels are now properly closed when a socket is closed (after time-wait)
+    - If a modem runs out of open channels, time-wait sockets are purged immediately in an attempt to free them
+  - Socket connections now wait for ARP requests to resolve before continuing to connect
+- Fixed `list` returning duplicate results with multimounts
+- Fixed some minor issues with `io.popen(cmd, "rw")` handles
+- Fixed crashes when calling stdio redirect syscalls without an active stdio handle
+- Fixed files not being visible when using `chroot("/")`
+- Fixed crashes when using a `C` or `D` CSI escape with massive negative parameters
+- Fixed a crash when closing a modem port that has not been opened
+- Fixed a security vulnerability allowing retrieving the kernel environment through empty functions
+- Fixed a security vulnerability allowing retrieving the kernel environment through `load` function mode and `debug.getupvalue`
+- Fixed a security vulnerability allowing retrieving the kernel environment through `io` file handles
+- Fixed a security vulnerability allowing retrieving the kernel environment through `debug.gethook`
+- Fixed a security vulnerability allowing process escalation through custom stdio handles on setuser programs
+- `debug.getregistry()` now returns a per-process table, closing potential security vulnerabilities
+
+### `pxboot`
+Package version: 0.1.4
+- Added `loadmod` outer command to load modules without selecting an entry
+- Modules now receive the config table as a global
+- `include` can now reference absolute paths
+- Fixed booting kernels on systems without HTTP
+
+### `apt`
+Package version: 0.2.2
+- Fixed `add-apt-repository` not loading config
+- Fixed errors caused by greedy parsing of APT config
+- `apt-get update` can now handle gzipped indexes
+- Fixed not setting the status when removing packages
+- Fixed parsing deb822-style sources files
+- Implemented virtual package searching in the package solver
+
+### `dhcpmgr`
+Package version: 0.1.1
+- If no IP address is set on the managed modem, the first in the configured range is now set automatically
+
+### `dpkg`
+Package version: 0.2.9
+- Fixed issues with trigger files being updated incorrectly
+
+### `ftp`
+Package version: 0.1.1
+- The FUSE filesystem now protects concurrent access on the filesystem, resolving potential races by multiple processes
+- Fixed a crash in the client when a passive mode connection fails
+- Fixed a crash in the server when opening a file fails
+- Fixed a typo from the CraftOS code base causing a crash in the server in binary mode
+
+### `initrd-utils`
+Package version: 0.1.1-2
+- Fixed a typo causing shell inclusion to crash `update-initrd`
+
+### `libcert`
+Package version: 1.0.1
+- Added CRL support to `chain.validate`
+- Implemented decryption of private keys in `cert.sign`
+- Fixed typo in `signature.sign` causing a crash on use
+
+### `muxzcat`
+Package version: 1.1
+- I'm not actually sure what changed, since the previous version's source was minified; I'm guessing it was some important bugfixes that I missed.
+
+### `netutils`
+Package version: 0.1-2
+- Fixed DHCP request failure when the offer comes from certain computer IDs
+
+### `pdb`
+Package version: 0.1.1
+- `attach` now properly enables debugging in the target, breaks on attach, and enables ^C handling
+
+### `spanfs`
+Package version: 0.1.1-2
+- Fixed to work with Phoenix 0.0.7's modified mounting subsystem
+
+### `typescript`
+Package version: 1.28.1-2
+- Fixed compatibility with syscalls in `async/await` and iterators
+
+### `usermgr`
+Package version: 0.1.3
+- Sensitive processes can no longer run on non-TTYs or be debugged
+
+## 2025-03-11
+
+### `apt`
+Package version: 0.2.1
+
+### `dpkg`
+Package version: 0.2.8
+
+### `pgp`
+Package version: 0.2
+- Added compatibility with RSA (not recommended for general use - slow)
+- Now requires the new `mpi` package, which will break standard `update` program - install `mpi` manually first (APT will work fine without modification)
+
+### `mpi` *(new)*
+Package version: 1.0
+- Initial release
+- Multi-precision integer math library, for use with RSA
+
 ## 2025-03-07
 
 ### `dpkg`

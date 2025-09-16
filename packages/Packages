@@ -13,7 +13,7 @@ Size: 7360
 Installed-Size: 19
 
 Package: apt
-Version: 0.2.1-1
+Version: 0.2.2-1
 Section: admin
 Priority: standard
 Architecture: phoenix
@@ -23,7 +23,7 @@ Description: Advanced Package Tool for Phoenix
  A port of the Debian Advanced Package Tool to the
  Phoenix operating system, written in Lua.
 Filename: apt.deb
-Size: 19206
+Size: 19258
 Installed-Size: 60
 
 Package: ar
@@ -94,7 +94,7 @@ Description: Compressed file system driver
  contents automatically. Supports DEFLATE (through
  libdeflate), DEFLATE-ANS (through deflateans), and
  Luz (through luz) on supported Lua files.
- Filename: compressfs.deb
+Filename: compressfs.deb
 Size: 2722
 Installed-Size: 5
 
@@ -108,12 +108,12 @@ Description: Compression algorithm utilizing ANS
  A variant of DEFLATE that uses asymmetrical numeral systems
  instead of Huffman coding, increasing decompression speed with similar
  compression ratios.
- Filename: deflateans.deb
+Filename: deflateans.deb
 Size: 5298
 Installed-Size: 11
 
 Package: dhcpmgr
-Version: 0.1-1
+Version: 0.1.1-1
 Section: net
 Priority: optional
 Architecture: phoenix
@@ -124,7 +124,7 @@ Description: DHCP server manager for Phoenix
  server, which allocates and assigns IP addresses
  to computers on a network.
 Filename: dhcpmgr.deb
-Size: 3730
+Size: 3818
 Installed-Size: 7
 
 Package: diff
@@ -151,12 +151,12 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: disk auto mounting manager
  Manager service to handle automatically mounting
  attached disks.
- Filename: diskmgr.deb
+Filename: diskmgr.deb
 Size: 1782
 Installed-Size: 2
 
 Package: dpkg
-Version: 0.2.8-1
+Version: 0.2.9-1
 Section: admin
 Priority: required
 Architecture: phoenix
@@ -166,7 +166,7 @@ Description: Debian Package Manager for Phoenix
  A port of the Debian Package Manager to the
  Phoenix operating system, written in Lua.
 Filename: dpkg.deb
-Size: 27794
+Size: 27968
 Installed-Size: 109
 
 Package: encryptfs
@@ -179,12 +179,12 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Encrypted file system driver
  Implements a file system that encrypts disk
  contents automatically.
- Filename: encryptfs.deb
+Filename: encryptfs.deb
 Size: 5794
 Installed-Size: 17
 
 Package: ftp
-Version: 0.1-1
+Version: 0.1.1-1
 Section: net
 Priority: optional
 Depends: libsystem, sha2
@@ -198,8 +198,8 @@ Description: RFC 959-compliant FTP client & server
  server manager for FTP access, and a FUSE
  filesystem for mounting FTP shares locally.
 Filename: ftp.deb
-Size: 11060
-Installed-Size: 42
+Size: 11176
+Installed-Size: 43
 
 Package: fuse
 Version: 0.1-1
@@ -243,7 +243,7 @@ Size: 2448
 Installed-Size: 3
 
 Package: initrd-utils
-Version: 0.1.1-1
+Version: 0.1.1-2
 Section: admin
 Priority: optional
 Architecture: phoenix
@@ -253,11 +253,11 @@ Description: initrd management tools
  Contains a collection of utility programs to create
  and manage initial ramdisk (initrd) files.
 Filename: initrd-utils.deb
-Size: 3498
+Size: 3492
 Installed-Size: 6
 
 Package: libcert
-Version: 1.0-1
+Version: 1.0.1-1
 Section: libraries
 Priority: optional
 Architecture: phoenix
@@ -271,7 +271,7 @@ Description: Certificate and security library
  roots, verifying signatures, and encryption of
  data using certificates.
 Filename: libcert.deb
-Size: 10630
+Size: 10788
 Installed-Size: 44
 
 Package: libcraftos
@@ -346,7 +346,7 @@ Size: 2752
 Installed-Size: 6
 
 Package: muxzcat
-Version: 1.0-1
+Version: 1.1-1
 Section: libraries
 Priority: optional
 Architecture: phoenix
@@ -355,8 +355,8 @@ Description: LZMA/XZ decompression library
  Provides functions for decompressing LZMA and XZ
  format compressed files.
 Filename: muxzcat.deb
-Size: 7388
-Installed-Size: 24
+Size: 6808
+Installed-Size: 21
 
 Package: netmgr
 Version: 0.1-1
@@ -373,7 +373,7 @@ Size: 3074
 Installed-Size: 5
 
 Package: netutils
-Version: 0.1-1
+Version: 0.1-2
 Section: net
 Priority: optional
 Architecture: phoenix
@@ -383,11 +383,11 @@ Description: Network configuration utilities
  Provides a set of programs to configure the system
  networking layer.
 Filename: netutils.deb
-Size: 3696
+Size: 3706
 Installed-Size: 8
 
 Package: pdb
-Version: 0.1-1
+Version: 0.1.1-1
 Section: devel
 Priority: optional
 Architecture: phoenix
@@ -397,8 +397,8 @@ Description: Phoenix debugger program
  Implements a GDB-like debugger for Phoenix
  programs.
 Filename: pdb.deb
-Size: 3292
-Installed-Size: 7
+Size: 3358
+Installed-Size: 8
 
 Package: pgp
 Version: 0.2-1
@@ -416,7 +416,7 @@ Size: 3090
 Installed-Size: 7
 
 Package: phoenix
-Version: 0.0.8-2
+Version: 0.0.9-1
 Section: kernel
 Priority: required
 Architecture: phoenix
@@ -425,8 +425,8 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: Phoenix kernel
  The kernel for the Phoenix operating system.
 Filename: phoenix.deb
-Size: 59056
-Installed-Size: 274
+Size: 62842
+Installed-Size: 286
 
 Package: phoenix-docs
 Version: 0.0.4-1
@@ -444,7 +444,7 @@ Size: 33800
 Installed-Size: 128
 
 Package: phoenix-luz
-Version: 0.0.8-1
+Version: 0.0.9-1
 Section: kernel
 Priority: optional
 Architecture: phoenix
@@ -457,8 +457,8 @@ Description: Phoenix kernel, compressed with Luz
  compressed with the Luz Lua compression algorithm,
  reducing the kernel size by ~80%.
 Filename: phoenix-luz.deb
-Size: 53210
-Installed-Size: 56
+Size: 55222
+Installed-Size: 58
 
 Package: pxboot
 Version: 0.1.3-1
@@ -509,7 +509,7 @@ Size: 23068
 Installed-Size: 87
 
 Package: spanfs
-Version: 0.1.1-1
+Version: 0.1.1-2
 Section: kernel
 Priority: optional
 Architecture: phoenix
@@ -523,7 +523,7 @@ Description: Spanning filesystem kernel module & utilities
  and the file data is spread across the rest of the
  disks.
 Filename: spanfs.deb
-Size: 11956
+Size: 12008
 Installed-Size: 33
 
 Package: startmgr
@@ -555,7 +555,7 @@ Size: 6032
 Installed-Size: 17
 
 Package: typescript
-Version: 1.28.1-1
+Version: 1.28.1-2
 Section: libraries
 Priority: optional
 Architecture: phoenix
@@ -568,11 +568,11 @@ Description: TypeScriptToLua library features bundle
  replace `require("lualib-bundle")` with `require("typescript")` in generated
  files.
 Filename: typescript.deb
-Size: 11214
+Size: 11446
 Installed-Size: 38
 
 Package: usermgr
-Version: 0.1.2-1
+Version: 0.1.3-1
 Section: admin
 Priority: standard
 Architecture: phoenix
@@ -583,8 +583,8 @@ Description: user account manager
  Manager service to handle user accounts, including
  login, passwords, creation, and deletion.
 Filename: usermgr.deb
-Size: 8454
-Installed-Size: 24
+Size: 8586
+Installed-Size: 25
 
 Package: yahtcc
 Version: 1.0-3
@@ -616,6 +616,6 @@ Size: 9154
 Installed-Size: 26
 
 Package: stage2-tarball
-Size: 552960
-Installed-Size: 515
+Size: 563200
+Installed-Size: 526
 

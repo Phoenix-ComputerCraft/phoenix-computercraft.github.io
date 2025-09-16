@@ -11,23 +11,27 @@ local restoreCursor
 local running = true
 local pkginfo = {}
 
+local mainScreen = window.create(term.current(), 1, 1, width, height)
+
+local lastStatus
 local function drawStatus(status)
-    term.setCursorPos(3, height)
-    term.setBackgroundColor(colors.white)
-    term.setTextColor(colors.black)
-    term.clearLine()
-    term.write(status)
+    mainScreen.setCursorPos(3, height)
+    mainScreen.setBackgroundColor(colors.white)
+    mainScreen.setTextColor(colors.black)
+    mainScreen.clearLine()
+    mainScreen.write(status)
+    lastStatus = status
 end
 
 local function clearScreen(status)
-    term.setBackgroundColor(colors.orange)
-    term.setTextColor(colors.white)
-    term.clear()
-    term.setCursorBlink(false)
-    term.setCursorPos(3, 2)
-    term.write("Phoenix Setup")
-    term.setCursorPos(1, 3)
-    term.write(("\x8C"):rep(16))
+    mainScreen.setBackgroundColor(colors.orange)
+    mainScreen.setTextColor(colors.white)
+    mainScreen.clear()
+    mainScreen.setCursorBlink(false)
+    mainScreen.setCursorPos(3, 2)
+    mainScreen.write("Phoenix Setup")
+    mainScreen.setCursorPos(1, 3)
+    mainScreen.write(("\x8C"):rep(16))
     drawStatus(status)
     nextLine = 5
     coros = {}
@@ -35,7 +39,7 @@ local function clearScreen(status)
 end
 
 local function label(text)
-    local win = window.create(term.current(), 3, nextLine, width - 4, height - nextLine, false)
+    local win = window.create(mainScreen, 3, nextLine, width - 4, height - nextLine, false)
     win.setBackgroundColor(colors.orange)
     win.setTextColor(colors.white)
     win.clear()
@@ -49,27 +53,27 @@ end
 
 local function textBox(h) return function(text)
     h = h or height - nextLine - 3
-    term.setBackgroundColor(colors.orange)
-    term.setTextColor(colors.white)
-    term.setCursorPos(3, nextLine)
-    term.write("\x9C" .. ("\x8C"):rep(width - 6))
-    term.setBackgroundColor(colors.white)
-    term.setTextColor(colors.orange)
-    term.write("\x93")
+    mainScreen.setBackgroundColor(colors.orange)
+    mainScreen.setTextColor(colors.white)
+    mainScreen.setCursorPos(3, nextLine)
+    mainScreen.write("\x9C" .. ("\x8C"):rep(width - 6))
+    mainScreen.setBackgroundColor(colors.white)
+    mainScreen.setTextColor(colors.orange)
+    mainScreen.write("\x93")
     for i = 1, h do
-        term.setCursorPos(term.getCursorPos() - 1, nextLine + i)
-        term.write("\x95")
+        mainScreen.setCursorPos(mainScreen.getCursorPos() - 1, nextLine + i)
+        mainScreen.write("\x95")
     end
-    term.setBackgroundColor(colors.orange)
-    term.setTextColor(colors.white)
+    mainScreen.setBackgroundColor(colors.orange)
+    mainScreen.setTextColor(colors.white)
     for i = 1, h do
-        term.setCursorPos(3, nextLine + i)
-        term.write("\x95")
+        mainScreen.setCursorPos(3, nextLine + i)
+        mainScreen.write("\x95")
     end
-    term.setCursorPos(3, nextLine + h + 1)
-    term.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
+    mainScreen.setCursorPos(3, nextLine + h + 1)
+    mainScreen.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
     local y, w = nextLine + 1, width - 7
-    local outer = window.create(term.current(), 4, y, w, h)
+    local outer = window.create(mainScreen, 4, y, w, h)
     outer.setBackgroundColor(colors.orange)
     outer.clear()
     local inner = window.create(outer, 1, 1, w, 9000)
@@ -95,32 +99,32 @@ local function textBox(h) return function(text)
                 scrollPos = scrollPos + dir
                 inner.reposition(1, 2 - scrollPos)
             end
-            term.setCursorPos(w + 4, y)
-            term.blit(scrollPos > 1 and "\30" or " ", "0", "1")
-            term.setCursorPos(w + 4, y + h - 1)
-            term.blit(scrollPos < th - h and "\31" or " ", "0", "1")
+            mainScreen.setCursorPos(w + 4, y)
+            mainScreen.blit(scrollPos > 1 and "\30" or " ", "0", "1")
+            mainScreen.setCursorPos(w + 4, y + h - 1)
+            mainScreen.blit(scrollPos < th - h and "\31" or " ", "0", "1")
         end
     end)
     nextLine = nextLine + h + 2
 end end
 
 local function inputBox(callback, default, replace)
-    term.setBackgroundColor(colors.orange)
-    term.setTextColor(colors.white)
-    term.setCursorPos(3, nextLine)
-    term.write("\x9C" .. ("\x8C"):rep(width - 6))
-    term.setBackgroundColor(colors.white)
-    term.setTextColor(colors.orange)
-    term.write("\x93")
-    term.setCursorPos(term.getCursorPos() - 1, nextLine + 1)
-    term.write("\x95")
-    term.setBackgroundColor(colors.orange)
-    term.setTextColor(colors.white)
-    term.setCursorPos(3, nextLine + 1)
-    term.write("\x95")
-    term.setCursorPos(3, nextLine + 2)
-    term.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
-    local win = window.create(term.current(), 4, nextLine + 1, width - 6, 1)
+    mainScreen.setBackgroundColor(colors.orange)
+    mainScreen.setTextColor(colors.white)
+    mainScreen.setCursorPos(3, nextLine)
+    mainScreen.write("\x9C" .. ("\x8C"):rep(width - 6))
+    mainScreen.setBackgroundColor(colors.white)
+    mainScreen.setTextColor(colors.orange)
+    mainScreen.write("\x93")
+    mainScreen.setCursorPos(mainScreen.getCursorPos() - 1, nextLine + 1)
+    mainScreen.write("\x95")
+    mainScreen.setBackgroundColor(colors.orange)
+    mainScreen.setTextColor(colors.white)
+    mainScreen.setCursorPos(3, nextLine + 1)
+    mainScreen.write("\x95")
+    mainScreen.setCursorPos(3, nextLine + 2)
+    mainScreen.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
+    local win = window.create(mainScreen, 4, nextLine + 1, width - 6, 1)
     win.setBackgroundColor(colors.orange)
     win.setTextColor(colors.white)
     win.clear()
@@ -149,27 +153,27 @@ local function selectionBox(h, selections, callback, didSelect)
     h = h or height - nextLine - 3
     local nsel = 0
     for _ in pairs(selections) do nsel = nsel + 1 end
-    term.setBackgroundColor(colors.orange)
-    term.setTextColor(colors.white)
-    term.setCursorPos(3, nextLine)
-    term.write("\x9C" .. ("\x8C"):rep(width - 6))
-    term.setBackgroundColor(colors.white)
-    term.setTextColor(colors.orange)
-    term.write("\x93")
+    mainScreen.setBackgroundColor(colors.orange)
+    mainScreen.setTextColor(colors.white)
+    mainScreen.setCursorPos(3, nextLine)
+    mainScreen.write("\x9C" .. ("\x8C"):rep(width - 6))
+    mainScreen.setBackgroundColor(colors.white)
+    mainScreen.setTextColor(colors.orange)
+    mainScreen.write("\x93")
     for i = 1, h do
-        term.setCursorPos(term.getCursorPos() - 1, nextLine + i)
-        term.write("\x95")
+        mainScreen.setCursorPos(mainScreen.getCursorPos() - 1, nextLine + i)
+        mainScreen.write("\x95")
     end
-    term.setBackgroundColor(colors.orange)
-    term.setTextColor(colors.white)
+    mainScreen.setBackgroundColor(colors.orange)
+    mainScreen.setTextColor(colors.white)
     for i = 1, h do
-        term.setCursorPos(3, nextLine + i)
-        term.write("\x95")
+        mainScreen.setCursorPos(3, nextLine + i)
+        mainScreen.write("\x95")
     end
-    term.setCursorPos(3, nextLine + h + 1)
-    term.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
+    mainScreen.setCursorPos(3, nextLine + h + 1)
+    mainScreen.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
     local y, w = nextLine + 1, width - 7
-    local outer = window.create(term.current(), 4, y, w, h)
+    local outer = window.create(mainScreen, 4, y, w, h)
     outer.setBackgroundColor(colors.orange)
     outer.clear()
     local inner = window.create(outer, 1, 1, w, nsel)
@@ -184,8 +188,8 @@ local function selectionBox(h, selections, callback, didSelect)
         lines[nl] = {k, not not v}
         nl = nl + 1
     end
-    term.setCursorPos(w + 4, y + h - 1)
-    term.blit(1 < nsel - h + 1 and "\31" or " ", "0", "1")
+    mainScreen.setCursorPos(w + 4, y + h - 1)
+    mainScreen.blit(1 < nsel - h + 1 and "\31" or " ", "0", "1")
     inner.setCursorPos(2, selected)
     inner.setCursorBlink(true)
     restoreCursor = inner.restoreCursor
@@ -225,10 +229,10 @@ local function selectionBox(h, selections, callback, didSelect)
                 end
                 inner.setCursorPos(2, selected)
             end
-            term.setCursorPos(w + 4, y)
-            term.blit(scrollPos > 1 and "\30" or " ", "0", "1")
-            term.setCursorPos(w + 4, y + h - 1)
-            term.blit(scrollPos < nsel - h + 1 and "\31" or " ", "0", "1")
+            mainScreen.setCursorPos(w + 4, y)
+            mainScreen.blit(scrollPos > 1 and "\30" or " ", "0", "1")
+            mainScreen.setCursorPos(w + 4, y + h - 1)
+            mainScreen.blit(scrollPos < nsel - h + 1 and "\31" or " ", "0", "1")
             inner.restoreCursor()
         end
     end)
@@ -236,22 +240,22 @@ local function selectionBox(h, selections, callback, didSelect)
 end
 
 local function progressBar()
-    term.setBackgroundColor(colors.orange)
-    term.setTextColor(colors.white)
-    term.setCursorPos(3, nextLine)
-    term.write("\x9C" .. ("\x8C"):rep(width - 6))
-    term.setBackgroundColor(colors.white)
-    term.setTextColor(colors.orange)
-    term.write("\x93")
-    term.setCursorPos(term.getCursorPos() - 1, nextLine + 1)
-    term.write("\x95")
-    term.setBackgroundColor(colors.orange)
-    term.setTextColor(colors.white)
-    term.setCursorPos(3, nextLine + 1)
-    term.write("\x95")
-    term.setCursorPos(3, nextLine + 2)
-    term.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
-    local win = window.create(term.current(), 4, nextLine + 1, width - 6, 1)
+    mainScreen.setBackgroundColor(colors.orange)
+    mainScreen.setTextColor(colors.white)
+    mainScreen.setCursorPos(3, nextLine)
+    mainScreen.write("\x9C" .. ("\x8C"):rep(width - 6))
+    mainScreen.setBackgroundColor(colors.white)
+    mainScreen.setTextColor(colors.orange)
+    mainScreen.write("\x93")
+    mainScreen.setCursorPos(mainScreen.getCursorPos() - 1, nextLine + 1)
+    mainScreen.write("\x95")
+    mainScreen.setBackgroundColor(colors.orange)
+    mainScreen.setTextColor(colors.white)
+    mainScreen.setCursorPos(3, nextLine + 1)
+    mainScreen.write("\x95")
+    mainScreen.setCursorPos(3, nextLine + 2)
+    mainScreen.write("\x8D" .. ("\x8C"):rep(width - 6) .. "\x8E")
+    local win = window.create(mainScreen, 4, nextLine + 1, width - 6, 1)
     win.setBackgroundColor(colors.orange)
     win.setTextColor(colors.white)
     win.clear()
@@ -285,6 +289,37 @@ local function run()
     end
 end
 
+local filesDropped = {}
+local function get(name)
+    if http then return http.get(url .. name, nil, true) end
+    local win = window.create(term.current(), 1, 1, width, height)
+    win.setBackgroundColor(colors.orange)
+    win.setTextColor(colors.white)
+    win.clear()
+    win.setCursorBlink(false)
+    win.setCursorPos(3, 2)
+    win.write("Phoenix Setup")
+    win.setCursorPos(1, 3)
+    win.write(("\x8C"):rep(16))
+    win.setCursorPos(3, height)
+    win.setBackgroundColor(colors.white)
+    win.setTextColor(colors.black)
+    win.clearLine()
+    win.write(lastStatus)
+    win.setBackgroundColor(colors.orange)
+    win.setTextColor(colors.white)
+    win.setCursorPos(3, 5)
+    win.write("Please drop the file named '" .. name .. "'.")
+    while not filesDropped[name] do
+        local _, param = os.pullEvent("file_transfer")
+        for _, file in ipairs(param.getFiles()) do
+            filesDropped[file.getName()] = file
+        end
+    end
+    mainScreen.redraw()
+    return filesDropped[name]
+end
+
 local screens = {}
 
 function screens.message(state, message, next)
@@ -298,7 +333,7 @@ end
 function screens.loading(state)
     clearScreen("Downloading package list...")
     label("Please wait while Setup initializes.")
-    local handle, err = http.get(url .. "Packages")
+    local handle, err = get("Packages")
     if not handle then return screens.message(state, "An error occurred while initializing Setup: Could not download package list: " .. err .. "\n\nSetup cannot continue. Press ENTER to exit.", function() end) end
     local pkg
     for line in handle.readLine do
@@ -319,7 +354,6 @@ function screens.loading(state)
         end
     end
     handle.close()
-    if jit then return screens.message(state, "Phoenix does not support running on CraftOS-PC Accelerated. Please re-run the installer using normal CraftOS-PC.\n\nSetup cannot continue. Press ENTER to exit.", function() end) end
     return screens.welcome(state)
 end
 
@@ -440,7 +474,9 @@ No agency, partnership, or joint venture has been created between the Parties as
 The Developer is not liable for any failure to perform due to causes beyond its reasonable control including, but not limited to, acts of God, acts of civil authorities, acts of military authorities, riots, embargoes, acts of nature and natural disasters, and other acts which may be due to unforeseen circumstances.
 
 ### ELECTRONIC COMMUNICATIONS PERMITTED
-Electronic communications are permitted to both Parties under this Agreement, including e-mail or online chat over the Discord platform. For any questions or concerns, please email us at the following address: jackmacwindowslinux@gmail.com, or contact us on Discord at the following username: JackMacWindows#9776.
+Electronic communications are permitted to both Parties under this Agreement, including e-mail or online chat over the Discord platform. For any questions or concerns, please email us at the following address: jackmacwindowslinux@gmail.com, or contact us on Discord at the following username: jackmacwindows (formerly JackMacWindows#9776).
+
+This software complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This software may not cause harmful interference, and (2) this software must accept any interference received, including interference that may cause undesired operation.
 
 
 
@@ -718,13 +754,13 @@ function screens.download(state)
     clearScreen("")
     label "Downloading components..."
     local progress = progressBar()
-    local total = 1
+    local total = 2
     for _ in pairs(state.components) do total = total + 1 end
     local n = 0
     fs.makeDir(fs.combine(state.rootdir, "tmp/pkg"))
     for _, k in ipairs(state.components) do
         drawStatus("Downloading: " .. k)
-        local handle, err = http.get(url .. k .. ".deb", nil, true)
+        local handle, err = get(k .. ".deb")
         if not handle then
             sleep(0)
             return screens.message(state, "An error occurred while downloading the " .. k .. " component. Installation cannot continue.\n\nPress ENTER to exit.\n\nError message: " .. err, function() return false end)
@@ -742,12 +778,21 @@ function screens.download(state)
         progress(n / total)
     end
     drawStatus("Downloading: base system")
-    local handle, err = http.get(url .. "stage2.tar", nil, true)
+    local handle, err = get("stage2.tar")
     if not handle then
         sleep(0)
         return screens.message(state, "An error occurred while downloading the base system component. Installation cannot continue.\n\nPress ENTER to exit.\n\nError message: " .. err, function() return false end)
     end
     state.stage2 = handle.readAll()
+    handle.close()
+    progress(1 - 1 / total)
+    drawStatus("Downloading: kernel")
+    handle, err = get("kernel.lua")
+    if not handle then
+        sleep(0)
+        return screens.message(state, "An error occurred while downloading the kernel component. Installation cannot continue.\n\nPress ENTER to exit.\n\nError message: " .. err, function() return false end)
+    end
+    state.kernel = handle.readAll()
     handle.close()
     progress(1)
     return screens.install_stage1(state)
@@ -840,9 +885,112 @@ function screens.reboot(state)
         sleep(1)
     end
     -- I lied. We're not rebooting, just booting into UnBIOS. Sorry not sorry.
-    shell.run(fs.combine(state.rootdir, "boot/unbios.lua"), fs.combine(state.rootdir, "boot/kernel.lua"), "root=" .. state.rootdir, "init=/install_stage2.lua")
+    local ok, err = pcall(function()
+        local fn = assert(load(state.kernel, "=kernel", "t", _G))
+        -- UnBIOS by JackMacWindows
+        -- This will undo most of the changes/additions made in the BIOS, but some things may remain wrapped if `debug` is unavailable
+        -- To use, just place a `bios.lua` in the root of the drive, and run this program
+        -- Here's a list of things that are irreversibly changed:
+        -- * both `bit` and `bit32` are kept for compatibility
+        -- * string metatable blocking (on old versions of CC)
+        -- In addition, if `debug` is not available these things are also irreversibly changed:
+        -- * old Lua 5.1 `load` function (for loading from a function)
+        -- * `loadstring` prefixing (before CC:T 1.96.0)
+        -- * `http.request`
+        -- * `os.shutdown` and `os.reboot`
+        -- * `peripheral`
+        -- * `turtle.equip[Left|Right]`
+        -- Licensed under the MIT license
+        local old_dofile = _G.dofile
+        local keptAPIs = {bit32 = true, bit = true, ccemux = true, config = true, coroutine = true, debug = true, ffi = true, fs = true, http = true, io = true, jit = true, mounter = true, os = true, periphemu = true, peripheral = true, redstone = true, rs = true, term = true, utf8 = true, _HOST = true, _CC_DEFAULT_SETTINGS = true, _CC_DISABLE_LUA51_FEATURES = true, _VERSION = true, assert = true, collectgarbage = true, error = true, gcinfo = true, getfenv = true, getmetatable = true, ipairs = true, load = true, loadstring = true, math = true, newproxy = true, next = true, pairs = true, pcall = true, rawequal = true, rawget = true, rawlen = true, rawset = true, select = true, setfenv = true, setmetatable = true, string = true, table = true, tonumber = true, tostring = true, type = true, unpack = true, xpcall = true, turtle = true, pocket = true, commands = true, _G = true, sound = true}
+        local t = {}
+        for k in pairs(_G) do if not keptAPIs[k] then table.insert(t, k) end end
+        for _,k in ipairs(t) do _G[k] = nil end
+        local native = _G.term.native()
+        for _, method in ipairs { "nativePaletteColor", "nativePaletteColour", "screenshot" } do
+            native[method] = _G.term[method]
+        end
+        _G.term = native
+        if _G.http then
+            _G.http.checkURL = _G.http.checkURLAsync
+            _G.http.websocket = _G.http.websocketAsync
+        end
+        if _G.commands then _G.commands = _G.commands.native end
+        if _G.turtle then _G.turtle.native, _G.turtle.craft = nil end
+        local delete = {os = {"version", "pullEventRaw", "pullEvent", "run", "loadAPI", "unloadAPI", "sleep"}, http = _G.http and {"get", "post", "put", "delete", "patch", "options", "head", "trace", "listen", "checkURLAsync", "websocketAsync"}, fs = {"complete", "isDriveRoot"}}
+        for k,v in pairs(delete) do for _,a in ipairs(v) do _G[k][a] = nil end end
+        -- Set up TLCO
+        -- This functions by crashing `rednet.run` by removing `os.pullEventRaw`. Normally
+        -- this would cause `parallel` to throw an error, but we replace `error` with an
+        -- empty placeholder to let it continue and return without throwing. This results
+        -- in the `pcall` returning successfully, preventing the error-displaying code
+        -- from running - essentially making it so that `os.shutdown` is called immediately
+        -- after the new BIOS exits.
+        --
+        -- From there, the setup code is placed in `term.native` since it's the first
+        -- thing called after `parallel` exits. This loads the new BIOS and prepares it
+        -- for execution. Finally, it overwrites `os.shutdown` with the new function to
+        -- allow it to be the last function called in the original BIOS, and returns.
+        -- From there execution continues, calling the `term.redirect` dummy, skipping
+        -- over the error-handling code (since `pcall` returned ok), and calling
+        -- `os.shutdown()`. The real `os.shutdown` is re-added, and the new BIOS is tail
+        -- called, which effectively makes it run as the main chunk.
+        local olderror = error
+        _G.error = function() end
+        _G.term.redirect = function() end
+        function _G.term.native()
+            _G.term.native = nil
+            _G.term.redirect = nil
+            _G.error = olderror
+            term.setBackgroundColor(32768)
+            term.setTextColor(1)
+            term.setCursorPos(1, 1)
+            term.setCursorBlink(true)
+            term.clear()
+            local oldshutdown = os.shutdown
+            os.shutdown = function()
+                os.shutdown = oldshutdown
+                return fn("root=" .. state.rootdir, "init=/install_stage2.lua")
+            end
+        end
+        if debug then
+            -- Restore functions that were overwritten in the BIOS
+            -- Apparently this has to be done *after* redefining term.native
+            local function restoreValue(tab, idx, name, hint)
+                local i, key, value = 1, debug.getupvalue(tab[idx], hint)
+                while key ~= name and not (key == nil and i > 1) do
+                    key, value = debug.getupvalue(tab[idx], i)
+                    i=i+1
+                end
+                tab[idx] = value or tab[idx]
+            end
+            restoreValue(_G, "loadstring", "nativeloadstring", 1)
+            restoreValue(_G, "load", "nativeload", 5)
+            if http then restoreValue(http, "request", "nativeHTTPRequest", 3) end
+            restoreValue(os, "shutdown", "nativeShutdown", 1)
+            restoreValue(os, "reboot", "nativeReboot", 1)
+            if turtle then
+                restoreValue(turtle, "equipLeft", "v", 1)
+                restoreValue(turtle, "equipRight", "v", 1)
+            end
+            do
+                local i, key, value = 1, debug.getupvalue(peripheral.isPresent, 2)
+                while key ~= "native" and key ~= nil do
+                    key, value = debug.getupvalue(peripheral.isPresent, i)
+                    i=i+1
+                end
+                _G.peripheral = value or peripheral
+            end
+            -- Restore Discord plugin in CraftOS-PC
+            if debug.getupvalue(old_dofile, 2) == "status" then
+                local _, status = debug.getupvalue(old_dofile, 2)
+                _, _G.discord = debug.getupvalue(status, 4)
+            end
+        end
+        while true do coroutine.yield() end
+    end)
     -- If this fails, it's an error.
-    return screens.message(state, "An error occurred while rebooting. Installation cannot continue.\n\nPress ENTER to exit.", function() return false end)
+    return screens.message(state, "An error occurred while rebooting: " .. err .. ". Installation cannot continue.\n\nPress ENTER to exit.", function() return false end)
 end
 
 screens.loading{}
