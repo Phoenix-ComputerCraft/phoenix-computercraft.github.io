@@ -51,7 +51,11 @@ exclude:
   - gemfiles/
   - Gemfile
   - Gemfile.lock
+  - netlify.toml
   - node_modules/
+
+include:
+  - _redirects
 
 sass:
   quiet_deps: true
