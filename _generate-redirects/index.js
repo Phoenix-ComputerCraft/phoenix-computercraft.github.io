@@ -13,6 +13,7 @@ module.exports = {
                         netlifyConfig.redirects.push({
                             from: "/packages/" + pkg + ".deb",
                             to: "/packages/pool/main/" + a + "/" + pkg + "/" + nameC[0],
+                            status: 200,
                         });
                     }));
                 return Promise.all(tasksB);
