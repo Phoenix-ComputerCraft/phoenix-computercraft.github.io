@@ -460,6 +460,29 @@ Filename: phoenix-luz.deb
 Size: 55222
 Installed-Size: 58
 
+Package: pixelbox
+Version: 22+git82098c8-1
+Section: libraries
+Priority: optional
+Architecture: phoenix
+Recommends: libsystem
+Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
+Description: Very fast ComputerCraft library used for rendering graphics with teletext characters
+ Pixelbox lite is a "minimal" library for drawing 2D graphics (color buffers) to the terminal/windows in CC:T.
+ .
+ Its main objective is to be
+  - very fast
+  - lightweight (minified fits into under 5kB)
+  - easy to use/integrate
+  - modular (provides a way to load modules, and for modules to be created)
+  - flexible (in terms of what you can actually have it do)
+  - display quality (there are some extra snippets for denoising)
+ .
+ With pixelbox lite you can technically get 6x more pixels out of your terminal, each character can now be a block of 3x2 pixels
+Filename: pixelbox.deb
+Size: 15324
+Installed-Size: 45
+
 Package: pxboot
 Version: 0.1.3-1
 Section: admin
