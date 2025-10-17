@@ -1,2 +1,7 @@
 [[plugins]]
 package = "/_generate-redirects"
+
+[[redirects]]
+from = "/CCKit2/*"
+to = "https://phoenix-computercraft.github.io/CCKit2/:splat"
+status = 200
