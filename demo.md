@@ -8,6 +8,15 @@ This page lists a number of public demonstrations of the features of Phoenix in 
 
 ## Screenshots
 
+### Login and desktop demo (not yet available)
+![login and desktop](demos/login%20and%20desktop.webp)
+
+### File browser (not yet available)
+![file browser](demos/file%20browser.webp)
+
+### Installer (not yet available)
+![installer](demos/installer.webp)
+
 ### APT installing packages from Ubuntu PPA
 ![apt ppa](demos/apt ppa.png)
 
