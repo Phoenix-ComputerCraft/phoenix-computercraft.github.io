@@ -887,6 +887,7 @@ function screens.reboot(state)
     -- I lied. We're not rebooting, just booting into UnBIOS. Sorry not sorry.
     local ok, err = pcall(function()
         local fn = assert(load(state.kernel, "=kernel", "t", _G))
+        if _VERSION == "Lua 5.1" then _G._ENV = _G end
         -- UnBIOS by JackMacWindows
         -- This will undo most of the changes/additions made in the BIOS, but some things may remain wrapped if `debug` is unavailable
         -- To use, just place a `bios.lua` in the root of the drive, and run this program
