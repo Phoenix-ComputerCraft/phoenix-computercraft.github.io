@@ -870,7 +870,7 @@ function screens.install_stage1(state)
     file.write(textutils.serialize(state))
     file.close()
     file = fs.open("startup.lua", "w")
-    file.write("if not fs.exists('" .. fs.combine(state.rootdir, "install_config.lua") .. "') then local file = fs.open('startup.lua', 'w') file.write('sleep(0) shell.run(\"" .. fs.combine(state.rootdir, "boot/pxboot.lua") .. "\")') file.close() return shell.run('/startup.lua') else fs.delete('startup.lua') end")
+    file.write("if not fs.exists('" .. fs.combine(state.rootdir, "install_config.lua") .. "') then local file = fs.open('startup.lua', 'w') file.write('sleep(0) " .. (_VERSION == "Lua 5.1" and "_G._ENV = _G " or "") .. "shell.run(\"" .. fs.combine(state.rootdir, "boot/pxboot.lua") .. "\")') file.close() return shell.run('/startup.lua') else fs.delete('startup.lua') end")
     file.close()
     progress(1)
     return screens.reboot(state)
@@ -887,6 +887,7 @@ function screens.reboot(state)
     -- I lied. We're not rebooting, just booting into UnBIOS. Sorry not sorry.
     local ok, err = pcall(function()
         local fn = assert(load(state.kernel, "=kernel", "t", _G))
+        if _VERSION == "Lua 5.1" then _G._ENV = _G end
         -- UnBIOS by JackMacWindows
         -- This will undo most of the changes/additions made in the BIOS, but some things may remain wrapped if `debug` is unavailable
         -- To use, just place a `bios.lua` in the root of the drive, and run this program
