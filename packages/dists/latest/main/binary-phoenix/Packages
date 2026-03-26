@@ -680,18 +680,18 @@ Description: Phoenix service manager and init system
  for Phoenix systems.
 
 Package: tar
-Version: 1.0.1-1
+Version: 1.0.1-2
 Architecture: phoenix
 Depends: libsystem
 Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Priority: important
 Section: utils
-Filename: pool/main/t/tar/tar_1.0.1-1_phoenix.deb
+Filename: pool/main/t/tar/tar_1.0.1-2_phoenix.deb
 Size: 6040
-SHA512: 11c61ff65109a10e077697c2f8de9b7c8bf9ec0e2a4c9aad4ad006a0c7930556efc77eb25257c95ab306f011f1725d6fca28314491706cd264d09203bbf92ccf
-SHA256: 7533e0c7331235078cb7f991ff62a25859e67859edefbc21cc6087e56f3cd1c0
-SHA1: 278af51b2b9aedcbf00653feedf32165d00b178c
-MD5sum: edd6283384c14209bc3fb05bd4720175
+SHA512: d2895f2cfa1d6f533a73cb49167447bbfe09f47deab49cb6fe10f7edd0f54e07093a7a35fa46b6b8d24f4c3d678d7f5f01037c3daa5275279c57dbfd3ab4a6f3
+SHA256: 6d24e3458924132b85943c00d988e92f31ab8982fa68abf8ee95d1fc102d3aea
+SHA1: 3bc2701c1f0703f97cf5b44cdcf1bc8829bbd963
+MD5sum: 02abd625ed48d9ecd833a837f07660dc
 Description: TAR archive format library and program
  Allows creating and extracting TAR archives.
 

@@ -565,7 +565,7 @@ Size: 6032
 Installed-Size: 15
 
 Package: tar
-Version: 1.0.1-1
+Version: 1.0.1-2
 Section: utils
 Priority: important
 Architecture: phoenix
@@ -574,7 +574,7 @@ Maintainer: JackMacWindows <jackmacwindowslinux@gmail.com>
 Description: TAR archive format library and program
  Allows creating and extracting TAR archives.
 Filename: tar.deb
-Size: 6032
+Size: 6040
 Installed-Size: 17
 
 Package: typescript
